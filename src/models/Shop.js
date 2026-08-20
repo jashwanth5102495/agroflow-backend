@@ -35,6 +35,15 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Shop = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
+const billingRecordSchema = new mongoose_1.Schema({
+    date: { type: Date, default: Date.now },
+    amount: { type: Number, required: true },
+    plan: { type: String, default: 'Standard Shop Plan' },
+    cycle: { type: String, enum: ['MONTHLY', 'ANNUAL'], default: 'MONTHLY' },
+    status: { type: String, enum: ['PAID', 'FAILED', 'PENDING'], default: 'PAID' },
+    paymentMethod: { type: String, default: 'UPI AutoPay' },
+    transactionId: { type: String, required: true },
+}, { _id: true });
 const shopSchema = new mongoose_1.Schema({
     name: { type: String, required: true, trim: true },
     ownerName: { type: String, required: true, trim: true },
@@ -46,11 +55,33 @@ const shopSchema = new mongoose_1.Schema({
     state: { type: String, required: true, trim: true },
     pincode: { type: String, required: true, trim: true },
     gstNumber: { type: String, trim: true },
+    agentCode: { type: String, trim: true },
     status: {
         type: String,
         enum: ['ACTIVE', 'INACTIVE', 'SUSPENDED'],
         default: 'ACTIVE',
     },
+    subscriptionPrice: {
+        type: Number,
+        default: 1500, // Monthly base price set by agent/admin
+    },
+    subscriptionStatus: {
+        type: String,
+        enum: ['PENDING_PAYMENT', 'ACTIVE', 'EXPIRED', 'CANCELLED'],
+        default: 'PENDING_PAYMENT',
+    },
+    billingCycle: {
+        type: String,
+        enum: ['MONTHLY', 'ANNUAL'],
+        default: 'MONTHLY',
+    },
+    subscriptionStartDate: { type: Date },
+    subscriptionEndDate: { type: Date },
+    autoPay: {
+        type: Boolean,
+        default: true,
+    },
+    billingHistory: [billingRecordSchema],
 }, {
     timestamps: true,
 });

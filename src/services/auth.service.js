@@ -26,6 +26,9 @@ const registerShopService = async (data) => {
         state: data.state,
         pincode: data.pincode,
         gstNumber: data.gstNumber,
+        agentCode: data.agentCode,
+        subscriptionPrice: data.subscriptionPrice ? Number(data.subscriptionPrice) : (data.subAmount ? Number(data.subAmount) : 1500),
+        subscriptionStatus: 'PENDING_PAYMENT',
     });
     await shop.save();
     try {

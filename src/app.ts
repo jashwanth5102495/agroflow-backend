@@ -55,6 +55,7 @@ import creditRoutes from './routes/credit.routes';
 import dashboardRoutes from './routes/dashboard.routes';
 import notificationRoutes from './routes/notification.routes';
 import adminRoutes from './routes/admin.routes';
+import subscriptionRoutes from './routes/subscription.routes';
 
 // API Routes
 app.use('/api/v1/auth', authRoutes);
@@ -69,6 +70,7 @@ app.use('/api/v1/credits', creditRoutes);
 app.use('/api/v1/dashboard', dashboardRoutes);
 app.use('/api/v1/notifications', notificationRoutes);
 app.use('/api/v1/admin', adminRoutes);
+app.use('/api/v1/subscription', subscriptionRoutes);
 
 // 404 Handler
 app.use(notFoundHandler);

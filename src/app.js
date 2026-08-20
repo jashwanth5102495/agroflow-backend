@@ -51,6 +51,7 @@ const credit_routes_1 = __importDefault(require("./routes/credit.routes"));
 const dashboard_routes_1 = __importDefault(require("./routes/dashboard.routes"));
 const notification_routes_1 = __importDefault(require("./routes/notification.routes"));
 const admin_routes_1 = __importDefault(require("./routes/admin.routes"));
+const subscription_routes_1 = __importDefault(require("./routes/subscription.routes"));
 // API Routes
 app.use('/api/v1/auth', auth_routes_1.default);
 app.use('/api/v1/farmers', farmer_routes_1.default);
@@ -64,6 +65,7 @@ app.use('/api/v1/credits', credit_routes_1.default);
 app.use('/api/v1/dashboard', dashboard_routes_1.default);
 app.use('/api/v1/notifications', notification_routes_1.default);
 app.use('/api/v1/admin', admin_routes_1.default);
+app.use('/api/v1/subscription', subscription_routes_1.default);
 // 404 Handler
 app.use(notFound_middleware_1.notFoundHandler);
 // Global Error Handler
