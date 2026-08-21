@@ -1,4 +1,4 @@
-import express, { Application } from 'express';
+import express, { Application, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
@@ -11,6 +11,22 @@ const app: Application = express();
 
 // Security Middlewares
 app.use(helmet({ crossOriginResourcePolicy: false }));
+
+// Custom Global CORS Middleware
+app.use((req: Request, res: Response, next: NextFunction) => {
+  const origin = req.headers.origin || '*';
+  res.header('Access-Control-Allow-Origin', origin);
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
+  }
+  next();
+});
+
+// Standard CORS fallback
 app.use(
   cors({
     origin: true,
@@ -34,7 +50,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // Health Check Endpoint
 app.get('/health', (req, res) => {
-  // In a real scenario, you'd check DB state here as well
   import('mongoose').then((mongoose) => {
     const isDbConnected = mongoose.connection.readyState === 1;
     res.json({
