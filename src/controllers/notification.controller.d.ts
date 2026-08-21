@@ -12,7 +12,7 @@ export declare const getNotificationConfig: (req: Request, res: Response, next: 
  */
 export declare const updateNotificationConfig: (req: Request, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>>>;
 /**
- * Triggers an immediate test WhatsApp daily report to the configured number
+ * Triggers an immediate test WhatsApp daily report to the configured number with PDF attached
  */
 export declare const triggerTestMessage: (req: Request, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>>>;
 //# sourceMappingURL=notification.controller.d.ts.map

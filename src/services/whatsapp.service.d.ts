@@ -16,18 +16,19 @@ export declare const initWhatsAppClient: () => void;
  */
 export declare const generateDailyOverviewMessage: (shopId: string, dateStr: string) => Promise<string>;
 /**
- * Sends a WhatsApp message from the authenticated client.
- * Falls back to mock console output if client is not authenticated.
+ * Sends a WhatsApp message with optional PDF attachment.
  */
-export declare const sendWhatsAppMessage: (to: string, message: string) => Promise<{
+export declare const sendWhatsAppMessage: (to: string, message: string, pdfBuffer?: Buffer, pdfFileName?: string) => Promise<{
     success: boolean;
     sender: string;
     receiver: string;
+    hasPdf: boolean;
     mocked?: undefined;
 } | {
     success: boolean;
     sender: string;
     receiver: string;
     mocked: boolean;
+    hasPdf: boolean;
 }>;
 //# sourceMappingURL=whatsapp.service.d.ts.map

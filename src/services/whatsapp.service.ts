@@ -4,7 +4,7 @@ import { Shop } from '../models/Shop';
 import mongoose from 'mongoose';
 
 // @ts-ignore
-import { Client, LocalAuth } from 'whatsapp-web.js';
+import { Client, LocalAuth, MessageMedia } from 'whatsapp-web.js';
 // @ts-ignore
 import qrcode from 'qrcode-terminal';
 
@@ -145,33 +145,40 @@ export const generateDailyOverviewMessage = async (shopId: string, dateStr: stri
     }
   ]);
 
-  // Construct standard report message
-  let message = `*🌾 AgroFlow Daily Overview 🌾*\n`;
-  message += `📅 *Date:* ${dateStr}\n`;
-  message += `🏪 *Shop:* ${shopName}\n\n`;
-  message += `💰 *SALES SUMMARY:*\n`;
-  message += `• *Total Sale:* ₹${summary.totalSales.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\n`;
-  message += `• *Today's Total Cash Sale:* ₹${summary.totalPaid.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\n`;
-  message += `• *Today's Total Credit Sale:* ₹${summary.totalDue.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\n\n`;
+  // Construct standard report message (Bilingual)
+  let message = `*🌾 AgroFlow Daily Overview / ದೈನಂದಿನ ವರದಿ 🌾*\n`;
+  message += `📅 *Date (ದಿನಾಂಕ):* ${dateStr}\n`;
+  message += `🏪 *Shop (ಅಂಗಡಿ):* ${shopName}\n\n`;
+  message += `💰 *SALES SUMMARY / ಮಾರಾಟದ ವಿವರ:*\n`;
+  message += `• *Total Sale (ಒಟ್ಟು ಮಾರಾಟ):* ₹${summary.totalSales.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\n`;
+  message += `• *Today's Cash (ನಗದು ಮಾರಾಟ):* ₹${summary.totalPaid.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\n`;
+  message += `• *Today's Credit (ಸಾಲದ ಮಾರಾಟ):* ₹${summary.totalDue.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\n`;
+  message += `• *Total Invoices (ರಶೀದಿಗಳು):* ${summary.count}\n\n`;
 
-  message += `📦 *INVENTORY STATUS:*\n`;
+  message += `📦 *INVENTORY STATUS / ದಾಸ್ತಾನು ವಿವರ:*\n`;
   if (lowStockProducts.length === 0) {
     message += `• All active products are above minimum stock levels. ✅\n`;
   } else {
-    message += `• ${lowStockProducts.length} low stock product(s) require attention:\n`;
+    message += `• ${lowStockProducts.length} product(s) in low stock:\n`;
     lowStockProducts.forEach((item) => {
       message += `  - *${item.name}*: ${item.quantity} ${item.unit} (Min limit: ${item.minimumStock})\n`;
     });
   }
 
+  message += `\n📄 *Attached PDF includes complete itemized farmer bills & credit dues in English & Kannada.*`;
+
   return message;
 };
 
 /**
- * Sends a WhatsApp message from the authenticated client.
- * Falls back to mock console output if client is not authenticated.
+ * Sends a WhatsApp message with optional PDF attachment.
  */
-export const sendWhatsAppMessage = async (to: string, message: string) => {
+export const sendWhatsAppMessage = async (
+  to: string,
+  message: string,
+  pdfBuffer?: Buffer,
+  pdfFileName?: string
+) => {
   const senderNumber = '+91 9347564390';
   let cleanNumber = to.replace(/[^\d]/g, '');
   
@@ -183,9 +190,18 @@ export const sendWhatsAppMessage = async (to: string, message: string) => {
   if (isClientReady && wwebClient) {
     try {
       const chatId = `${cleanNumber}@c.us`;
-      await wwebClient.sendMessage(chatId, message);
-      console.log(`[WhatsApp Service] Message successfully sent from ${senderNumber} to recipient ${cleanNumber}.`);
-      return { success: true, sender: senderNumber, receiver: cleanNumber };
+      if (pdfBuffer && pdfBuffer.length > 0) {
+        const media = new MessageMedia(
+          'application/pdf',
+          pdfBuffer.toString('base64'),
+          pdfFileName || 'AgroFlow_Daily_Report.pdf'
+        );
+        await wwebClient.sendMessage(chatId, media, { caption: message });
+      } else {
+        await wwebClient.sendMessage(chatId, message);
+      }
+      console.log(`[WhatsApp Service] Message & PDF successfully sent from ${senderNumber} to recipient ${cleanNumber}.`);
+      return { success: true, sender: senderNumber, receiver: cleanNumber, hasPdf: !!pdfBuffer };
     } catch (error) {
       console.error(`[WhatsApp Service] Error sending message to ${cleanNumber} via Web client:`, error);
     }
@@ -196,8 +212,9 @@ export const sendWhatsAppMessage = async (to: string, message: string) => {
   console.log(`📱 WHATSAPP MESSAGE LOG (MOCK FALLBACK)`);
   console.log(`👤 Sender: ${senderNumber} (Requires QR Scan to send real message)`);
   console.log(`👤 Recipient: ${cleanNumber}`);
+  console.log(`📎 PDF Attachment: ${pdfFileName || (pdfBuffer ? 'Attached PDF Document' : 'None')}`);
   console.log(`✉️ Message:\n${message}`);
   console.log(`==================================================\n`);
 
-  return { success: true, sender: senderNumber, receiver: cleanNumber, mocked: true };
+  return { success: true, sender: senderNumber, receiver: cleanNumber, mocked: true, hasPdf: !!pdfBuffer };
 };

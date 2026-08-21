@@ -1,6 +1,7 @@
 import cron from 'node-cron';
 import { NotificationConfig } from '../models/NotificationConfig';
 import { generateDailyOverviewMessage, sendWhatsAppMessage } from './whatsapp.service';
+import { fetchDailyReportData, generateDailyReportPDF } from './pdfReport.service';
 
 /**
  * Gets current date and time formatted for Asia/Kolkata timezone
@@ -51,20 +52,31 @@ export const initNotificationScheduler = () => {
         
         for (const config of activeConfigs) {
           try {
-            // 1. Generate message content
+            // 1. Generate text message content
             const message = await generateDailyOverviewMessage(
               config.shopId.toString(),
               dateString
             );
             
-            // 2. Send the message via WhatsApp service
-            await sendWhatsAppMessage(config.whatsappNumber, message);
+            // 2. Generate PDF report
+            let pdfBuffer: Buffer | undefined;
+            let fileName: string | undefined;
+            try {
+              const reportData = await fetchDailyReportData(config.shopId.toString(), dateString);
+              pdfBuffer = await generateDailyReportPDF(reportData);
+              fileName = `AgroFlow_${reportData.shopName.replace(/[^a-zA-Z0-9]/g, '_')}_${dateString}.pdf`;
+            } catch (pdfErr) {
+              console.error('[Scheduler] Error generating PDF report:', pdfErr);
+            }
+
+            // 3. Send message with PDF via WhatsApp service
+            await sendWhatsAppMessage(config.whatsappNumber, message, pdfBuffer, fileName);
             
-            // 3. Mark config as sent for today
+            // 4. Mark config as sent for today
             config.lastSentDate = dateString;
             await config.save();
             
-            console.log(`[Scheduler] Report sent successfully to ${config.whatsappNumber} for Shop ID ${config.shopId}`);
+            console.log(`[Scheduler] Report & PDF sent successfully to ${config.whatsappNumber} for Shop ID ${config.shopId}`);
           } catch (configError) {
             console.error(
               `[Scheduler] Error processing notification for shop ${config.shopId}:`,

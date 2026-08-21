@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.triggerTestMessage = exports.updateNotificationConfig = exports.getNotificationConfig = exports.getGatewayStatus = void 0;
 const NotificationConfig_1 = require("../models/NotificationConfig");
 const whatsapp_service_1 = require("../services/whatsapp.service");
+const pdfReport_service_1 = require("../services/pdfReport.service");
 const scheduler_service_1 = require("../services/scheduler.service");
 const response_1 = require("../utils/response");
 /**
@@ -78,7 +79,7 @@ const updateNotificationConfig = async (req, res, next) => {
 };
 exports.updateNotificationConfig = updateNotificationConfig;
 /**
- * Triggers an immediate test WhatsApp daily report to the configured number
+ * Triggers an immediate test WhatsApp daily report to the configured number with PDF attached
  */
 const triggerTestMessage = async (req, res, next) => {
     try {
@@ -89,8 +90,12 @@ const triggerTestMessage = async (req, res, next) => {
         }
         const { dateString } = (0, scheduler_service_1.getLocalTimeInfo)();
         const message = await (0, whatsapp_service_1.generateDailyOverviewMessage)(shopId, dateString);
-        await (0, whatsapp_service_1.sendWhatsAppMessage)(config.whatsappNumber, message);
-        return (0, response_1.sendSuccess)(res, { sentTo: config.whatsappNumber }, 'Test daily overview WhatsApp message triggered successfully');
+        // Generate bilingual PDF report
+        const reportData = await (0, pdfReport_service_1.fetchDailyReportData)(shopId, dateString);
+        const pdfBuffer = await (0, pdfReport_service_1.generateDailyReportPDF)(reportData);
+        const fileName = `AgroFlow_${reportData.shopName.replace(/[^a-zA-Z0-9]/g, '_')}_${dateString}.pdf`;
+        await (0, whatsapp_service_1.sendWhatsAppMessage)(config.whatsappNumber, message, pdfBuffer, fileName);
+        return (0, response_1.sendSuccess)(res, { sentTo: config.whatsappNumber, pdfAttached: true, fileName }, 'Daily overview WhatsApp message & PDF report triggered successfully');
     }
     catch (error) {
         next(error);

@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { NotificationConfig } from '../models/NotificationConfig';
 import { generateDailyOverviewMessage, sendWhatsAppMessage, getWhatsAppStatus } from '../services/whatsapp.service';
+import { fetchDailyReportData, generateDailyReportPDF } from '../services/pdfReport.service';
 import { getLocalTimeInfo } from '../services/scheduler.service';
 import { sendSuccess, sendError } from '../utils/response';
 
@@ -87,7 +88,7 @@ export const updateNotificationConfig = async (req: Request, res: Response, next
 };
 
 /**
- * Triggers an immediate test WhatsApp daily report to the configured number
+ * Triggers an immediate test WhatsApp daily report to the configured number with PDF attached
  */
 export const triggerTestMessage = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -106,12 +107,17 @@ export const triggerTestMessage = async (req: Request, res: Response, next: Next
     const { dateString } = getLocalTimeInfo();
     const message = await generateDailyOverviewMessage(shopId, dateString);
 
-    await sendWhatsAppMessage(config.whatsappNumber, message);
+    // Generate bilingual PDF report
+    const reportData = await fetchDailyReportData(shopId, dateString);
+    const pdfBuffer = await generateDailyReportPDF(reportData);
+    const fileName = `AgroFlow_${reportData.shopName.replace(/[^a-zA-Z0-9]/g, '_')}_${dateString}.pdf`;
+
+    await sendWhatsAppMessage(config.whatsappNumber, message, pdfBuffer, fileName);
 
     return sendSuccess(
       res,
-      { sentTo: config.whatsappNumber },
-      'Test daily overview WhatsApp message triggered successfully'
+      { sentTo: config.whatsappNumber, pdfAttached: true, fileName },
+      'Daily overview WhatsApp message & PDF report triggered successfully'
     );
   } catch (error) {
     next(error);

@@ -7,6 +7,7 @@ exports.initNotificationScheduler = exports.getLocalTimeInfo = void 0;
 const node_cron_1 = __importDefault(require("node-cron"));
 const NotificationConfig_1 = require("../models/NotificationConfig");
 const whatsapp_service_1 = require("./whatsapp.service");
+const pdfReport_service_1 = require("./pdfReport.service");
 /**
  * Gets current date and time formatted for Asia/Kolkata timezone
  */
@@ -49,14 +50,25 @@ const initNotificationScheduler = () => {
                 console.log(`[Scheduler] Found ${activeConfigs.length} notification(s) to process for ${timeString}`);
                 for (const config of activeConfigs) {
                     try {
-                        // 1. Generate message content
+                        // 1. Generate text message content
                         const message = await (0, whatsapp_service_1.generateDailyOverviewMessage)(config.shopId.toString(), dateString);
-                        // 2. Send the message via WhatsApp service
-                        await (0, whatsapp_service_1.sendWhatsAppMessage)(config.whatsappNumber, message);
-                        // 3. Mark config as sent for today
+                        // 2. Generate PDF report
+                        let pdfBuffer;
+                        let fileName;
+                        try {
+                            const reportData = await (0, pdfReport_service_1.fetchDailyReportData)(config.shopId.toString(), dateString);
+                            pdfBuffer = await (0, pdfReport_service_1.generateDailyReportPDF)(reportData);
+                            fileName = `AgroFlow_${reportData.shopName.replace(/[^a-zA-Z0-9]/g, '_')}_${dateString}.pdf`;
+                        }
+                        catch (pdfErr) {
+                            console.error('[Scheduler] Error generating PDF report:', pdfErr);
+                        }
+                        // 3. Send message with PDF via WhatsApp service
+                        await (0, whatsapp_service_1.sendWhatsAppMessage)(config.whatsappNumber, message, pdfBuffer, fileName);
+                        // 4. Mark config as sent for today
                         config.lastSentDate = dateString;
                         await config.save();
-                        console.log(`[Scheduler] Report sent successfully to ${config.whatsappNumber} for Shop ID ${config.shopId}`);
+                        console.log(`[Scheduler] Report & PDF sent successfully to ${config.whatsappNumber} for Shop ID ${config.shopId}`);
                     }
                     catch (configError) {
                         console.error(`[Scheduler] Error processing notification for shop ${config.shopId}:`, configError);
