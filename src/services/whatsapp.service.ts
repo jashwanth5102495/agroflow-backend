@@ -36,6 +36,7 @@ export const initWhatsAppClient = () => {
     puppeteer: {
       handleSIGINT: false,
       headless: true,
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || (process.platform === 'linux' ? '/usr/bin/chromium' : undefined),
       args: [
         '--no-sandbox',
         '--disable-setuid-sandbox',
