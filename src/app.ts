@@ -10,18 +10,20 @@ import { sendSuccess } from './utils/response';
 const app: Application = express();
 
 // Security Middlewares
-app.use(helmet());
+app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use(
   cors({
-    origin: env.NODE_ENV === 'development' ? true : env.FRONTEND_URL,
+    origin: true,
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   })
 );
 
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: env.NODE_ENV === 'development' ? 10000 : 100, // Relax rate limiting in development for gateway polling
+  max: 5000, // Generous rate limit for API and polling
   message: 'Too many requests from this IP, please try again later',
 });
 app.use('/api', limiter);
