@@ -5,19 +5,14 @@ import { initNotificationScheduler } from './services/scheduler.service';
 import { initWhatsAppClient } from './services/whatsapp.service';
 
 const startServer = async () => {
-  // Connect to Database
-  await connectDB();
-
-  // Initialize WhatsApp Web Client (for QR device linking)
-  initWhatsAppClient();
-
-  // Initialize background notification cron job
-  initNotificationScheduler();
-
-  // Start the server
   app.listen(env.PORT, () => {
     console.log(`🚀 Server is running on port ${env.PORT} in ${env.NODE_ENV} mode`);
   });
+
+  await connectDB();
+
+  initWhatsAppClient();
+  initNotificationScheduler();
 };
 
 startServer();
