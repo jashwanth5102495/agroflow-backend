@@ -19,6 +19,12 @@ const envParsed = envSchema.safeParse({
   ...process.env,
   MONGODB_URI: mongoUri,
   JWT_SECRET: process.env.JWT_SECRET || 'agroflow_jwt_secret_production_key_2026',
+  FRONTEND_URL:
+    process.env.FRONTEND_URL ||
+    process.env.FRONTEND_ORIGIN ||
+    process.env.CORS_ORIGIN ||
+    process.env.CORS_ORIGINS ||
+    '*',
 });
 
 if (!envParsed.success) {

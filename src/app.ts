@@ -12,9 +12,11 @@ const app: Application = express();
 app.use(helmet({ crossOriginResourcePolicy: false }));
 
 // CORS (env-driven allowlist)
+const normalizeOrigin = (value: string) => value.trim().replace(/\/+$/, '').toLowerCase();
+
 const allowedOrigins = env.FRONTEND_URL
   .split(',')
-  .map((origin) => origin.trim())
+  .map((origin) => normalizeOrigin(origin))
   .filter(Boolean);
 
 const corsOptions: cors.CorsOptions = {
@@ -24,12 +26,14 @@ const corsOptions: cors.CorsOptions = {
       return callback(null, true);
     }
 
+    const requestOrigin = normalizeOrigin(origin);
+
     // Allow all origins only when explicitly configured
     if (allowedOrigins.includes('*')) {
       return callback(null, true);
     }
 
-    if (allowedOrigins.includes(origin)) {
+    if (allowedOrigins.includes(requestOrigin)) {
       return callback(null, true);
     }
 
