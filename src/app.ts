@@ -6,6 +6,9 @@ import { env } from './config/env';
 import { errorHandler } from './middleware/error.middleware';
 import { notFoundHandler } from './middleware/notFound.middleware';
 
+import { execSync } from 'child_process';
+console.log('chromium path:', execSync('which chromium').toString());
+
 const app: Application = express();
 
 app.set('trust proxy', 1);
