@@ -8,6 +8,8 @@ import { notFoundHandler } from './middleware/notFound.middleware';
 
 const app: Application = express();
 
+app.set('trust proxy', 1);
+
 // Security Middlewares
 app.use(helmet({ crossOriginResourcePolicy: false }));
 

@@ -15,11 +15,16 @@ nixPkgs = [
   "mesa",
   "alsa-lib",
   "pango",
-  "cairo"
+  "cairo",
+  "dbus",
+  "expat",
+  "cups",
+  "xorg.libX11",
+  "xorg.libxcb"
 ]
 
 [phases.build]
 cmds = ["npm run build"]
 
 [start]
-cmd = "node dist/server.js"
+cmd = "sh -c 'PUPPETEER_EXECUTABLE_PATH=$(which chromium) node dist/server.js'"
