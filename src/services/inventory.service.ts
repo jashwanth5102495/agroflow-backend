@@ -1,13 +1,48 @@
 import mongoose from 'mongoose';
 import { Inventory } from '../models/Inventory';
+import { Product } from '../models/Product';
 import { InventoryTransaction, TransactionType } from '../models/InventoryTransaction';
 
 export const getInventoryService = async (shopId: string, skip: number, limit: number) => {
-  const [inventory, total] = await Promise.all([
-    Inventory.find({ shopId }).populate('productId', 'name sku category').skip(skip).limit(limit),
-    Inventory.countDocuments({ shopId }),
+  const [products, total] = await Promise.all([
+    Product.aggregate([
+      { $match: { shopId: new mongoose.Types.ObjectId(shopId) } },
+      { $sort: { createdAt: -1 } },
+      { $skip: skip },
+      { $limit: limit },
+      {
+        $lookup: {
+          from: 'inventories',
+          localField: '_id',
+          foreignField: 'productId',
+          as: 'inventoryData'
+        }
+      },
+      {
+        $project: {
+          productId: {
+            _id: '$_id',
+            name: '$name',
+            sku: '$sku',
+            category: '$category',
+            sellingPrice: '$sellingPrice',
+            minimumStock: '$minimumStock',
+            status: '$status'
+          },
+          quantity: { 
+            $cond: { 
+              if: { $gt: [{ $size: '$inventoryData' }, 0] }, 
+              then: { $arrayElemAt: ['$inventoryData.quantity', 0] }, 
+              else: 0 
+            } 
+          },
+          _id: '$_id' // using productId as _id for the inventory list item
+        }
+      }
+    ]),
+    Product.countDocuments({ shopId }),
   ]);
-  return { inventory, total };
+  return { inventory: products, total };
 };
 
 export const adjustInventoryService = async (
