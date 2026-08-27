@@ -92,3 +92,73 @@ export const getInventoryAlertsService = async (shopId: string) => {
   
   return lowStockProducts;
 };
+
+export const getAnalyticsService = async (shopId: string) => {
+  // Sales by Category
+  const salesByCategory = await import('../models/SaleItem').then(({ SaleItem }) => 
+    SaleItem.aggregate([
+      {
+        $lookup: {
+          from: 'sales',
+          localField: 'saleId',
+          foreignField: '_id',
+          as: 'sale'
+        }
+      },
+      { $unwind: '$sale' },
+      { $match: { 'sale.shopId': shopId } },
+      {
+        $lookup: {
+          from: 'products',
+          localField: 'productId',
+          foreignField: '_id',
+          as: 'product'
+        }
+      },
+      { $unwind: '$product' },
+      {
+        $group: {
+          _id: '$product.category',
+          totalSales: { $sum: '$total' }
+        }
+      },
+      { $project: { name: { $ifNull: ['$_id', 'Uncategorized'] }, value: '$totalSales', _id: 0 } }
+    ])
+  );
+
+  // Sales vs Credit (Last 6 Months)
+  const sixMonthsAgo = new Date();
+  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+  
+  const salesVsCredit = await Sale.aggregate([
+    { $match: { shopId, createdAt: { $gte: sixMonthsAgo } } },
+    {
+      $group: {
+        _id: { 
+          month: { $month: '$createdAt' },
+          year: { $year: '$createdAt' }
+        },
+        sales: { $sum: '$total' },
+        credit: { $sum: '$amountDue' }
+      }
+    },
+    { $sort: { '_id.year': 1, '_id.month': 1 } },
+    {
+      $project: {
+        _id: 0,
+        name: {
+          $let: {
+            vars: {
+              monthsInString: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            },
+            in: { $arrayElemAt: ['$$monthsInString', '$_id.month'] }
+          }
+        },
+        sales: 1,
+        credit: 1
+      }
+    }
+  ]);
+
+  return { salesByCategory, salesVsCredit };
+};

@@ -28,3 +28,12 @@ export const getInventoryAlerts = async (req: Request, res: Response, next: Next
     next(error);
   }
 };
+
+export const getAnalytics = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const analytics = await dashboardService.getAnalyticsService(req.user!.shopId);
+    return sendSuccess(res, analytics, 'Analytics retrieved');
+  } catch (error) {
+    next(error);
+  }
+};

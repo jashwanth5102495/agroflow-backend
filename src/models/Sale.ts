@@ -11,7 +11,9 @@ export enum PaymentMethod {
 
 export interface ISale extends Document {
   shopId: mongoose.Types.ObjectId;
-  farmerId: mongoose.Types.ObjectId;
+  farmerId?: mongoose.Types.ObjectId;
+  customerName?: string;
+  customerPhone?: string;
   invoiceNumber: string;
   subtotal: number;
   discount: number;
@@ -29,7 +31,9 @@ export interface ISale extends Document {
 const saleSchema = new Schema<ISale>(
   {
     shopId: { type: Schema.Types.ObjectId, ref: 'Shop', required: true, index: true },
-    farmerId: { type: Schema.Types.ObjectId, ref: 'Farmer', required: true, index: true },
+    farmerId: { type: Schema.Types.ObjectId, ref: 'Farmer', required: false, index: true },
+    customerName: { type: String, required: false },
+    customerPhone: { type: String, required: false },
     invoiceNumber: { type: String, required: true },
     subtotal: { type: Number, required: true, min: 0 },
     discount: { type: Number, default: 0, min: 0 },

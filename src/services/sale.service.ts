@@ -11,8 +11,12 @@ import { CreditTransactionType } from '../models/CreditTransaction';
 import { createPaymentService } from './payment.service';
 
 export const createSaleService = async (shopId: string, userId: string, data: any) => {
-  const farmer = await Farmer.findOne({ _id: data.farmerId, shopId });
-  if (!farmer) throw { message: 'Farmer not found', statusCode: 404 };
+  if (data.farmerId) {
+    const farmer = await Farmer.findOne({ _id: data.farmerId, shopId });
+    if (!farmer) throw { message: 'Farmer not found', statusCode: 404 };
+  } else if (!data.customerName) {
+    throw { message: 'Farmer or Customer Name is required', statusCode: 400 };
+  }
 
   let subtotal = 0;
   const processedItems = [];
@@ -50,7 +54,9 @@ export const createSaleService = async (shopId: string, userId: string, data: an
 
   const sale = new Sale({
     shopId,
-    farmerId: data.farmerId,
+    farmerId: data.farmerId || undefined,
+    customerName: data.customerName,
+    customerPhone: data.customerPhone,
     invoiceNumber: data.invoiceNumber,
     subtotal,
     discount: data.discount || 0,
