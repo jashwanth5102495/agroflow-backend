@@ -6,9 +6,6 @@ import { CreditTransactionType } from '../models/CreditTransaction';
 import { PaymentMethod } from '../models/Sale';
 
 export const createPaymentService = async (shopId: string, userId: string, data: any) => {
-  const session = await mongoose.startSession();
-  session.startTransaction();
-
   try {
     const payment = new Payment({
       shopId,
@@ -19,19 +16,15 @@ export const createPaymentService = async (shopId: string, userId: string, data:
       notes: data.notes,
       createdBy: userId,
     });
-    await payment.save({ session });
+    await payment.save();
 
     if (data.referenceType === 'SALE' && data.referenceId) {
-      const sale = await Sale.findOne({ _id: data.referenceId, shopId }).session(session);
+      const sale = await Sale.findOne({ _id: data.referenceId, shopId });
       if (sale) {
         sale.amountPaid += data.amount;
         sale.amountDue = sale.total - sale.amountPaid;
         sale.paymentStatus = sale.amountDue <= 0 ? 'PAID' : 'PARTIAL';
-        await sale.save({ session });
-        
-        // If payment method is not credit, and there was credit, we decrease credit?
-        // Usually, a direct payment towards a sale doesn't touch the global credit ledger unless it was an explicit credit settlement.
-        // We will assume 'CREDIT_SETTLEMENT' handles global account, and 'SALE' handles specific bill.
+        await sale.save();
       }
     }
 
@@ -43,18 +36,13 @@ export const createPaymentService = async (shopId: string, userId: string, data:
         CreditTransactionType.PAYMENT_RECEIVED,
         userId,
         payment._id as mongoose.Types.ObjectId,
-        data.notes,
-        session
+        data.notes
       );
     }
 
-    await session.commitTransaction();
     return payment;
   } catch (error) {
-    await session.abortTransaction();
     throw error;
-  } finally {
-    session.endSession();
   }
 };
 

@@ -27,7 +27,8 @@ export const getInventoryService = async (shopId: string, skip: number, limit: n
             category: '$category',
             sellingPrice: '$sellingPrice',
             minimumStock: '$minimumStock',
-            status: '$status'
+            status: '$status',
+            description: '$description'
           },
           quantity: { 
             $cond: { 
