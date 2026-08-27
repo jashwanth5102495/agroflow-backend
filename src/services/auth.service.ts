@@ -118,12 +118,10 @@ export const adminLoginService = async (data: any) => {
   const password = data.password || data.passcode || '';
 
   // Master Admin Passcode / Credentials Check
-  if (
-    password === 'AgroAdmin@2026' ||
-    password === 'admin123' ||
-    identifier === 'admin@agroflow.com' ||
-    identifier === '9999999999'
-  ) {
+  const isMasterIdentifier = identifier === 'admin@agroflow.com' || identifier === '9999999999' || identifier === 'admin' || identifier === 'admiin';
+  const isMasterPassword = password === 'AgroAdmin@2026' || password === 'admin123';
+
+  if (isMasterIdentifier && isMasterPassword) {
     let adminUser = await User.findOne({ role: UserRole.ADMIN });
     if (!adminUser) {
       const salt = await bcrypt.genSalt(10);

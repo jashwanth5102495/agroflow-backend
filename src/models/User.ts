@@ -10,7 +10,7 @@ export enum UserRole {
 }
 
 export interface IUser extends Document {
-  shopId: mongoose.Types.ObjectId;
+  shopId?: mongoose.Types.ObjectId;
   name: string;
   email?: string;
   phone: string;
@@ -24,7 +24,12 @@ export interface IUser extends Document {
 
 const userSchema = new Schema<IUser>(
   {
-    shopId: { type: Schema.Types.ObjectId, ref: 'Shop', required: true, index: true },
+    shopId: { 
+      type: Schema.Types.ObjectId, 
+      ref: 'Shop', 
+      required: function(this: any) { return this.role !== UserRole.ADMIN; }, 
+      index: true 
+    },
     name: { type: String, required: true, trim: true },
     email: { type: String, trim: true, lowercase: true },
     phone: { type: String, required: true, trim: true },
