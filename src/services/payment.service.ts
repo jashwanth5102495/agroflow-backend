@@ -18,11 +18,12 @@ export const createPaymentService = async (shopId: string, userId: string, data:
     });
     await payment.save();
 
-    if (data.referenceType === 'SALE' && data.referenceId) {
+    if (data.referenceType === 'SALE' && data.referenceId && data.updateSaleBalance) {
+      // Only update sale balance when explicitly told to (e.g. credit settlement reducing outstanding)
       const sale = await Sale.findOne({ _id: data.referenceId, shopId });
       if (sale) {
         sale.amountPaid += data.amount;
-        sale.amountDue = sale.total - sale.amountPaid;
+        sale.amountDue = Math.max(0, sale.total - sale.amountPaid);
         sale.paymentStatus = sale.amountDue <= 0 ? 'PAID' : 'PARTIAL';
         await sale.save();
       }
