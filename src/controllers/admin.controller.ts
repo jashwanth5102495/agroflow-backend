@@ -12,15 +12,21 @@ export const getAllShops = async (req: Request, res: Response, next: NextFunctio
   try {
     const shops = await Shop.find().sort({ createdAt: -1 }).lean();
     
-    // Enrich each shop with owner info
-    const shopsWithOwners = await Promise.all(
-      shops.map(async (shop: any) => {
-        const owner = await User.findOne({ shopId: shop._id, role: UserRole.OWNER })
-          .select('name phone email lastLoginAt')
-          .lean();
-        return { ...shop, owner: owner || null };
-      })
-    );
+    // Enrich each shop with owner info optimally (avoiding N+1 queries)
+    const shopIds = shops.map((shop: any) => shop._id);
+    const owners = await User.find({ shopId: { $in: shopIds }, role: UserRole.OWNER })
+      .select('shopId name phone email lastLoginAt')
+      .lean();
+
+    const ownerMap = new Map();
+    owners.forEach((owner: any) => {
+      ownerMap.set(owner.shopId.toString(), owner);
+    });
+
+    const shopsWithOwners = shops.map((shop: any) => ({
+      ...shop,
+      owner: ownerMap.get(shop._id.toString()) || null,
+    }));
 
     return sendSuccess(res, shopsWithOwners, 'All shops retrieved successfully');
   } catch (error) {
@@ -74,8 +80,8 @@ export const getAdminDashboardStats = async (req: Request, res: Response, next: 
  */
 export const deleteShop = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { id } = req.params;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
+    const id = req.params.id as string;
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       throw { message: 'Invalid shop ID', statusCode: 400 };
     }
 
