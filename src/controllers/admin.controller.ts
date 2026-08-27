@@ -68,3 +68,28 @@ export const getAdminDashboardStats = async (req: Request, res: Response, next: 
     next(error);
   }
 };
+
+/**
+ * Delete a shop and its associated users (Super Admin only)
+ */
+export const deleteShop = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw { message: 'Invalid shop ID', statusCode: 400 };
+    }
+
+    const shop = await Shop.findByIdAndDelete(id);
+    if (!shop) {
+      throw { message: 'Shop not found', statusCode: 404 };
+    }
+
+    // Delete associated users
+    await User.deleteMany({ shopId: id });
+
+    return sendSuccess(res, null, 'Shop deleted successfully');
+  } catch (error) {
+    next(error);
+  }
+};
+
