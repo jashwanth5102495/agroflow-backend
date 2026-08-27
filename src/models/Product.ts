@@ -6,6 +6,7 @@ export interface IProduct extends Document {
   brand?: string;
   category: string;
   sku?: string;
+  description?: string;
   unit: string; // e.g., 'kg', 'ltr', 'bag'
   purchasePrice: number;
   sellingPrice: number;
@@ -23,6 +24,7 @@ const productSchema = new Schema<IProduct>(
     brand: { type: String, trim: true },
     category: { type: String, required: true, trim: true },
     sku: { type: String, trim: true },
+    description: { type: String, trim: true },
     unit: { type: String, required: true, trim: true },
     purchasePrice: { type: Number, required: true, min: 0 },
     sellingPrice: { type: Number, required: true, min: 0 },

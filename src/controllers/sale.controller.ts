@@ -15,7 +15,9 @@ export const createSale = async (req: Request, res: Response, next: NextFunction
 export const getSales = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { page, limit, skip } = getPaginationOptions(req.query);
-    const { sales, total } = await saleService.getSalesService(req.user!.shopId, skip, limit);
+    const farmerId = req.query.farmerId as string;
+    const { sales, total } = await saleService.getSalesService(req.user!.shopId, skip, limit, farmerId);
+    
     return sendPaginatedSuccess(res, sales, formatPagination(page, limit, total));
   } catch (error) {
     next(error);

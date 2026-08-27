@@ -110,10 +110,15 @@ export const createSaleService = async (shopId: string, userId: string, data: an
   return sale;
 };
 
-export const getSalesService = async (shopId: string, skip: number, limit: number) => {
+export const getSalesService = async (shopId: string, skip: number, limit: number, farmerId?: string) => {
+  const query: any = { shopId };
+  if (farmerId) {
+    query.farmerId = farmerId;
+  }
+
   const [sales, total] = await Promise.all([
-    Sale.find({ shopId }).populate('farmerId', 'name phone').skip(skip).limit(limit).sort({ createdAt: -1 }),
-    Sale.countDocuments({ shopId }),
+    Sale.find(query).populate('farmerId', 'name phone').skip(skip).limit(limit).sort({ createdAt: -1 }),
+    Sale.countDocuments(query),
   ]);
 
   return { sales, total };
