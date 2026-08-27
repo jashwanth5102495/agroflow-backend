@@ -3,7 +3,9 @@ import { PaymentMethod } from '../models/Sale';
 
 export const createSaleSchema = z.object({
   body: z.object({
-    farmerId: z.string().min(1, 'Farmer is required'),
+    farmerId: z.string().optional(),
+    customerName: z.string().optional(),
+    customerPhone: z.string().optional(),
     invoiceNumber: z.string().min(1, 'Invoice number is required'),
     items: z.array(
       z.object({

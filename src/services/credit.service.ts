@@ -64,3 +64,53 @@ export const getOutstandingCreditsService = async (shopId: string, skip: number,
   
   return { accounts, total };
 };
+
+export const getCreditLedgerService = async (shopId: string) => {
+  // Get all credit accounts (including zero-balance for history)
+  const accounts = await CreditAccount.find({ shopId })
+    .populate('farmerId', 'name phone village')
+    .sort({ balance: -1 });
+
+  // For each account, get the credit transactions with sale details
+  const { Sale } = await import('../models/Sale');
+  
+  const enrichedAccounts = await Promise.all(
+    accounts.map(async (account) => {
+      const transactions = await CreditTransaction.find({
+        shopId,
+        farmerId: account.farmerId,
+      })
+        .sort({ createdAt: -1 })
+        .limit(20);
+
+      // Fetch sale details for each transaction
+      const txWithSaleDetails = await Promise.all(
+        transactions.map(async (tx) => {
+          let saleDetails = null;
+          if (tx.referenceId) {
+            const sale = await Sale.findById(tx.referenceId).select('invoiceNumber total amountPaid amountDue paymentMethod createdAt');
+            if (sale) {
+              saleDetails = {
+                invoiceNumber: sale.invoiceNumber,
+                totalAmount: sale.total,
+                downPayment: sale.amountPaid,
+                outstanding: sale.amountDue,
+                paymentMethod: sale.paymentMethod,
+                date: sale.createdAt,
+              };
+            }
+          }
+          return { ...tx.toObject(), saleDetails };
+        })
+      );
+
+      return {
+        ...account.toObject(),
+        transactions: txWithSaleDetails,
+      };
+    })
+  );
+
+  const totalOutstanding = accounts.reduce((sum, a) => sum + (a.balance || 0), 0);
+  return { accounts: enrichedAccounts, totalOutstanding };
+};

@@ -41,3 +41,12 @@ export const addCreditPayment = async (req: Request, res: Response, next: NextFu
     next(error);
   }
 };
+
+export const getCreditLedger = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const data = await creditService.getCreditLedgerService(req.user!.shopId);
+    return sendSuccess(res, data, 'Credit ledger retrieved');
+  } catch (error) {
+    next(error);
+  }
+};

@@ -101,7 +101,7 @@ export const createSaleService = async (shopId: string, userId: string, data: an
     });
   }
 
-  if (amountDue > 0) {
+  if (amountDue > 0 && data.farmerId) {
     await adjustCreditService(
       shopId,
       data.farmerId,

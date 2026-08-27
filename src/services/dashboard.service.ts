@@ -1,4 +1,6 @@
+import mongoose from 'mongoose';
 import { Sale } from '../models/Sale';
+import { SaleItem } from '../models/SaleItem';
 import { Payment } from '../models/Payment';
 import { CreditAccount } from '../models/CreditAccount';
 import { Farmer } from '../models/Farmer';
@@ -94,47 +96,47 @@ export const getInventoryAlertsService = async (shopId: string) => {
 };
 
 export const getAnalyticsService = async (shopId: string) => {
-  // Sales by Category
-  const salesByCategory = await import('../models/SaleItem').then(({ SaleItem }) => 
-    SaleItem.aggregate([
-      {
-        $lookup: {
-          from: 'sales',
-          localField: 'saleId',
-          foreignField: '_id',
-          as: 'sale'
-        }
-      },
-      { $unwind: '$sale' },
-      { $match: { 'sale.shopId': shopId } },
-      {
-        $lookup: {
-          from: 'products',
-          localField: 'productId',
-          foreignField: '_id',
-          as: 'product'
-        }
-      },
-      { $unwind: '$product' },
-      {
-        $group: {
-          _id: '$product.category',
-          totalSales: { $sum: '$total' }
-        }
-      },
-      { $project: { name: { $ifNull: ['$_id', 'Uncategorized'] }, value: '$totalSales', _id: 0 } }
-    ])
-  );
+  const shopObjId = new mongoose.Types.ObjectId(shopId);
+
+  // Sales by Category — join SaleItems → Products
+  const salesByCategory = await SaleItem.aggregate([
+    {
+      $lookup: {
+        from: 'sales',
+        localField: 'saleId',
+        foreignField: '_id',
+        as: 'sale'
+      }
+    },
+    { $unwind: '$sale' },
+    { $match: { 'sale.shopId': shopObjId } },
+    {
+      $lookup: {
+        from: 'products',
+        localField: 'productId',
+        foreignField: '_id',
+        as: 'product'
+      }
+    },
+    { $unwind: '$product' },
+    {
+      $group: {
+        _id: '$product.category',
+        totalSales: { $sum: '$total' }
+      }
+    },
+    { $project: { name: { $ifNull: ['$_id', 'Uncategorized'] }, value: '$totalSales', _id: 0 } }
+  ]);
 
   // Sales vs Credit (Last 6 Months)
   const sixMonthsAgo = new Date();
   sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-  
+
   const salesVsCredit = await Sale.aggregate([
-    { $match: { shopId, createdAt: { $gte: sixMonthsAgo } } },
+    { $match: { shopId: shopObjId, createdAt: { $gte: sixMonthsAgo } } },
     {
       $group: {
-        _id: { 
+        _id: {
           month: { $month: '$createdAt' },
           year: { $year: '$createdAt' }
         },
