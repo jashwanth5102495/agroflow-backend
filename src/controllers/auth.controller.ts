@@ -48,3 +48,28 @@ export const getMe = async (req: Request, res: Response, next: NextFunction) => 
     next(error);
   }
 };
+
+export const toggleCashierMode = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const shopId = req.user?.shopId;
+    if (!shopId) throw { message: 'Shop context missing', statusCode: 401 };
+
+    const { isEnabled } = req.body;
+    const { toggleCashierModeService } = await import('../services/auth.service');
+    const result = await toggleCashierModeService(shopId, isEnabled);
+    return sendSuccess(res, result, `Cashier mode ${isEnabled ? 'enabled' : 'disabled'}`);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const cashierLogin = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { shopId, cashierToken } = req.body;
+    const { cashierLoginService } = await import('../services/auth.service');
+    const result = await cashierLoginService(shopId, cashierToken);
+    return sendSuccess(res, result, 'Cashier logged in successfully');
+  } catch (error) {
+    next(error);
+  }
+};

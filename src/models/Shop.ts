@@ -30,6 +30,8 @@ export interface IShop extends Document {
   subscriptionEndDate?: Date;
   autoPay: boolean;
   billingHistory: IBillingRecord[];
+  isCashierEnabled: boolean;
+  cashierToken?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -86,6 +88,13 @@ const shopSchema = new Schema<IShop>(
       default: true,
     },
     billingHistory: [billingRecordSchema],
+    isCashierEnabled: {
+      type: Boolean,
+      default: false,
+    },
+    cashierToken: {
+      type: String,
+    },
   },
   {
     timestamps: true,

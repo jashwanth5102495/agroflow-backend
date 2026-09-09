@@ -12,4 +12,8 @@ router.post('/admin-login', adminLogin);
 router.post('/logout', authenticate, logout);
 router.get('/me', authenticate, getMe);
 
+import { toggleCashierMode, cashierLogin } from '../controllers/auth.controller';
+router.post('/cashier/toggle', authenticate, toggleCashierMode);
+router.post('/cashier/login', cashierLogin);
+
 export default router;

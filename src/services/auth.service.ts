@@ -199,3 +199,47 @@ export const getMeService = async (userId: string) => {
   
   return { user, shop };
 };
+
+export const toggleCashierModeService = async (shopId: string, isEnabled: boolean) => {
+  const shop = await Shop.findById(shopId);
+  if (!shop) throw { message: 'Shop not found', statusCode: 404 };
+
+  if (isEnabled) {
+    const crypto = require('crypto');
+    const token = crypto.randomUUID();
+    shop.isCashierEnabled = true;
+    shop.cashierToken = token;
+  } else {
+    shop.isCashierEnabled = false;
+    shop.cashierToken = undefined;
+  }
+  await shop.save();
+  return { isCashierEnabled: shop.isCashierEnabled, cashierToken: shop.cashierToken };
+};
+
+export const cashierLoginService = async (shopId: string, cashierToken: string) => {
+  const shop = await Shop.findById(shopId);
+  if (!shop) throw { message: 'Shop not found', statusCode: 404 };
+
+  if (!shop.isCashierEnabled || shop.cashierToken !== cashierToken) {
+    throw { message: 'Invalid or expired cashier link', statusCode: 401 };
+  }
+
+  const payload: JwtPayload = {
+    userId: shopId, 
+    shopId: shop._id.toString(),
+    role: UserRole.CASHIER, 
+  };
+  const token = generateToken(payload);
+
+  return {
+    shop: { _id: shop._id, name: shop.name },
+    user: {
+      _id: shopId,
+      name: 'Cashier',
+      role: UserRole.CASHIER,
+      shopId: shop._id,
+    },
+    token,
+  };
+};

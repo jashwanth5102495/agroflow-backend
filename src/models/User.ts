@@ -7,6 +7,7 @@ export enum UserRole {
   BILLING_STAFF = 'BILLING_STAFF',
   INVENTORY_STAFF = 'INVENTORY_STAFF',
   ACCOUNTANT = 'ACCOUNTANT',
+  CASHIER = 'CASHIER',
 }
 
 export interface IUser extends Document {
