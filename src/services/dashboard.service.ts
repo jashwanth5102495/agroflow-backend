@@ -16,7 +16,8 @@ export const getDashboardSummaryService = async (shopId: string) => {
     todayCollections,
     totalFarmers,
     totalProducts,
-    outstandingCreditResult
+    outstandingCreditResult,
+    overallSalesResult
   ] = await Promise.all([
     // Today's Sales
     Sale.aggregate([
@@ -40,6 +41,12 @@ export const getDashboardSummaryService = async (shopId: string) => {
     CreditAccount.aggregate([
       { $match: { shopId, balance: { $gt: 0 } } },
       { $group: { _id: null, totalOutstanding: { $sum: '$balance' } } }
+    ]),
+    
+    // Overall Sales
+    Sale.aggregate([
+      { $match: { shopId } },
+      { $group: { _id: null, totalSalesAmount: { $sum: '$totalAmount' } } }
     ])
   ]);
 
@@ -50,6 +57,7 @@ export const getDashboardSummaryService = async (shopId: string) => {
     totalFarmers,
     totalProducts,
     outstandingCredit: outstandingCreditResult[0]?.totalOutstanding || 0,
+    overallSales: overallSalesResult[0]?.totalSalesAmount || 0,
   };
 };
 
