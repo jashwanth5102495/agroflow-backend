@@ -29,6 +29,8 @@ export interface IShop extends Document {
   subscriptionStartDate?: Date;
   subscriptionEndDate?: Date;
   autoPay: boolean;
+  isSubscriptionEnforced: boolean;
+  cashfreeSubscriptionId?: string;
   billingHistory: IBillingRecord[];
   isCashierEnabled: boolean;
   cashierToken?: string;
@@ -86,6 +88,13 @@ const shopSchema = new Schema<IShop>(
     autoPay: {
       type: Boolean,
       default: true,
+    },
+    isSubscriptionEnforced: {
+      type: Boolean,
+      default: false,
+    },
+    cashfreeSubscriptionId: {
+      type: String,
     },
     billingHistory: [billingRecordSchema],
     isCashierEnabled: {

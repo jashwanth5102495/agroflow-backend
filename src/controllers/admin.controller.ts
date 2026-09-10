@@ -4,6 +4,7 @@ import { Shop } from '../models/Shop';
 import { User, UserRole } from '../models/User';
 import { Sale } from '../models/Sale';
 import { sendSuccess } from '../utils/response';
+import { createSubscriptionPlan, createSubscription } from '../services/cashfree.service';
 
 /**
  * Get all registered shops with owner details for admin panel
@@ -94,6 +95,57 @@ export const deleteShop = async (req: Request, res: Response, next: NextFunction
     await User.deleteMany({ shopId: id });
 
     return sendSuccess(res, null, 'Shop deleted successfully');
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateShopSubscription = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const id = req.params.id as string;
+    const { subscriptionPrice, isSubscriptionEnforced } = req.body;
+
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      throw { message: 'Invalid shop ID', statusCode: 400 };
+    }
+
+    const shop = await Shop.findById(id);
+    if (!shop) {
+      throw { message: 'Shop not found', statusCode: 404 };
+    }
+
+    let cashfreeSubscriptionId = shop.cashfreeSubscriptionId;
+
+    if (isSubscriptionEnforced) {
+      const price = subscriptionPrice || shop.subscriptionPrice || 1500;
+      const planId = `plan_${price}_monthly`;
+      
+      // Create or get plan
+      await createSubscriptionPlan(planId, price, `AgroFlow Monthly (Rs.${price})`);
+
+      if (!cashfreeSubscriptionId) {
+        // Generate a new subscription ID
+        cashfreeSubscriptionId = `sub_${shop._id}_${Date.now()}`;
+        await createSubscription(
+          cashfreeSubscriptionId, 
+          planId, 
+          shop.email || '', 
+          shop.phone || '', 
+          shop.ownerName || ''
+        );
+      }
+    }
+
+    shop.subscriptionPrice = subscriptionPrice;
+    shop.isSubscriptionEnforced = isSubscriptionEnforced;
+    shop.cashfreeSubscriptionId = cashfreeSubscriptionId;
+    if (isSubscriptionEnforced && shop.subscriptionStatus !== 'ACTIVE') {
+      shop.subscriptionStatus = 'PENDING_PAYMENT';
+    }
+
+    await shop.save();
+
+    return sendSuccess(res, shop, 'Shop subscription updated successfully');
   } catch (error) {
     next(error);
   }

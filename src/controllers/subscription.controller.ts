@@ -34,6 +34,8 @@ export const getSubscriptionStatus = async (req: Request, res: Response, next: N
       subscriptionEndDate: shop.subscriptionEndDate,
       daysRemaining,
       autoPay: shop.autoPay,
+      isSubscriptionEnforced: shop.isSubscriptionEnforced,
+      cashfreeSubscriptionId: shop.cashfreeSubscriptionId,
       monthlyBasePrice,
       annualDiscountedPrice,
       annualSavings: (monthlyBasePrice * 12) - annualDiscountedPrice,
