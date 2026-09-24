@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/server.ts",
-    "build": "tsc",
+    "build": "node ./node_modules/typescript/bin/tsc",
+    "prestart": "node ./node_modules/typescript/bin/tsc",
     "start": "node --max-old-space-size=384 dist/server.js"
   },
   "engines": {
@@ -36,7 +37,7 @@
     "multer": "^2.3.0",
     "node-cron": "^4.6.0",
     "pdfkit": "^0.19.1",
-    "typescript": "^7.0.2",
+    "typescript": "^5.7.2",
     "zod": "^4.4.3"
   },
   "devDependencies": {
