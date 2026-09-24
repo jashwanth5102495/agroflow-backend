@@ -11,6 +11,8 @@ const envSchema = z.object({
   JWT_SECRET: z.string().default('agroflow_jwt_secret_production_key_2026'),
   JWT_EXPIRES_IN: z.string().default('7d'),
   FRONTEND_URL: z.string().default('*'),
+  TELEGRAM_BOT_TOKEN: z.string().optional().default(''),
+  ENABLE_TELEGRAM: z.string().default('true'),
 });
 
 const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URL || process.env.MONGODB_URL;
@@ -25,6 +27,8 @@ const envParsed = envSchema.safeParse({
     process.env.CORS_ORIGIN ||
     process.env.CORS_ORIGINS ||
     '*',
+  TELEGRAM_BOT_TOKEN: process.env.TELEGRAM_BOT_TOKEN || '',
+  ENABLE_TELEGRAM: process.env.ENABLE_TELEGRAM || 'true',
 });
 
 if (!envParsed.success) {
@@ -32,4 +36,7 @@ if (!envParsed.success) {
   process.exit(1);
 }
 
-export const env = envParsed.data;
+export const env = {
+  ...envParsed.data,
+  IS_TELEGRAM_ENABLED: envParsed.data.ENABLE_TELEGRAM !== 'false',
+};

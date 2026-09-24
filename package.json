@@ -8,7 +8,7 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "prestart": "tsc",
-    "start": "node dist/server.js"
+    "start": "node --max-old-space-size=384 dist/server.js"
   },
   "engines": {
     "node": ">=20"
@@ -37,9 +37,7 @@
     "multer": "^2.3.0",
     "node-cron": "^4.6.0",
     "pdfkit": "^0.19.1",
-    "qrcode-terminal": "^0.12.0",
     "typescript": "^7.0.2",
-    "whatsapp-web.js": "^1.34.7",
     "zod": "^4.4.3"
   },
   "devDependencies": {

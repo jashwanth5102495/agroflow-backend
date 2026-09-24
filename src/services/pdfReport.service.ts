@@ -409,7 +409,7 @@ export const generateDailyReportPDF = async (reportData: DailyReportData): Promi
     const footerY = 780;
     doc.rect(40, footerY, 515, 20).fill('#f1f5f9');
     doc.fillColor(grayColor).fontSize(7.5).font('Helvetica')
-      .text('AgroFlow Cloud Platform | Powered by BluNet IT Services | Automated Daily WhatsApp Broadcast', 50, footerY + 6, {
+      .text('AgroFlow Cloud Platform | Powered by BluNet IT Services | Automated Daily Telegram Broadcast', 50, footerY + 6, {
         align: 'center',
         width: 495
       });

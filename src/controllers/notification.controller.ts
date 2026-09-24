@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { NotificationConfig } from '../models/NotificationConfig';
-import { generateDailyOverviewMessage, sendWhatsAppMessage, getWhatsAppStatus } from '../services/whatsapp.service';
+import { generateDailyOverviewMessage, sendTelegramMessage, getTelegramStatus } from '../services/telegram.service';
 import { fetchDailyReportData, generateDailyReportPDF } from '../services/pdfReport.service';
 import { getLocalTimeInfo } from '../services/scheduler.service';
 import { sendSuccess, sendError } from '../utils/response';
@@ -20,19 +20,19 @@ const resolveShopAndUser = async (req: Request) => {
 };
 
 /**
- * Retrieves the connection status and QR code of the global WhatsApp client
+ * Retrieves the connection status and bot info of Telegram
  */
 export const getGatewayStatus = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const status = getWhatsAppStatus();
-    return sendSuccess(res, status, 'WhatsApp Gateway status retrieved successfully');
+    const status = getTelegramStatus();
+    return sendSuccess(res, status, 'Telegram Bot Gateway status retrieved successfully');
   } catch (error) {
     next(error);
   }
 };
 
 /**
- * Retrieves the WhatsApp notification config for the logged-in user
+ * Retrieves the Telegram notification config for the logged-in user
  */
 export const getNotificationConfig = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -43,29 +43,35 @@ export const getNotificationConfig = async (req: Request, res: Response, next: N
     // Return empty defaults if not configured yet
     if (!config) {
       return sendSuccess(res, {
-        whatsappNumber: '',
+        telegramChatId: '',
+        whatsappNumber: '', // backwards compatibility
         reportTime: '20:00',
         enabled: false
       }, 'Default notification config retrieved');
     }
 
-    return sendSuccess(res, config, 'Notification configuration retrieved');
+    return sendSuccess(res, {
+      ...config.toObject(),
+      telegramChatId: config.telegramChatId || (config as any).whatsappNumber || '',
+    }, 'Notification configuration retrieved');
   } catch (error) {
     next(error);
   }
 };
 
 /**
- * Updates or creates the WhatsApp notification configuration for the logged-in user
+ * Updates or creates the Telegram notification configuration for the logged-in user
  */
 export const updateNotificationConfig = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { shopId, userId } = await resolveShopAndUser(req);
-    const { whatsappNumber, reportTime, enabled } = req.body;
+    const { telegramChatId, whatsappNumber, reportTime, enabled } = req.body;
+
+    const chatId = (telegramChatId || whatsappNumber || '').trim();
 
     // Basic validation
-    if (!whatsappNumber) {
-      return sendError(res, 'WhatsApp number is required', 'VALIDATION_ERROR', 400);
+    if (!chatId) {
+      return sendError(res, 'Telegram Chat ID (or recipient username) is required', 'VALIDATION_ERROR', 400);
     }
     if (!reportTime || !/^\d{2}:\d{2}$/.test(reportTime)) {
       return sendError(res, 'Report time must be in HH:MM (24-hour) format', 'VALIDATION_ERROR', 400);
@@ -74,7 +80,7 @@ export const updateNotificationConfig = async (req: Request, res: Response, next
     const config = await NotificationConfig.findOneAndUpdate(
       { shopId, userId },
       { 
-        whatsappNumber, 
+        telegramChatId: chatId, 
         reportTime, 
         enabled: !!enabled 
       },
@@ -88,17 +94,19 @@ export const updateNotificationConfig = async (req: Request, res: Response, next
 };
 
 /**
- * Triggers an immediate test WhatsApp daily report to the configured number with PDF attached
+ * Triggers an immediate test Telegram daily report to the configured Chat ID with PDF attached
  */
 export const triggerTestMessage = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { shopId, userId } = await resolveShopAndUser(req);
 
     const config = await NotificationConfig.findOne({ shopId, userId });
-    if (!config || !config.whatsappNumber) {
+    const chatId = config?.telegramChatId || (config as any)?.whatsappNumber;
+
+    if (!config || !chatId) {
       return sendError(
         res,
-        'Please save a valid WhatsApp number before sending a test message',
+        'Please save a valid Telegram Chat ID before sending a test message',
         'NOT_FOUND',
         400
       );
@@ -112,12 +120,12 @@ export const triggerTestMessage = async (req: Request, res: Response, next: Next
     const pdfBuffer = await generateDailyReportPDF(reportData);
     const fileName = `AgroFlow_${reportData.shopName.replace(/[^a-zA-Z0-9]/g, '_')}_${dateString}.pdf`;
 
-    await sendWhatsAppMessage(config.whatsappNumber, message, pdfBuffer, fileName);
+    await sendTelegramMessage(chatId, message, pdfBuffer, fileName);
 
     return sendSuccess(
       res,
-      { sentTo: config.whatsappNumber, pdfAttached: true, fileName },
-      'Daily overview WhatsApp message & PDF report triggered successfully'
+      { sentTo: chatId, pdfAttached: true, fileName },
+      'Daily overview Telegram message & PDF report triggered successfully'
     );
   } catch (error) {
     next(error);

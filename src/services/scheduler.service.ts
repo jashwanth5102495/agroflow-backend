@@ -1,7 +1,8 @@
 import cron from 'node-cron';
 import { NotificationConfig } from '../models/NotificationConfig';
-import { generateDailyOverviewMessage, sendWhatsAppMessage } from './whatsapp.service';
+import { generateDailyOverviewMessage, sendTelegramMessage } from './telegram.service';
 import { fetchDailyReportData, generateDailyReportPDF } from './pdfReport.service';
+import { env } from '../config/env';
 
 /**
  * Gets current date and time formatted for Asia/Kolkata timezone
@@ -27,10 +28,15 @@ export const getLocalTimeInfo = (timezone: string = 'Asia/Kolkata') => {
 
 /**
  * Initializes the global notification background cron scheduler.
- * Runs every minute to check if any shop needs daily WhatsApp report.
+ * Runs every minute to check if any shop needs daily Telegram report.
  */
 export const initNotificationScheduler = () => {
-  console.log('⏰ Initializing WhatsApp notification scheduler cron...');
+  if (!env.IS_TELEGRAM_ENABLED) {
+    console.log('⏰ Telegram notification scheduler is DISABLED via env (ENABLE_TELEGRAM=false).');
+    return;
+  }
+
+  console.log('⏰ Initializing Telegram notification scheduler cron...');
   
   // Cron schedule: every minute
   cron.schedule('* * * * *', async () => {
@@ -52,6 +58,9 @@ export const initNotificationScheduler = () => {
         
         for (const config of activeConfigs) {
           try {
+            const chatId = config.telegramChatId || (config as any).whatsappNumber;
+            if (!chatId) continue;
+
             // 1. Generate text message content
             const message = await generateDailyOverviewMessage(
               config.shopId.toString(),
@@ -69,14 +78,14 @@ export const initNotificationScheduler = () => {
               console.error('[Scheduler] Error generating PDF report:', pdfErr);
             }
 
-            // 3. Send message with PDF via WhatsApp service
-            await sendWhatsAppMessage(config.whatsappNumber, message, pdfBuffer, fileName);
+            // 3. Send message with PDF via Telegram service
+            await sendTelegramMessage(chatId, message, pdfBuffer, fileName);
             
             // 4. Mark config as sent for today
             config.lastSentDate = dateString;
             await config.save();
             
-            console.log(`[Scheduler] Report & PDF sent successfully to ${config.whatsappNumber} for Shop ID ${config.shopId}`);
+            console.log(`[Scheduler] Report & PDF sent successfully to Chat ID ${chatId} for Shop ID ${config.shopId}`);
           } catch (configError) {
             console.error(
               `[Scheduler] Error processing notification for shop ${config.shopId}:`,
