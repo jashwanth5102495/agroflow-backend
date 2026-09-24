@@ -9,7 +9,7 @@ if (!(globalThis as any).crypto) {
 }
 
 const startServer = async () => {
-  const port = Number(env.PORT) || 5000;
+  const port = Number(process.env.PORT || env.PORT || 5000);
   app.listen(port, '0.0.0.0', () => {
     console.log(`🚀 Server is running on port ${port} in ${env.NODE_ENV} mode`);
   });
