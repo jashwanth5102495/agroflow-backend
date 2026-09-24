@@ -9,8 +9,9 @@ if (!(globalThis as any).crypto) {
 }
 
 const startServer = async () => {
-  app.listen(env.PORT, () => {
-    console.log(`🚀 Server is running on port ${env.PORT} in ${env.NODE_ENV} mode`);
+  const port = Number(env.PORT) || 5000;
+  app.listen(port, '0.0.0.0', () => {
+    console.log(`🚀 Server is running on port ${port} in ${env.NODE_ENV} mode`);
   });
 
   await connectDB();
