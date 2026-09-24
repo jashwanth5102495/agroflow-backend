@@ -14,7 +14,7 @@ app.set('trust proxy', 1);
 // Security Middlewares
 app.use(helmet({ crossOriginResourcePolicy: false }));
 
-// CORS (env-driven allowlist)
+// CORS (env-driven allowlist with permissive fallback for Vercel & client apps)
 const normalizeOrigin = (value: string) => value.trim().replace(/\/+$/, '').toLowerCase();
 
 const allowedOrigins = env.FRONTEND_URL
@@ -31,24 +31,28 @@ const corsOptions: cors.CorsOptions = {
 
     const requestOrigin = normalizeOrigin(origin);
 
-    // Allow all origins only when explicitly configured
-    if (allowedOrigins.includes('*')) {
+    // Allow all origins when configured, or any vercel.app / localhost domain
+    if (
+      allowedOrigins.includes('*') ||
+      allowedOrigins.includes(requestOrigin) ||
+      requestOrigin.endsWith('.vercel.app') ||
+      requestOrigin.includes('localhost') ||
+      requestOrigin.includes('127.0.0.1')
+    ) {
       return callback(null, true);
     }
 
-    if (allowedOrigins.includes(requestOrigin)) {
-      return callback(null, true);
-    }
-
-    return callback(new Error(`CORS blocked for origin: ${origin}`));
+    // Permissive fallback: mirror origin so credentials and preflights succeed
+    return callback(null, true);
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+  optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 // Rate limiting
 const limiter = rateLimit({
