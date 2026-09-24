@@ -116,21 +116,24 @@ export const sendTelegramMessage = async (
   const botToken = env.TELEGRAM_BOT_TOKEN;
   const cleanChatId = chatId.trim();
 
-  if (botToken && cleanChatId) {
+  const customFetch = (globalThis as any).fetch;
+  const CustomFormData = (globalThis as any).FormData;
+  const CustomBlob = (globalThis as any).Blob;
+
+  if (botToken && cleanChatId && customFetch) {
     try {
-      if (pdfBuffer && pdfBuffer.length > 0) {
+      if (pdfBuffer && pdfBuffer.length > 0 && CustomFormData && CustomBlob) {
         // Send document with caption
         const docUrl = `https://api.telegram.org/bot${botToken}/sendDocument`;
-        const formData = new FormData();
+        const formData = new CustomFormData();
         formData.append('chat_id', cleanChatId);
-        // Telegram caption limit is 1024 characters
         formData.append('caption', message.substring(0, 1000));
         formData.append('parse_mode', 'Markdown');
         
-        const blob = new Blob([pdfBuffer], { type: 'application/pdf' });
+        const blob = new CustomBlob([pdfBuffer], { type: 'application/pdf' });
         formData.append('document', blob, pdfFileName || 'AgroFlow_Daily_Report.pdf');
 
-        const response = await fetch(docUrl, {
+        const response = await customFetch(docUrl, {
           method: 'POST',
           body: formData,
         });
@@ -145,7 +148,7 @@ export const sendTelegramMessage = async (
       } else {
         // Send text message
         const msgUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-        const response = await fetch(msgUrl, {
+        const response = await customFetch(msgUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
