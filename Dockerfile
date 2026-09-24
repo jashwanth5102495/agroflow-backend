@@ -1,14 +1,13 @@
-# Use a standard Debian-based Node image
-FROM node:20-bookworm
+FROM node:20-alpine
 
-# Update packages and install Chromium
-RUN apt update && apt install -y chromium
-
-# Set up your application
 WORKDIR /app
+
 COPY package*.json ./
 RUN npm install
-COPY . .
 
-# Start the server
+COPY . .
+RUN node ./node_modules/typescript/bin/tsc
+
+EXPOSE 5000
+
 CMD ["npm", "start"]
