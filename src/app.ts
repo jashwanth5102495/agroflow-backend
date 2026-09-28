@@ -90,7 +90,7 @@ import dashboardRoutes from './routes/dashboard.routes';
 import notificationRoutes from './routes/notification.routes';
 import adminRoutes from './routes/admin.routes';
 import subscriptionRoutes from './routes/subscription.routes';
-import backupRoutes from './routes/backup.routes';
+
 
 // API Routes
 app.use('/api/v1/auth', authRoutes);
@@ -106,7 +106,6 @@ app.use('/api/v1/dashboard', dashboardRoutes);
 app.use('/api/v1/notifications', notificationRoutes);
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/subscription', subscriptionRoutes);
-app.use('/api/v1/backup', backupRoutes);
 
 // 404 Handler
 app.use(notFoundHandler);
