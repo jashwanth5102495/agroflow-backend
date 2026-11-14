@@ -5,6 +5,7 @@ import { User, UserRole } from '../models/User';
 import { Sale } from '../models/Sale';
 import { sendSuccess } from '../utils/response';
 import { createSubscriptionPlan, createSubscription } from '../services/cashfree.service';
+import { seedSSBHiTechFarmProducts } from '../seeds/ssbSeeder';
 
 /**
  * Get all registered shops with owner details for admin panel
@@ -151,3 +152,15 @@ export const updateShopSubscription = async (req: Request, res: Response, next: 
   }
 };
 
+/**
+ * Seed or sync products and inventory for SSB Hi-Tech farm
+ */
+export const seedSSBProductsHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const force = req.query.force === 'true' || req.body?.force === true;
+    const result = await seedSSBHiTechFarmProducts({ force });
+    return sendSuccess(res, result, 'SSB Hi-Tech farm products processed successfully');
+  } catch (error) {
+    next(error);
+  }
+};

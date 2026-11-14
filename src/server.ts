@@ -3,6 +3,7 @@ import { webcrypto } from 'node:crypto';
 import { env } from './config/env';
 import { connectDB } from './config/database';
 import { initNotificationScheduler } from './services/scheduler.service';
+import { seedSSBHiTechFarmProducts } from './seeds/ssbSeeder';
 
 if (!(globalThis as any).crypto) {
   (globalThis as any).crypto = webcrypto;
@@ -15,6 +16,13 @@ const startServer = async () => {
   });
 
   await connectDB();
+
+  // Auto-seed / sync SSB Hi-Tech farm products on boot
+  try {
+    await seedSSBHiTechFarmProducts();
+  } catch (err: any) {
+    console.error('⚠️ [SSB Seeder Auto-Seed Warning]:', err?.message || err);
+  }
 
   initNotificationScheduler();
 };

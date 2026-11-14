@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/server.ts",
+    "seed:ssb": "tsx src/seeds/ssbSeeder.ts",
     "build": "node ./node_modules/typescript/bin/tsc",
     "prestart": "node ./node_modules/typescript/bin/tsc",
     "start": "node --max-old-space-size=384 dist/server.js"
