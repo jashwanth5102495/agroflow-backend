@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { verifyToken } from '../utils/jwt';
+import { verifyToken, generateToken } from '../utils/jwt';
 import { sendError } from '../utils/response';
 import { UserRole } from '../models/User';
 
@@ -27,8 +27,25 @@ export const authenticate = (req: Request, res: Response, next: NextFunction) =>
     const decoded = verifyToken(token);
 
     req.user = decoded;
+
+    // Sliding session: If token has less than 15 days remaining, issue a refreshed token in response header
+    try {
+      const exp = (decoded as any).exp;
+      const nowInSeconds = Math.floor(Date.now() / 1000);
+      if (exp && (exp - nowInSeconds < 15 * 86400)) {
+        const refreshed = generateToken({
+          userId: decoded.userId,
+          shopId: decoded.shopId,
+          role: decoded.role,
+        });
+        res.setHeader('x-refreshed-token', refreshed);
+      }
+    } catch (refreshErr) {
+      // Don't fail the request if background header generation fails
+    }
+
     next();
   } catch (error) {
-    next(error); // This will be caught by the global error handler as JsonWebTokenError
+    next(error); // This will be caught by the global error handler as JsonWebTokenError or TokenExpiredError
   }
 };

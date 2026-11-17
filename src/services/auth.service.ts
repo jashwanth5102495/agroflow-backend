@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { Shop } from '../models/Shop';
 import { User, UserRole } from '../models/User';
-import { generateToken, JwtPayload } from '../utils/jwt';
+import { generateToken, verifyToken, JwtPayload } from '../utils/jwt';
 
 export const registerShopService = async (data: any) => {
   // Check if phone number is already registered
@@ -43,7 +43,7 @@ export const registerShopService = async (data: any) => {
     });
     await user.save();
 
-    // Generate Token
+    // Generate Token (defaults to 90 days)
     const payload: JwtPayload = {
       userId: user._id.toString(),
       shopId: shop._id.toString(),
@@ -198,6 +198,88 @@ export const getMeService = async (userId: string) => {
   const shop = user.shopId ? await Shop.findById(user.shopId) : null;
   
   return { user, shop };
+};
+
+export const refreshTokenService = async (token: string) => {
+  if (!token) {
+    throw { message: 'No token provided', statusCode: 400, errorCode: 'BAD_REQUEST' };
+  }
+
+  let decoded: any;
+  try {
+    // Verify cryptographic signature; allow expired tokens within grace period
+    decoded = verifyToken(token, true);
+  } catch (err: any) {
+    throw { message: 'Invalid token signature', statusCode: 401, errorCode: 'UNAUTHORIZED' };
+  }
+
+  if (!decoded || !decoded.userId) {
+    throw { message: 'Malformed token payload', statusCode: 401, errorCode: 'UNAUTHORIZED' };
+  }
+
+  // Grace period check: allow refreshing if expired within the last 30 days
+  const nowInSeconds = Math.floor(Date.now() / 1000);
+  if (decoded.exp && (nowInSeconds - decoded.exp > 30 * 86400)) {
+    throw { message: 'Session expired. Please log in again.', statusCode: 401, errorCode: 'TOKEN_EXPIRED' };
+  }
+
+  // If cashier token
+  if (decoded.role === UserRole.CASHIER) {
+    const shop = await Shop.findById(decoded.shopId);
+    if (!shop || !shop.isCashierEnabled) {
+      throw { message: 'Cashier session is invalid or disabled', statusCode: 401, errorCode: 'UNAUTHORIZED' };
+    }
+    const payload: JwtPayload = {
+      userId: decoded.userId,
+      shopId: shop._id.toString(),
+      role: UserRole.CASHIER,
+    };
+    const newToken = generateToken(payload);
+    return {
+      shop: { _id: shop._id, name: shop.name },
+      user: {
+        _id: decoded.userId,
+        name: 'Cashier',
+        role: UserRole.CASHIER,
+        shopId: shop._id,
+      },
+      token: newToken,
+    };
+  }
+
+  // Regular user / Admin
+  const user = await User.findById(decoded.userId);
+  if (!user || user.status === 'INACTIVE') {
+    throw { message: 'User account is inactive or not found', statusCode: 401, errorCode: 'UNAUTHORIZED' };
+  }
+
+  let shop: any = null;
+  if (user.shopId) {
+    shop = await Shop.findById(user.shopId);
+    if (!shop || shop.status === 'SUSPENDED') {
+      throw { message: 'Shop account is suspended', statusCode: 403, errorCode: 'FORBIDDEN' };
+    }
+  }
+
+  const payload: JwtPayload = {
+    userId: user._id.toString(),
+    shopId: user.shopId ? user.shopId.toString() : user._id.toString(),
+    role: user.role,
+  };
+  const newToken = generateToken(payload);
+
+  return {
+    user: {
+      _id: user._id,
+      name: user.name,
+      phone: user.phone,
+      email: user.email,
+      role: user.role,
+      shopId: user.shopId,
+    },
+    shop: shop || { name: 'AgroFlow System' },
+    token: newToken,
+  };
 };
 
 export const toggleCashierModeService = async (shopId: string, isEnabled: boolean) => {

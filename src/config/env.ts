@@ -9,7 +9,7 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   MONGODB_URI: z.string().min(1, 'MongoDB connection URI is required'),
   JWT_SECRET: z.string().default('agroflow_jwt_secret_production_key_2026'),
-  JWT_EXPIRES_IN: z.string().default('7d'),
+  JWT_EXPIRES_IN: z.string().default('90d'),
   FRONTEND_URL: z.string().default('*'),
   TELEGRAM_BOT_TOKEN: z.string().optional().default(''),
   ENABLE_TELEGRAM: z.string().default('true'),
@@ -21,6 +21,7 @@ const envParsed = envSchema.safeParse({
   ...process.env,
   MONGODB_URI: mongoUri,
   JWT_SECRET: process.env.JWT_SECRET || 'agroflow_jwt_secret_production_key_2026',
+  JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '90d',
   FRONTEND_URL:
     process.env.FRONTEND_URL ||
     process.env.FRONTEND_ORIGIN ||

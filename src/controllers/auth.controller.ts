@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { registerShopService, loginService, adminLoginService, getMeService } from '../services/auth.service';
-import { sendSuccess } from '../utils/response';
+import { registerShopService, loginService, adminLoginService, getMeService, refreshTokenService } from '../services/auth.service';
+import { sendSuccess, sendError } from '../utils/response';
 
 export const registerShop = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -44,6 +44,29 @@ export const getMe = async (req: Request, res: Response, next: NextFunction) => 
 
     const result = await getMeService(userId);
     return sendSuccess(res, result, 'User retrieved successfully');
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const refreshToken = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const authHeader = req.headers.authorization;
+    const bodyToken = req.body?.token;
+    let token = '';
+
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      token = authHeader.split(' ')[1];
+    } else if (bodyToken) {
+      token = bodyToken;
+    }
+
+    if (!token) {
+      return sendError(res, 'Authentication token missing', 'UNAUTHORIZED', 401);
+    }
+
+    const result = await refreshTokenService(token);
+    return sendSuccess(res, result, 'Token refreshed successfully');
   } catch (error) {
     next(error);
   }
