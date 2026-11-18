@@ -1,4 +1,5 @@
 import { Product } from '../models/Product';
+import { Inventory } from '../models/Inventory';
 
 export const createProductService = async (shopId: string, data: any) => {
   if (data.sku) {
@@ -6,9 +7,60 @@ export const createProductService = async (shopId: string, data: any) => {
     if (existingSku) throw { message: 'Product with this SKU already exists', statusCode: 400 };
   }
 
-  const product = new Product({ ...data, shopId });
+  const product = new Product({
+    ...data,
+    shopId,
+    purchasePrice: Number(data.purchasePrice) || 0,
+    sellingPrice: Number(data.sellingPrice) || 0,
+    minimumStock: Number(data.minimumStock) || 10,
+  });
   await product.save();
+
+  // Automatically create corresponding inventory record
+  const initialStock = Number(data.initialStock) || 0;
+  await Inventory.findOneAndUpdate(
+    { shopId, productId: product._id },
+    { $setOnInsert: { shopId, productId: product._id, quantity: initialStock } },
+    { upsert: true, new: true }
+  );
+
   return product;
+};
+
+export const bulkCreateProductsService = async (shopId: string, items: any[]) => {
+  if (!Array.isArray(items) || items.length === 0) {
+    throw { message: 'No products provided for import', statusCode: 400 };
+  }
+
+  const createdProducts = [];
+  for (const item of items) {
+    if (!item.name) continue;
+    const cleanName = String(item.name).trim();
+    if (cleanName.length < 2) continue;
+
+    const product = new Product({
+      shopId,
+      name: cleanName,
+      category: item.category ? String(item.category).trim() : 'General',
+      unit: item.unit ? String(item.unit).trim() : 'unit',
+      purchasePrice: Number(item.purchasePrice) || 0,
+      sellingPrice: Number(item.sellingPrice) || 0,
+      minimumStock: Number(item.minimumStock) || 10,
+      sku: item.sku ? String(item.sku).trim() : undefined,
+      description: item.description ? String(item.description).trim() : undefined,
+    });
+    await product.save();
+
+    const stock = Number(item.stock ?? item.quantity ?? item.initialStock) || 0;
+    await Inventory.findOneAndUpdate(
+      { shopId, productId: product._id },
+      { $setOnInsert: { shopId, productId: product._id, quantity: stock } },
+      { upsert: true, new: true }
+    );
+    createdProducts.push(product);
+  }
+
+  return { importedCount: createdProducts.length, products: createdProducts };
 };
 
 export const getProductsService = async (shopId: string, search: string, skip: number, limit: number) => {
@@ -54,5 +106,6 @@ export const updateProductService = async (shopId: string, productId: string, da
 export const deleteProductService = async (shopId: string, productId: string) => {
   const product = await Product.findOneAndDelete({ _id: productId, shopId });
   if (!product) throw { message: 'Product not found', statusCode: 404 };
+  await Inventory.findOneAndDelete({ shopId, productId });
   return product;
 };

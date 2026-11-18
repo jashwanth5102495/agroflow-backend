@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createProduct, getProducts, getProductById, updateProduct, deleteProduct } from '../controllers/product.controller';
+import { createProduct, bulkCreateProducts, getProducts, getProductById, updateProduct, deleteProduct } from '../controllers/product.controller';
 import { validateRequest } from '../middleware/validate.middleware';
 import { createProductSchema, updateProductSchema } from '../validations/product.validation';
 import { authenticate } from '../middleware/auth.middleware';
@@ -10,6 +10,7 @@ const router = Router();
 router.use(authenticate, requireTenant);
 
 router.post('/', validateRequest(createProductSchema), createProduct);
+router.post('/bulk', bulkCreateProducts);
 router.get('/', getProducts);
 router.get('/:id', getProductById);
 router.patch('/:id', validateRequest(updateProductSchema), updateProduct);

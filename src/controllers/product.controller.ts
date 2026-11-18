@@ -12,6 +12,16 @@ export const createProduct = async (req: Request, res: Response, next: NextFunct
   }
 };
 
+export const bulkCreateProducts = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const items = req.body?.products || req.body?.items || req.body;
+    const result = await productService.bulkCreateProductsService(req.user!.shopId, items);
+    return sendSuccess(res, result, `Successfully imported ${result.importedCount} products`, 201);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const getProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { page, limit, skip } = getPaginationOptions(req.query, 5000);
