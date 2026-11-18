@@ -14,7 +14,7 @@ export const createProduct = async (req: Request, res: Response, next: NextFunct
 
 export const getProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { page, limit, skip } = getPaginationOptions(req.query);
+    const { page, limit, skip } = getPaginationOptions(req.query, 5000);
     const search = (req.query.search as string) || '';
 
     const { products, total } = await productService.getProductsService(req.user!.shopId, search, skip, limit);

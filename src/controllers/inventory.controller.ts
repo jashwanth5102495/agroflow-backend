@@ -6,7 +6,7 @@ import { TransactionType } from '../models/InventoryTransaction';
 
 export const getInventory = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { page, limit, skip } = getPaginationOptions(req.query);
+    const { page, limit, skip } = getPaginationOptions(req.query, 5000);
     const { inventory, total } = await inventoryService.getInventoryService(req.user!.shopId, skip, limit);
     return sendPaginatedSuccess(res, inventory, formatPagination(page, limit, total));
   } catch (error) {

@@ -1,6 +1,7 @@
-export const getPaginationOptions = (query: any) => {
+export const getPaginationOptions = (query: any, defaultLimit: number = 20) => {
   const page = parseInt(query.page as string) || 1;
-  const limit = parseInt(query.limit as string) || 20;
+  const reqLimit = query.limit ? parseInt(query.limit as string) : defaultLimit;
+  const limit = isNaN(reqLimit) || reqLimit <= 0 ? defaultLimit : reqLimit;
   const skip = (page - 1) * limit;
 
   return { page, limit, skip };
