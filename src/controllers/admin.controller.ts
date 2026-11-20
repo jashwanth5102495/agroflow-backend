@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 import { Shop } from '../models/Shop';
 import { User, UserRole } from '../models/User';
 import { Sale } from '../models/Sale';
@@ -160,6 +161,99 @@ export const seedSSBProductsHandler = async (req: Request, res: Response, next: 
     const force = req.query.force === 'true' || req.body?.force === true;
     const result = await seedSSBHiTechFarmProducts({ force });
     return sendSuccess(res, result, 'SSB Hi-Tech farm products processed successfully');
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * Admin action to reset/change password for any shop account or user
+ */
+export const updateShopPassword = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const id = req.params.id as string;
+    const { password } = req.body;
+
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      throw { message: 'Invalid ID', statusCode: 400 };
+    }
+
+    if (!password || typeof password !== 'string' || password.trim().length < 4) {
+      throw { message: 'Password must be at least 4 characters long', statusCode: 400 };
+    }
+
+    // Try finding by User first
+    let user = await User.findById(id);
+    let shop = null;
+
+    if (user) {
+      if (user.shopId) {
+        shop = await Shop.findById(user.shopId);
+      }
+    } else {
+      // Find by Shop
+      shop = await Shop.findById(id);
+      if (shop) {
+        user = (await User.findOne({ shopId: shop._id, role: UserRole.OWNER }))
+          || (await User.findOne({ shopId: shop._id }))
+          || (await User.findOne({ phone: shop.phone }));
+      }
+    }
+
+    if (!user) {
+      throw { message: 'Account / User not found for this shop', statusCode: 404 };
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const passwordHash = await bcrypt.hash(password.trim(), salt);
+    user.passwordHash = passwordHash;
+    await user.save();
+
+    return sendSuccess(res, {
+      shopId: shop?._id || user.shopId,
+      shopName: shop?.name || 'Shop',
+      userId: user._id,
+      userName: user.name,
+      phone: user.phone,
+    }, 'Account password updated successfully');
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * Admin action to change Admin account password
+ */
+export const updateAdminPassword = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { password } = req.body;
+
+    if (!password || typeof password !== 'string' || password.trim().length < 4) {
+      throw { message: 'Password must be at least 4 characters long', statusCode: 400 };
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const passwordHash = await bcrypt.hash(password.trim(), salt);
+
+    const adminUsers = await User.find({ role: UserRole.ADMIN });
+    if (adminUsers.length > 0) {
+      for (const admin of adminUsers) {
+        admin.passwordHash = passwordHash;
+        await admin.save();
+      }
+    } else {
+      const newAdmin = new User({
+        name: 'Master Admin',
+        email: 'admin@agroflow.com',
+        phone: '9999999999',
+        passwordHash,
+        role: UserRole.ADMIN,
+        status: 'ACTIVE',
+      });
+      await newAdmin.save();
+    }
+
+    return sendSuccess(res, null, 'Admin password updated successfully');
   } catch (error) {
     next(error);
   }
