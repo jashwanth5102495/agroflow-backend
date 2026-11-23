@@ -23,6 +23,8 @@ export const getDashboardSummaryService = async (shopId: string) => {
     outstandingCreditResult,
     overallSalesResult,
     overallPurchasesResult,
+    todayCogsResult,
+    overallCogsResult,
   ] = await Promise.all([
     // Today's Sales
     Sale.aggregate([
@@ -65,19 +67,107 @@ export const getDashboardSummaryService = async (shopId: string) => {
       { $match: { shopId: shopObjId } },
       { $group: { _id: null, totalPurchasesAmount: { $sum: '$total' }, count: { $sum: 1 } } },
     ]),
+
+    // Today's Cost of Goods Sold (COGS) & Profit
+    SaleItem.aggregate([
+      {
+        $lookup: {
+          from: 'sales',
+          localField: 'saleId',
+          foreignField: '_id',
+          as: 'sale',
+        },
+      },
+      { $unwind: '$sale' },
+      { $match: { 'sale.shopId': shopObjId, 'sale.createdAt': { $gte: startOfDay } } },
+      {
+        $lookup: {
+          from: 'products',
+          localField: 'productId',
+          foreignField: '_id',
+          as: 'product',
+        },
+      },
+      { $unwind: { path: '$product', preserveNullAndEmptyArrays: true } },
+      {
+        $group: {
+          _id: null,
+          totalCost: {
+            $sum: {
+              $multiply: [
+                '$quantity',
+                { $ifNull: ['$product.purchasePrice', 0] },
+              ],
+            },
+          },
+        },
+      },
+    ]),
+
+    // Overall Cost of Goods Sold (COGS) & Profit
+    SaleItem.aggregate([
+      {
+        $lookup: {
+          from: 'sales',
+          localField: 'saleId',
+          foreignField: '_id',
+          as: 'sale',
+        },
+      },
+      { $unwind: '$sale' },
+      { $match: { 'sale.shopId': shopObjId } },
+      {
+        $lookup: {
+          from: 'products',
+          localField: 'productId',
+          foreignField: '_id',
+          as: 'product',
+        },
+      },
+      { $unwind: { path: '$product', preserveNullAndEmptyArrays: true } },
+      {
+        $group: {
+          _id: null,
+          totalCost: {
+            $sum: {
+              $multiply: [
+                '$quantity',
+                { $ifNull: ['$product.purchasePrice', 0] },
+              ],
+            },
+          },
+        },
+      },
+    ]),
   ]);
 
+  const todaySalesTotal = todaySales[0]?.totalSalesAmount || 0;
+  const todayCost = todayCogsResult[0]?.totalCost || 0;
+  const todayProfit = Math.max(0, todaySalesTotal - todayCost);
+  const todayProfitMargin = todaySalesTotal > 0 ? Number(((todayProfit / todaySalesTotal) * 100).toFixed(1)) : 0;
+
+  const overallSalesTotal = overallSalesResult[0]?.totalSalesAmount || 0;
+  const overallCost = overallCogsResult[0]?.totalCost || 0;
+  const overallProfit = Math.max(0, overallSalesTotal - overallCost);
+  const overallProfitMargin = overallSalesTotal > 0 ? Number(((overallProfit / overallSalesTotal) * 100).toFixed(1)) : 0;
+
   return {
-    todaySales: todaySales[0]?.totalSalesAmount || 0,
+    todaySales: todaySalesTotal,
     todaySalesCount: todaySales[0]?.count || 0,
     todayPurchases: todayPurchases[0]?.totalPurchasesAmount || 0,
     todayPurchasesCount: todayPurchases[0]?.count || 0,
     todayCollection: todayCollections[0]?.totalCollected || 0,
+    todayCost,
+    todayProfit,
+    todayProfitMargin,
     totalFarmers,
     totalProducts,
     outstandingCredit: outstandingCreditResult[0]?.totalOutstanding || 0,
-    overallSales: overallSalesResult[0]?.totalSalesAmount || 0,
+    overallSales: overallSalesTotal,
     overallPurchases: overallPurchasesResult[0]?.totalPurchasesAmount || 0,
+    overallCost,
+    overallProfit,
+    overallProfitMargin,
   };
 };
 
