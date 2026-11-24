@@ -52,6 +52,9 @@ export const createSaleService = async (shopId: string, userId: string, data: an
   if (amountDue <= 0) paymentStatus = 'PAID';
   else if (amountPaid > 0) paymentStatus = 'PARTIAL';
 
+  const saleDate = data.saleDate ? new Date(data.saleDate) : new Date();
+  const isDateBill = Boolean(data.isDateBill);
+
   const sale = new Sale({
     shopId,
     farmerId: data.farmerId || undefined,
@@ -66,6 +69,10 @@ export const createSaleService = async (shopId: string, userId: string, data: an
     amountDue,
     paymentStatus,
     paymentMethod: data.paymentMethod,
+    isDateBill,
+    saleDate,
+    notes: data.notes || (isDateBill ? 'Generated as Date Bill' : undefined),
+    createdAt: saleDate,
     createdBy: userId,
   });
   
@@ -116,10 +123,42 @@ export const createSaleService = async (shopId: string, userId: string, data: an
   return sale;
 };
 
-export const getSalesService = async (shopId: string, skip: number, limit: number, farmerId?: string) => {
+export const getSalesService = async (
+  shopId: string, 
+  skip: number, 
+  limit: number, 
+  farmerId?: string,
+  filters?: {
+    isDateBill?: boolean;
+    startDate?: string;
+    endDate?: string;
+    search?: string;
+  }
+) => {
   const query: any = { shopId };
   if (farmerId) {
     query.farmerId = farmerId;
+  }
+  if (filters?.isDateBill !== undefined) {
+    query.isDateBill = filters.isDateBill;
+  }
+  if (filters?.startDate || filters?.endDate) {
+    const dateQuery: any = {};
+    if (filters.startDate) dateQuery.$gte = new Date(filters.startDate);
+    if (filters.endDate) {
+      const end = new Date(filters.endDate);
+      end.setHours(23, 59, 59, 999);
+      dateQuery.$lte = end;
+    }
+    query.createdAt = dateQuery;
+  }
+  if (filters?.search) {
+    const searchRegex = new RegExp(filters.search, 'i');
+    query.$or = [
+      { invoiceNumber: searchRegex },
+      { customerName: searchRegex },
+      { customerPhone: searchRegex }
+    ];
   }
 
   const [sales, total] = await Promise.all([

@@ -25,5 +25,8 @@ export const createSaleSchema = z.object({
       PaymentMethod.CREDIT,
       PaymentMethod.PARTIAL
     ]),
+    saleDate: z.string().optional(),
+    isDateBill: z.boolean().optional(),
+    notes: z.string().optional(),
   }),
 });

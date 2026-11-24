@@ -16,7 +16,17 @@ export const getSales = async (req: Request, res: Response, next: NextFunction) 
   try {
     const { page, limit, skip } = getPaginationOptions(req.query);
     const farmerId = req.query.farmerId as string;
-    const { sales, total } = await saleService.getSalesService(req.user!.shopId, skip, limit, farmerId);
+    const isDateBill = req.query.isDateBill !== undefined ? req.query.isDateBill === 'true' : undefined;
+    const startDate = req.query.startDate as string;
+    const endDate = req.query.endDate as string;
+    const search = req.query.search as string;
+
+    const { sales, total } = await saleService.getSalesService(req.user!.shopId, skip, limit, farmerId, {
+      isDateBill,
+      startDate,
+      endDate,
+      search,
+    });
     
     return sendPaginatedSuccess(res, sales, formatPagination(page, limit, total));
   } catch (error) {

@@ -23,6 +23,9 @@ export interface ISale extends Document {
   amountDue: number;
   paymentStatus: 'PAID' | 'PARTIAL' | 'UNPAID';
   paymentMethod: PaymentMethod;
+  isDateBill?: boolean;
+  saleDate?: Date;
+  notes?: string;
   createdBy: mongoose.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
@@ -51,6 +54,9 @@ const saleSchema = new Schema<ISale>(
       enum: Object.values(PaymentMethod),
       required: true,
     },
+    isDateBill: { type: Boolean, default: false, index: true },
+    saleDate: { type: Date },
+    notes: { type: String, trim: true },
     createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   },
   { timestamps: true }
