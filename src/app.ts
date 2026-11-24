@@ -105,6 +105,7 @@ app.use('/api/v1/payments', paymentRoutes);
 app.use('/api/v1/credits', creditRoutes);
 app.use('/api/v1/dashboard', dashboardRoutes);
 app.use('/api/v1/notifications', notificationRoutes);
+app.use('/api/v1/tenants', notificationRoutes);
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/subscription', subscriptionRoutes);
 

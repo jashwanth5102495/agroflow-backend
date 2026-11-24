@@ -4,6 +4,7 @@ import { env } from './config/env';
 import { connectDB } from './config/database';
 import { initNotificationScheduler } from './services/scheduler.service';
 import { seedSSBHiTechFarmProducts } from './seeds/ssbSeeder';
+import { autoResumeStoredSessions } from './services/whatsapp.service';
 
 if (!(globalThis as any).crypto) {
   (globalThis as any).crypto = webcrypto;
@@ -22,6 +23,13 @@ const startServer = async () => {
     await seedSSBHiTechFarmProducts();
   } catch (err: any) {
     console.error('⚠️ [SSB Seeder Auto-Seed Warning]:', err?.message || err);
+  }
+
+  // Auto-resume active WhatsApp multi-device sessions
+  try {
+    await autoResumeStoredSessions();
+  } catch (err: any) {
+    console.error('⚠️ [WhatsApp Auto-Resume Warning]:', err?.message || err);
   }
 
   initNotificationScheduler();
