@@ -76,6 +76,25 @@ export const seedSSBHiTechFarmProducts = async (options: SeedOptions = {}) => {
     console.log(`✅ [SSB Seeder] Updated ${unitUpdateResult.modifiedCount} products' unit to 'pcs'.`);
   }
 
+  // Safely update existing product names: "Name (Quantity)" -> "Name-Quantity" (e.g. Infinito (100 ml) -> Infinito-100 ml)
+  // Strictly in-place updates: NO deletions, NO recreation, preserves all historical sales, inventory, and relations.
+  const quantityBracketRegex = /\s*\(([0-9.]+\s*(?:gm|g|kg|ml|l|ltr|liter|litre|pcs|box|pkt|packet|bag|bottle)s?)\)\s*$/i;
+  const productsWithQuantityBrackets = await Product.find({
+    name: { $regex: /\([0-9.]+\s*(?:gm|g|kg|ml|l|ltr|liter|litre|pcs|box|pkt|packet|bag|bottle)s?\)/i },
+  }).select('_id name');
+
+  let renamedCount = 0;
+  for (const p of productsWithQuantityBrackets) {
+    const formattedName = p.name.replace(quantityBracketRegex, '-$1');
+    if (formattedName !== p.name) {
+      await Product.updateOne({ _id: p._id }, { $set: { name: formattedName } });
+      renamedCount++;
+    }
+  }
+  if (renamedCount > 0) {
+    console.log(`✅ [SSB Seeder] Formatted ${renamedCount} products from "Name (Quantity)" to "Name-Quantity".`);
+  }
+
   if (existingCount >= 500 && !options.force) {
     console.log(`ℹ️ [SSB Seeder] SSB Hi-Tech farm already has ${existingCount} products seeded. Skipping full re-insert.`);
     return {
