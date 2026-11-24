@@ -7,7 +7,7 @@ export const createProductSchema = z.object({
     category: z.string().min(1, 'Category is required').default('General'),
     sku: z.string().optional(),
     description: z.string().optional(),
-    unit: z.string().min(1, 'Unit is required').default('kg'),
+    unit: z.string().min(1, 'Unit is required').default('pcs'),
     purchasePrice: z.number().min(0).default(0),
     sellingPrice: z.number().min(0).default(0),
     minimumStock: z.number().min(0).optional().default(10),

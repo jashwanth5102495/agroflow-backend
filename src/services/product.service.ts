@@ -42,7 +42,7 @@ export const bulkCreateProductsService = async (shopId: string, items: any[]) =>
       shopId,
       name: cleanName,
       category: item.category ? String(item.category).trim() : 'General',
-      unit: item.unit ? String(item.unit).trim() : 'unit',
+      unit: item.unit ? String(item.unit).trim() : 'pcs',
       purchasePrice: Number(item.purchasePrice) || 0,
       sellingPrice: Number(item.sellingPrice) || 0,
       minimumStock: Number(item.minimumStock) || 10,

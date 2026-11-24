@@ -60,8 +60,24 @@ export const seedSSBHiTechFarmProducts = async (options: SeedOptions = {}) => {
   const existingCount = await Product.countDocuments({ shopId: shop._id });
   console.log(`📦 [SSB Seeder] Currently ${existingCount} products exist for shop.`);
 
+  // Ensure all existing products have their stock unit updated to 'pcs' (pieces)
+  const unitUpdateResult = await Product.updateMany(
+    {
+      $or: [
+        { unit: { $in: ['gm', 'kg', 'ml', 'L', 'ltr', 'liter', 'litre', 'g', 'GM', 'KG', 'ML', 'LTR', 'Liter', 'Litre', 'unit'] } },
+        { unit: { $exists: false } },
+        { unit: null },
+        { unit: '' },
+      ],
+    },
+    { $set: { unit: 'pcs' } }
+  );
+  if (unitUpdateResult.modifiedCount > 0) {
+    console.log(`✅ [SSB Seeder] Updated ${unitUpdateResult.modifiedCount} products' unit to 'pcs'.`);
+  }
+
   if (existingCount >= 500 && !options.force) {
-    console.log(`ℹ️ [SSB Seeder] SSB Hi-Tech farm already has ${existingCount} products seeded. Skipping.`);
+    console.log(`ℹ️ [SSB Seeder] SSB Hi-Tech farm already has ${existingCount} products seeded. Skipping full re-insert.`);
     return {
       success: true,
       shopId: shop._id,

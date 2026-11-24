@@ -25,7 +25,18 @@ export const getInventoryService = async (shopId: string, skip: number, limit: n
             name: '$name',
             sku: '$sku',
             category: '$category',
-            unit: '$unit',
+            unit: {
+              $cond: {
+                if: {
+                  $in: [
+                    { $toLower: { $ifNull: ['$unit', 'pcs'] } },
+                    ['gm', 'kg', 'ml', 'l', 'ltr', 'liter', 'litre', 'g', 'unit', '']
+                  ]
+                },
+                then: 'pcs',
+                else: { $ifNull: ['$unit', 'pcs'] }
+              }
+            },
             purchasePrice: '$purchasePrice',
             sellingPrice: '$sellingPrice',
             minimumStock: '$minimumStock',
