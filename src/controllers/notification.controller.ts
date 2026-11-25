@@ -122,7 +122,7 @@ export const triggerWhatsAppTestReportController = async (req: Request, res: Res
     }
 
     const { dateString } = getLocalTimeInfo();
-    const report = await generateShiftReport(shopId, shiftType, dateString);
+    const report = await generateShiftReport(shopId, 'daily', dateString);
 
     const result = await sendWhatsAppMessage(shopId, targetPhone, report.message, {
       buffer: report.pdfBuffer,
@@ -137,12 +137,13 @@ export const triggerWhatsAppTestReportController = async (req: Request, res: Res
       res,
       {
         sentTo: targetPhone,
-        shiftType,
         messageId: result.messageId,
         pdfAttached: !!report.pdfBuffer,
         fileName: report.fileName,
+        totalSales: report.totalGrossSales,
+        totalProfit: report.totalGrossProfit,
       },
-      `WhatsApp ${shiftType} test report and PDF sent successfully to ${targetPhone}!`
+      `WhatsApp Daily Report & PDF sent successfully to ${targetPhone}!`
     );
   } catch (error) {
     next(error);

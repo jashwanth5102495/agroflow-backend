@@ -39,48 +39,40 @@ export const initNotificationScheduler = () => {
     try {
       const { timeString, dateString } = getLocalTimeInfo();
 
-      // Find all active configs where either shift1Time, shift2Time, or reportTime matches current time
+      // Find all active configs where reportTime matches current time (Single Daily Closing Report)
       const activeConfigs = await NotificationConfig.find({
         enabled: true,
-        $or: [
-          { shift1Time: timeString, lastShift1SentDate: { $ne: dateString } },
-          { shift2Time: timeString, lastShift2SentDate: { $ne: dateString } },
-          { reportTime: timeString, lastSentDate: { $ne: dateString } },
-        ],
+        reportTime: timeString,
+        lastSentDate: { $ne: dateString },
       });
 
       if (activeConfigs.length === 0) return;
 
-      console.log(`[Scheduler] Found ${activeConfigs.length} notification configuration(s) for ${timeString}`);
+      console.log(`[Scheduler] Found ${activeConfigs.length} notification configuration(s) for daily report at ${timeString}`);
 
       for (const config of activeConfigs) {
         try {
           const shopId = config.shopId.toString();
           const channel = config.channel || 'WHATSAPP';
-          const isShift1 = config.shift1Time === timeString && config.lastShift1SentDate !== dateString;
-          const isShift2 = config.shift2Time === timeString && config.lastShift2SentDate !== dateString;
-          const isDaily = config.reportTime === timeString && config.lastSentDate !== dateString;
 
-          const shiftType: 'shift1' | 'shift2' | 'daily' = isShift1 ? 'shift1' : isShift2 ? 'shift2' : 'daily';
-
-          // 1. Generate Report Message & Branded PDF
-          const shiftData = await generateShiftReport(shopId, shiftType, dateString);
+          // 1. Generate Comprehensive Daily Business & Profit Report with Branded PDF
+          const dailyReport = await generateShiftReport(shopId, 'daily', dateString);
 
           // 2. Dispatch via WhatsApp if enabled
           if ((channel === 'WHATSAPP' || channel === 'BOTH') && config.whatsappPhoneNumber) {
             const waResult = await sendWhatsAppMessage(
               shopId,
               config.whatsappPhoneNumber,
-              shiftData.message,
+              dailyReport.message,
               {
-                buffer: shiftData.pdfBuffer,
-                fileName: shiftData.fileName,
+                buffer: dailyReport.pdfBuffer,
+                fileName: dailyReport.fileName,
               }
             );
             if (waResult.success) {
-              console.log(`[Scheduler] WhatsApp ${shiftType} sent to ${config.whatsappPhoneNumber} for Shop ${shopId}`);
+              console.log(`[Scheduler] Daily WhatsApp report sent to ${config.whatsappPhoneNumber} for Shop ${shopId}`);
             } else {
-              console.warn(`[Scheduler] WhatsApp ${shiftType} delivery notice for Shop ${shopId}:`, waResult.error);
+              console.warn(`[Scheduler] Daily WhatsApp delivery notice for Shop ${shopId}:`, waResult.error);
             }
           }
 
@@ -88,8 +80,8 @@ export const initNotificationScheduler = () => {
           if ((channel === 'TELEGRAM' || channel === 'BOTH') && config.telegramChatId) {
             try {
               let tgMessage = await generateDailyOverviewMessage(shopId, dateString);
-              let pdfBuffer = shiftData.pdfBuffer;
-              let fileName = shiftData.fileName;
+              let pdfBuffer = dailyReport.pdfBuffer;
+              let fileName = dailyReport.fileName;
 
               if (!pdfBuffer) {
                 const reportData = await fetchDailyReportData(shopId, dateString);
@@ -98,16 +90,14 @@ export const initNotificationScheduler = () => {
               }
 
               await sendTelegramMessage(config.telegramChatId, tgMessage, pdfBuffer, fileName);
-              console.log(`[Scheduler] Telegram ${shiftType} sent to ${config.telegramChatId} for Shop ${shopId}`);
+              console.log(`[Scheduler] Telegram daily report sent to ${config.telegramChatId} for Shop ${shopId}`);
             } catch (tgErr) {
               console.error(`[Scheduler] Error sending Telegram report to ${config.telegramChatId}:`, tgErr);
             }
           }
 
-          // 4. Update sent date markers
-          if (isShift1) config.lastShift1SentDate = dateString;
-          if (isShift2) config.lastShift2SentDate = dateString;
-          if (isDaily) config.lastSentDate = dateString;
+          // 4. Update lastSentDate marker
+          config.lastSentDate = dateString;
           await config.save();
         } catch (configErr) {
           console.error(`[Scheduler] Error processing config ${config._id} for shop ${config.shopId}:`, configErr);

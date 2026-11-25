@@ -342,12 +342,22 @@ export const sendWhatsAppMessage = async (
 
     let sentMsg;
     if (docBuffer) {
+      // 1. Send the comprehensive formatted text summary message first
       sentMsg = await session.socket.sendMessage(jid, {
-        document: docBuffer,
-        mimetype: attachment?.mimetype || 'application/pdf',
-        fileName: attachment?.fileName || 'AgroFlow_Report.pdf',
-        caption: textMessage,
+        text: textMessage,
       });
+
+      // 2. Attach the branded PDF audit statement directly below it
+      try {
+        await session.socket.sendMessage(jid, {
+          document: docBuffer,
+          mimetype: attachment?.mimetype || 'application/pdf',
+          fileName: attachment?.fileName || 'AgroFlow_Daily_Report.pdf',
+          caption: `📄 Daily Business & Profit Audit Statement (${attachment?.fileName || 'Report.pdf'})`,
+        });
+      } catch (docErr) {
+        console.warn(`[WhatsApp ${tenantId}] Document attachment dispatch warning:`, docErr);
+      }
     } else {
       sentMsg = await session.socket.sendMessage(jid, {
         text: textMessage,
@@ -368,86 +378,28 @@ export const sendWhatsAppMessage = async (
 };
 
 /**
- * Generates an aggregated shift or daily summary with financial breakdown,
- * order metrics, inventory movements, and attached branded PDF.
+ * Generates an aggregated daily business and profit summary with financial breakdown,
+ * item-by-item profit calculations, farmer credit ledger, stock activity, and attached branded PDF.
  */
-export const generateShiftReport = async (
+export const generateDailyReport = async (
   shopId: string,
-  shiftType: 'shift1' | 'shift2' | 'daily',
-  targetDate?: string
+  targetDate?: string,
+  shiftType: string = 'daily'
 ) => {
-  const shop = await Shop.findById(shopId);
-  const shopName = shop ? shop.name : 'AgroFlow Store';
-
   const now = new Date();
   const dateStr = targetDate || now.toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
 
-  let startTime: Date;
-  let endTime: Date;
-  let shiftTitle = '';
+  // 1. Fetch complete report data with accurate profits, COGS, sales, and credit
+  const reportData = await fetchDailyReportData(shopId, dateStr);
+  const shopName = reportData.shopName || 'AgroFlow Store';
 
-  if (shiftType === 'shift1') {
-    // Day Shift: 10:00 AM to 23:30 PM
-    startTime = new Date(`${dateStr}T10:00:00+05:30`);
-    endTime = new Date(`${dateStr}T23:30:00+05:30`);
-    shiftTitle = '☀️ Shift 1 Report (Day / ದಿನದ ಪಾಳಿ)';
-  } else if (shiftType === 'shift2') {
-    // Overnight Shift: 23:31 PM of previous day to 09:59 AM of current day
-    const prevDate = new Date(new Date(`${dateStr}T00:00:00+05:30`).getTime() - 24 * 60 * 60 * 1000)
-      .toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
-    startTime = new Date(`${prevDate}T23:31:00+05:30`);
-    endTime = new Date(`${dateStr}T09:59:59+05:30`);
-    shiftTitle = '🌙 Shift 2 Report (Overnight / ರಾತ್ರಿ ಪಾಳಿ)';
-  } else {
-    // Full Daily: 00:00 to 23:59:59
-    startTime = new Date(`${dateStr}T00:00:00+05:30`);
-    endTime = new Date(`${dateStr}T23:59:59.999+05:30`);
-    shiftTitle = '🌾 Daily Business Overview / ದೈನಂದಿನ ವರದಿ';
-  }
+  // 2. Fetch Inventory Stock Activity during the day
+  const startOfDay = new Date(`${dateStr}T00:00:00+05:30`);
+  const endOfDay = new Date(`${dateStr}T23:59:59.999+05:30`);
 
-  // 1. Fetch Sales during window
-  const sales = await Sale.find({
-    shopId: new mongoose.Types.ObjectId(shopId),
-    createdAt: { $gte: startTime, $lte: endTime },
-  }).lean();
-
-  let totalGrossSales = 0;
-  let totalDiscounts = 0;
-  let cashTotal = 0;
-  let upiTotal = 0;
-  let cardTotal = 0;
-  let creditTotal = 0;
-  let bankTransferTotal = 0;
-
-  for (const s of sales) {
-    totalGrossSales += s.total || 0;
-    totalDiscounts += s.discount || 0;
-
-    const method = s.paymentMethod;
-    const paid = s.amountPaid || 0;
-    const due = s.amountDue || 0;
-
-    creditTotal += due;
-
-    if (method === PaymentMethod.UPI) {
-      upiTotal += paid;
-    } else if (method === PaymentMethod.CARD) {
-      cardTotal += paid;
-    } else if (method === PaymentMethod.BANK_TRANSFER) {
-      bankTransferTotal += paid;
-    } else {
-      cashTotal += paid;
-    }
-  }
-
-  const completedOrders = sales.length;
-  const netSales = Math.max(0, totalGrossSales - totalDiscounts);
-  const avgTicketSize = completedOrders > 0 ? totalGrossSales / completedOrders : 0;
-
-  // 2. Fetch Inventory Stock Activity during shift
   const stockTransactions = await InventoryTransaction.find({
     shopId: new mongoose.Types.ObjectId(shopId),
-    createdAt: { $gte: startTime, $lte: endTime },
+    createdAt: { $gte: startOfDay, $lte: endOfDay },
   }).populate('productId', 'name sku unit').lean();
 
   const movedItemsMap = new Map<string, {
@@ -481,80 +433,104 @@ export const generateShiftReport = async (
     }
   }
 
-  // 3. Zero-stock & Low-stock Alerts
-  const zeroStockItems = await Inventory.aggregate([
-    { $match: { shopId: new mongoose.Types.ObjectId(shopId), quantity: { $lte: 0 } } },
-    { $lookup: { from: 'products', localField: 'productId', foreignField: '_id', as: 'p' } },
-    { $unwind: '$p' },
-    { $limit: 8 },
-    { $project: { name: '$p.name', unit: '$p.unit' } },
-  ]);
+  const {
+    totalSales,
+    totalCash,
+    totalUpi,
+    totalCard,
+    totalCredit,
+    totalCollected,
+    totalCogs,
+    totalProfit,
+    profitMargin,
+    totalCount: completedOrders,
+    totalOutstandingCredit,
+  } = reportData.summary;
 
-  const lowStockItems = await Inventory.aggregate([
-    { $match: { shopId: new mongoose.Types.ObjectId(shopId), quantity: { $gt: 0 } } },
-    { $lookup: { from: 'products', localField: 'productId', foreignField: '_id', as: 'p' } },
-    { $unwind: '$p' },
-    { $match: { $expr: { $lte: ['$quantity', '$p.minimumStock'] } } },
-    { $limit: 8 },
-    { $project: { name: '$p.name', quantity: '$quantity', unit: '$p.unit', min: '$p.minimumStock' } },
-  ]);
+  const avgTicketSize = completedOrders > 0 ? totalSales / completedOrders : 0;
 
-  // Construct Formatted WhatsApp Message
-  let text = `*${shiftTitle}*\n`;
+  // 3. Construct Formatted WhatsApp Message (Bilingual English + Kannada)
+  let text = `*🌾 AgroFlow Daily Business & Profit Report*\n`;
+  text += `*(ದೈನಂದಿನ ವ್ಯಾಪಾರ ಮತ್ತು ಲಾಭದ ವರದಿ)*\n\n`;
   text += `🏪 *Store:* ${shopName}\n`;
+  if (reportData.ownerName) text += `👤 *Proprietor:* ${reportData.ownerName}\n`;
   text += `📅 *Date:* ${dateStr}\n`;
-  text += `⏱️ *Window:* ${startTime.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })} – ${endTime.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}\n\n`;
+  text += `⏱️ *Window:* 00:00 – 23:59 (Full Day)\n\n`;
 
-  text += `📊 *FINANCIAL SUMMARY:*\n`;
-  text += `• *Total Gross Revenue:* ₹${totalGrossSales.toLocaleString('en-IN', { minimumFractionDigits: 2 })}\n`;
-  text += `• *Net Sales:* ₹${netSales.toLocaleString('en-IN', { minimumFractionDigits: 2 })}\n`;
-  text += `• *Invoices Completed:* ${completedOrders}\n`;
+  text += `💰 *FINANCIAL & PROFIT SUMMARY (ಆರ್ಥಿಕ & ಲಾಭದ ಸಾರಾಂಶ):*\n`;
+  text += `• *Total Sales (ಒಟ್ಟು ಮಾರಾಟ):* ₹${totalSales.toLocaleString('en-IN', { minimumFractionDigits: 2 })}\n`;
+  text += `• *Purchase Cost (ಖರೀದಿ ವೆಚ್ಚ / COGS):* ₹${totalCogs.toLocaleString('en-IN', { minimumFractionDigits: 2 })}\n`;
+  text += `• *Gross Profit (ಒಟ್ಟು ನಿವ್ವಳ ಲಾಭ):* ₹${totalProfit.toLocaleString('en-IN', { minimumFractionDigits: 2 })} (${profitMargin.toFixed(1)}% margin)\n`;
+  text += `• *Invoices Completed (ಒಟ್ಟು ಬಿಲ್ಲುಗಳು):* ${completedOrders}\n`;
   text += `• *Avg Bill Value:* ₹${avgTicketSize.toFixed(2)}\n\n`;
 
-  text += `💳 *PAYMENT BREAKDOWN:*\n`;
-  text += `• 💵 *Cash:* ₹${cashTotal.toLocaleString('en-IN')}\n`;
-  if (upiTotal > 0) text += `• 📱 *UPI:* ₹${upiTotal.toLocaleString('en-IN')}\n`;
-  if (cardTotal > 0) text += `• 💳 *Card:* ₹${cardTotal.toLocaleString('en-IN')}\n`;
-  if (bankTransferTotal > 0) text += `• 🏦 *Bank Transfer:* ₹${bankTransferTotal.toLocaleString('en-IN')}\n`;
-  text += `• 📝 *Credit Due (Udhar):* ₹${creditTotal.toLocaleString('en-IN')}\n\n`;
+  text += `💳 *COLLECTIONS & CREDIT BREAKDOWN (ನಗದು & ಸಾಲದ ವಿವರ):*\n`;
+  text += `• 💵 *Cash Collected (ನಗದು):* ₹${totalCash.toLocaleString('en-IN')}\n`;
+  if (totalUpi > 0) text += `• 📱 *UPI / Online:* ₹${totalUpi.toLocaleString('en-IN')}\n`;
+  if (totalCard > 0) text += `• 💳 *Card / Bank:* ₹${totalCard.toLocaleString('en-IN')}\n`;
+  text += `• 📥 *Total Collected in Hand (ಒಟ್ಟು ನಗದು):* ₹${totalCollected.toLocaleString('en-IN')}\n`;
+  text += `• 📝 *Credit Given Today (ಇಂದಿನ ಸಾಲ):* ₹${totalCredit.toLocaleString('en-IN')}\n\n`;
+
+  // Credit Ledger
+  text += `👥 *FARMER CREDIT LEDGER (ರೈತರ ಸಾಲದ ಬಾಕಿ):*\n`;
+  text += `• *Pending Credit Accounts:* ${reportData.creditFarmers.length} farmers\n`;
+  text += `• *Total Outstanding Balance (ಒಟ್ಟು ಬಾಕಿ):* ₹${totalOutstandingCredit.toLocaleString('en-IN')}\n`;
+  if (reportData.creditFarmers.length > 0) {
+    const topDues = reportData.creditFarmers.slice(0, 5);
+    topDues.forEach((f) => {
+      text += `  - ${f.farmerName}: ₹${f.balance.toLocaleString('en-IN')}\n`;
+    });
+    if (reportData.creditFarmers.length > 5) {
+      text += `  _...and ${reportData.creditFarmers.length - 5} more in attached PDF_\n`;
+    }
+  }
+  text += `\n`;
+
+  // Top products profit analysis
+  if (reportData.topSoldProducts && reportData.topSoldProducts.length > 0) {
+    text += `📈 *TOP PRODUCTS SOLD & PROFIT:*\n`;
+    reportData.topSoldProducts.slice(0, 5).forEach((p) => {
+      text += `• *${p.name}* (Qty: ${p.qty}) -> Revenue: ₹${p.revenue.toLocaleString('en-IN')} | Profit: +₹${p.profit.toLocaleString('en-IN')}\n`;
+    });
+    text += `\n`;
+  }
 
   // Inventory movements
   if (movedItemsMap.size > 0) {
-    text += `📦 *STOCK MOVEMENTS (${movedItemsMap.size} items):*\n`;
-    const movedItems = Array.from(movedItemsMap.values()).slice(0, 8);
+    text += `📦 *STOCK MOVEMENTS (${movedItemsMap.size} products):*\n`;
+    const movedItems = Array.from(movedItemsMap.values()).slice(0, 6);
     movedItems.forEach((it) => {
       text += `• *${it.name}:* Sold ${it.soldQty} ${it.unit} | Closing: ${it.closingQty} ${it.unit}\n`;
     });
-    if (movedItemsMap.size > 8) {
-      text += `  _...and ${movedItemsMap.size - 8} more in attached PDF_\n`;
+    if (movedItemsMap.size > 6) {
+      text += `  _...and ${movedItemsMap.size - 6} more in attached PDF_\n`;
     }
     text += `\n`;
   }
 
   // Stock alerts
-  if (zeroStockItems.length > 0) {
-    text += `🚨 *OUT OF STOCK ALERTS (${zeroStockItems.length}):*\n`;
-    zeroStockItems.forEach((it) => {
+  if (reportData.zeroStockItems && reportData.zeroStockItems.length > 0) {
+    text += `🚨 *OUT OF STOCK ALERTS (${reportData.zeroStockItems.length}):*\n`;
+    reportData.zeroStockItems.slice(0, 6).forEach((it) => {
       text += `• ❌ ${it.name} (0 ${it.unit})\n`;
     });
     text += `\n`;
   }
 
-  if (lowStockItems.length > 0) {
-    text += `⚠️ *LOW STOCK ALERTS:*\n`;
-    lowStockItems.forEach((it) => {
-      text += `• ⚠️ ${it.name}: ${it.quantity} ${it.unit} (Alert at ${it.min})\n`;
+  if (reportData.lowStockItems && reportData.lowStockItems.length > 0) {
+    text += `⚠️ *LOW STOCK ALERTS (${reportData.lowStockItems.length}):*\n`;
+    reportData.lowStockItems.slice(0, 6).forEach((it) => {
+      text += `• ⚠️ ${it.name}: ${it.quantity} ${it.unit} (Min limit: ${it.minimumStock})\n`;
     });
     text += `\n`;
   }
 
-  text += `📄 _Attached PDF contains complete itemized farmer billing, payments, and full audit ledger._`;
+  text += `📄 _Attached PDF contains complete itemized farmer billing, profit breakdown, and full audit ledger._`;
 
   // Generate Branded PDF
   let pdfBuffer: Buffer | undefined;
-  let fileName = `AgroFlow_${shopName.replace(/[^a-zA-Z0-9]/g, '_')}_${shiftType}_${dateStr}.pdf`;
+  const fileName = `AgroFlow_${shopName.replace(/[^a-zA-Z0-9]/g, '_')}_Daily_Report_${dateStr}.pdf`;
   try {
-    const reportData = await fetchDailyReportData(shopId, dateStr);
     pdfBuffer = await generateDailyReportPDF(reportData);
   } catch (pdfErr) {
     console.error(`[WhatsApp ${shopId}] PDF generation error:`, pdfErr);
@@ -564,9 +540,21 @@ export const generateShiftReport = async (
     message: text,
     pdfBuffer,
     fileName,
-    totalGrossSales,
+    totalGrossSales: totalSales,
+    totalGrossProfit: totalProfit,
     completedOrders,
   };
+};
+
+/**
+ * Backward compatible alias for generateDailyReport
+ */
+export const generateShiftReport = async (
+  shopId: string,
+  shiftType: 'shift1' | 'shift2' | 'daily' = 'daily',
+  targetDate?: string
+) => {
+  return generateDailyReport(shopId, targetDate, shiftType);
 };
 
 /**

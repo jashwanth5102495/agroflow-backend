@@ -16,18 +16,33 @@ export interface DailyReportData {
   summary: {
     totalSales: number;
     totalCash: number;
-    totalCredit: number;
-    totalCount: number;
+    totalUpi: number;
+    totalCard: number;
+    totalCredit: number; // Credit given today
+    totalCollected: number; // Cash + UPI + Card
+    totalCogs: number; // Cost of Goods Sold
+    totalProfit: number; // Gross Profit = totalSales - totalCogs
+    profitMargin: number; // %
+    totalCount: number; // Invoices count
+    totalOutstandingCredit: number; // Total unpaid balance across all farmers
   };
   salesDetails: Array<{
     invoiceNumber: string;
     farmerName: string;
     farmerPhone: string;
     village: string;
-    items: Array<{ name: string; qty: number; unitPrice: number; total: number }>;
+    items: Array<{
+      name: string;
+      qty: number;
+      unitPrice: number;
+      purchasePrice: number;
+      total: number;
+      profit: number;
+    }>;
     total: number;
     paid: number;
     due: number;
+    profit: number;
     paymentMethod: string;
   }>;
   creditFarmers: Array<{
@@ -43,10 +58,21 @@ export interface DailyReportData {
     minimumStock: number;
     unit: string;
   }>;
+  zeroStockItems: Array<{
+    name: string;
+    unit: string;
+  }>;
+  topSoldProducts: Array<{
+    name: string;
+    qty: number;
+    revenue: number;
+    cost: number;
+    profit: number;
+  }>;
 }
 
 /**
- * Fetch all report data for a specific shop and date
+ * Fetch all report data for a specific shop and date with exact profit, sales, and credit tracking.
  */
 export const fetchDailyReportData = async (shopId: string, dateStr: string): Promise<DailyReportData> => {
   const shop = await Shop.findById(shopId);
@@ -59,10 +85,13 @@ export const fetchDailyReportData = async (shopId: string, dateStr: string): Pro
   const startOfDay = new Date(`${dateStr}T00:00:00+05:30`);
   const endOfDay = new Date(`${dateStr}T23:59:59.999+05:30`);
 
-  // 1. Fetch Sales for the day
+  // 1. Fetch Sales for the day (checking both createdAt and custom saleDate)
   const sales = await Sale.find({
     shopId: new mongoose.Types.ObjectId(shopId),
-    createdAt: { $gte: startOfDay, $lte: endOfDay }
+    $or: [
+      { createdAt: { $gte: startOfDay, $lte: endOfDay } },
+      { saleDate: { $gte: startOfDay, $lte: endOfDay } },
+    ],
   })
     .populate('farmerId', 'name phone village')
     .sort({ createdAt: -1 })
@@ -70,69 +99,120 @@ export const fetchDailyReportData = async (shopId: string, dateStr: string): Pro
 
   let totalSales = 0;
   let totalCash = 0;
+  let totalUpi = 0;
+  let totalCard = 0;
   let totalCredit = 0;
+  let totalCogs = 0;
+
+  const productAggMap = new Map<string, { name: string; qty: number; revenue: number; cost: number; profit: number }>();
 
   const salesDetails = await Promise.all(
     sales.map(async (sale: any) => {
-      totalSales += sale.total || 0;
-      totalCash += sale.amountPaid || 0;
-      totalCredit += sale.amountDue || 0;
+      const saleTotal = sale.total || 0;
+      const amountPaid = sale.amountPaid || 0;
+      const amountDue = sale.amountDue || 0;
 
-      const items = await SaleItem.find({ saleId: sale._id }).lean();
+      totalSales += saleTotal;
+      totalCredit += amountDue;
+
+      const method = sale.paymentMethod;
+      if (method === 'UPI') {
+        totalUpi += amountPaid;
+      } else if (method === 'CARD' || method === 'BANK_TRANSFER') {
+        totalCard += amountPaid;
+      } else {
+        totalCash += amountPaid;
+      }
+
+      // Populate product to get purchasePrice for exact profit calculation
+      const items = await SaleItem.find({ saleId: sale._id })
+        .populate('productId', 'name purchasePrice sellingPrice unit')
+        .lean();
+
+      let saleProfit = 0;
+      const processedItems = items.map((i: any) => {
+        const prod = i.productId as any;
+        const purchasePrice = prod?.purchasePrice || 0;
+        const unitPrice = i.unitPrice || prod?.sellingPrice || 0;
+        const qty = i.quantity || 1;
+        const itemTotal = i.total || (unitPrice * qty);
+        const itemCost = purchasePrice * qty;
+        const itemProfit = itemTotal - itemCost;
+
+        totalCogs += itemCost;
+        saleProfit += itemProfit;
+
+        const prodName = i.productName || prod?.name || 'Product';
+        if (!productAggMap.has(prodName)) {
+          productAggMap.set(prodName, { name: prodName, qty: 0, revenue: 0, cost: 0, profit: 0 });
+        }
+        const pAgg = productAggMap.get(prodName)!;
+        pAgg.qty += qty;
+        pAgg.revenue += itemTotal;
+        pAgg.cost += itemCost;
+        pAgg.profit += itemProfit;
+
+        return {
+          name: prodName,
+          qty,
+          unitPrice,
+          purchasePrice,
+          total: itemTotal,
+          profit: itemProfit,
+        };
+      });
 
       return {
         invoiceNumber: sale.invoiceNumber || 'INV-' + sale._id.toString().slice(-6),
-        farmerName: sale.farmerId?.name || 'Walk-in Customer (Grahakaru)',
-        farmerPhone: sale.farmerId?.phone || '-',
+        farmerName: sale.customerName || sale.farmerId?.name || 'Walk-in Customer (Grahakaru)',
+        farmerPhone: sale.customerPhone || sale.farmerId?.phone || '-',
         village: sale.farmerId?.village || '-',
-        items: items.map((i: any) => ({
-          name: i.productName || 'Product',
-          qty: i.quantity || 1,
-          unitPrice: i.unitPrice || 0,
-          total: i.total || 0
-        })),
-        total: sale.total || 0,
-        paid: sale.amountPaid || 0,
-        due: sale.amountDue || 0,
-        paymentMethod: sale.paymentMethod || 'CASH'
+        items: processedItems,
+        total: saleTotal,
+        paid: amountPaid,
+        due: amountDue,
+        profit: saleProfit,
+        paymentMethod: sale.paymentMethod || 'CASH',
       };
     })
   );
 
+  const totalCollected = totalCash + totalUpi + totalCard;
+  const totalProfit = totalSales - totalCogs;
+  const profitMargin = totalSales > 0 ? (totalProfit / totalSales) * 100 : 0;
+  const topSoldProducts = Array.from(productAggMap.values()).sort((a, b) => b.revenue - a.revenue);
+
   // 2. Fetch all credit accounts with outstanding balances
   const creditAccounts = await CreditAccount.find({
     shopId: new mongoose.Types.ObjectId(shopId),
-    balance: { $gt: 0 }
+    balance: { $gt: 0 },
   })
     .populate('farmerId', 'name phone village')
     .sort({ balance: -1 })
-    .limit(20)
     .lean();
 
-  const creditFarmers = creditAccounts.map((ca: any) => ({
+  const totalOutstandingCredit = creditAccounts.reduce((sum, ca: any) => sum + (ca.balance || 0), 0);
+  const creditFarmers = creditAccounts.slice(0, 25).map((ca: any) => ({
     farmerName: ca.farmerId?.name || 'Unknown Farmer',
     phone: ca.farmerId?.phone || '-',
     village: ca.farmerId?.village || '-',
-    balance: ca.balance || 0
+    balance: ca.balance || 0,
   }));
 
-  // 3. Fetch low stock inventory
+  // 3. Fetch zero stock and low stock inventory
+  const zeroStockItems = await Inventory.aggregate([
+    { $match: { shopId: new mongoose.Types.ObjectId(shopId), quantity: { $lte: 0 } } },
+    { $lookup: { from: 'products', localField: 'productId', foreignField: '_id', as: 'p' } },
+    { $unwind: '$p' },
+    { $limit: 10 },
+    { $project: { _id: 0, name: '$p.name', unit: '$p.unit' } },
+  ]);
+
   const lowStockItems = await Inventory.aggregate([
-    { $match: { shopId: new mongoose.Types.ObjectId(shopId) } },
-    {
-      $lookup: {
-        from: 'products',
-        localField: 'productId',
-        foreignField: '_id',
-        as: 'product'
-      }
-    },
+    { $match: { shopId: new mongoose.Types.ObjectId(shopId), quantity: { $gt: 0 } } },
+    { $lookup: { from: 'products', localField: 'productId', foreignField: '_id', as: 'product' } },
     { $unwind: '$product' },
-    {
-      $match: {
-        $expr: { $lte: ['$quantity', '$product.minimumStock'] }
-      }
-    },
+    { $match: { $expr: { $lte: ['$quantity', '$product.minimumStock'] } } },
     { $limit: 15 },
     {
       $project: {
@@ -141,9 +221,9 @@ export const fetchDailyReportData = async (shopId: string, dateStr: string): Pro
         sku: '$product.sku',
         quantity: '$quantity',
         minimumStock: '$product.minimumStock',
-        unit: '$product.unit'
-      }
-    }
+        unit: '$product.unit',
+      },
+    },
   ]);
 
   return {
@@ -156,17 +236,26 @@ export const fetchDailyReportData = async (shopId: string, dateStr: string): Pro
     summary: {
       totalSales,
       totalCash,
+      totalUpi,
+      totalCard,
       totalCredit,
-      totalCount: sales.length
+      totalCollected,
+      totalCogs,
+      totalProfit,
+      profitMargin,
+      totalCount: sales.length,
+      totalOutstandingCredit,
     },
     salesDetails,
     creditFarmers,
-    lowStockItems
+    lowStockItems,
+    zeroStockItems,
+    topSoldProducts,
   };
 };
 
 /**
- * Generate a PDF Buffer containing the complete bilingual daily sales and credit report
+ * Generate a PDF Buffer containing the complete bilingual daily sales, profit, and credit report.
  */
 export const generateDailyReportPDF = async (reportData: DailyReportData): Promise<Buffer> => {
   return new Promise((resolve, reject) => {
@@ -176,8 +265,8 @@ export const generateDailyReportPDF = async (reportData: DailyReportData): Promi
       info: {
         Title: `AgroFlow Daily Report - ${reportData.shopName}`,
         Author: 'AgroFlow Agri-Management',
-        Subject: 'Daily Sales & Credit Statement'
-      }
+        Subject: 'Daily Sales, Profit & Credit Statement',
+      },
     });
 
     const buffers: Buffer[] = [];
@@ -196,84 +285,85 @@ export const generateDailyReportPDF = async (reportData: DailyReportData): Promi
 
     // Header Top Banner
     doc.rect(40, 40, 515, 60).fill('#f0fdf4');
-    doc.fillColor(primaryColor).fontSize(18).font('Helvetica-Bold')
+    doc.fillColor(primaryColor).fontSize(17).font('Helvetica-Bold')
       .text(reportData.shopName.toUpperCase(), 50, 48);
 
-    doc.fillColor(grayColor).fontSize(9).font('Helvetica')
-      .text(`Prop: ${reportData.ownerName} | Mobile: ${reportData.phone} | ${reportData.district}, ${reportData.state}`, 50, 72);
+    doc.fillColor(grayColor).fontSize(8.5).font('Helvetica')
+      .text(`Prop: ${reportData.ownerName} | Mobile: ${reportData.phone} | ${reportData.district}, ${reportData.state}`, 50, 70);
 
-    doc.fillColor(secondaryColor).fontSize(10).font('Helvetica-Bold')
-      .text(`DATE: ${reportData.dateStr} | GENERATED: ${new Date().toLocaleTimeString('en-IN')}`, 50, 86);
+    doc.fillColor(secondaryColor).fontSize(9.5).font('Helvetica-Bold')
+      .text(`DATE: ${reportData.dateStr} | TIME: ${new Date().toLocaleTimeString('en-IN')}`, 50, 84);
 
     doc.moveDown(2);
 
-    // Section 1: Bilingual Document Title
-    let currentY = 115;
-    doc.rect(40, currentY, 515, 24).fill(primaryColor);
-    doc.fillColor('#ffffff').fontSize(11).font('Helvetica-Bold')
-      .text('DAILY BUSINESS & CREDIT SUMMARY (DAINANDINA VYAPARA & SALA VARADI)', 50, currentY + 6);
+    // Section 1: Document Title Bar
+    let currentY = 112;
+    doc.rect(40, currentY, 515, 22).fill(primaryColor);
+    doc.fillColor('#ffffff').fontSize(10).font('Helvetica-Bold')
+      .text('DAILY BUSINESS, PROFIT & CREDIT STATEMENT (DAINANDINA VYAPARA, LABHA & SALA VARADI)', 48, currentY + 6);
 
-    currentY += 32;
+    currentY += 28;
 
-    // 4 Summary Metrics Cards
-    const cardWidth = 120;
-    const cardHeight = 50;
+    // 4 Summary Metrics Cards (Sales, Collected, Gross Profit, Credit Given)
+    const cardWidth = 122;
+    const cardHeight = 48;
 
     // Card 1: Total Sales
     doc.rect(40, currentY, cardWidth, cardHeight).fillAndStroke('#eff6ff', '#bfdbfe');
-    doc.fillColor(darkColor).fontSize(8).font('Helvetica')
-      .text('TOTAL SALES (OTTU MARATA)', 46, currentY + 6);
-    doc.fillColor(primaryColor).fontSize(13).font('Helvetica-Bold')
-      .text(`Rs. ${reportData.summary.totalSales.toLocaleString('en-IN')}`, 46, currentY + 22);
+    doc.fillColor(darkColor).fontSize(7.5).font('Helvetica')
+      .text('TOTAL SALES (OTTU MARATA)', 46, currentY + 5);
+    doc.fillColor(primaryColor).fontSize(12).font('Helvetica-Bold')
+      .text(`Rs. ${reportData.summary.totalSales.toLocaleString('en-IN')}`, 46, currentY + 18);
     doc.fillColor(grayColor).fontSize(7).font('Helvetica')
-      .text(`${reportData.summary.totalCount} Bills Generated`, 46, currentY + 38);
+      .text(`${reportData.summary.totalCount} Bills Generated`, 46, currentY + 34);
 
-    // Card 2: Cash Collected
-    doc.rect(170, currentY, cardWidth, cardHeight).fillAndStroke('#ecfdf5', '#a7f3d0');
-    doc.fillColor(darkColor).fontSize(8).font('Helvetica')
-      .text('CASH SALES (NAGADU)', 176, currentY + 6);
-    doc.fillColor(secondaryColor).fontSize(13).font('Helvetica-Bold')
-      .text(`Rs. ${reportData.summary.totalCash.toLocaleString('en-IN')}`, 176, currentY + 22);
+    // Card 2: Total Money Collected in Hand
+    doc.rect(171, currentY, cardWidth, cardHeight).fillAndStroke('#ecfdf5', '#a7f3d0');
+    doc.fillColor(darkColor).fontSize(7.5).font('Helvetica')
+      .text('COLLECTED (SVEEKARISIDDU)', 177, currentY + 5);
+    doc.fillColor(secondaryColor).fontSize(12).font('Helvetica-Bold')
+      .text(`Rs. ${reportData.summary.totalCollected.toLocaleString('en-IN')}`, 177, currentY + 18);
     doc.fillColor(grayColor).fontSize(7).font('Helvetica')
-      .text('Amount Received', 176, currentY + 38);
+      .text(`Cash: Rs.${reportData.summary.totalCash} | Online: Rs.${reportData.summary.totalUpi + reportData.summary.totalCard}`, 177, currentY + 34);
 
-    // Card 3: Today's Credit Given
-    doc.rect(300, currentY, cardWidth, cardHeight).fillAndStroke('#fff7ed', '#fed7aa');
-    doc.fillColor(darkColor).fontSize(8).font('Helvetica')
-      .text('CREDIT GIVEN (SALA)', 306, currentY + 6);
-    doc.fillColor('#ea580c').fontSize(13).font('Helvetica-Bold')
-      .text(`Rs. ${reportData.summary.totalCredit.toLocaleString('en-IN')}`, 306, currentY + 22);
+    // Card 3: Total Gross Profit
+    doc.rect(302, currentY, cardWidth, cardHeight).fillAndStroke('#f0fdf4', '#86efac');
+    doc.fillColor(darkColor).fontSize(7.5).font('Helvetica')
+      .text('GROSS PROFIT (OTTU LABHA)', 308, currentY + 5);
+    doc.fillColor('#15803d').fontSize(12).font('Helvetica-Bold')
+      .text(`Rs. ${reportData.summary.totalProfit.toLocaleString('en-IN')}`, 308, currentY + 18);
     doc.fillColor(grayColor).fontSize(7).font('Helvetica')
-      .text('Balance Added Today', 306, currentY + 38);
+      .text(`${reportData.summary.profitMargin.toFixed(1)}% Profit Margin`, 308, currentY + 34);
 
-    // Card 4: Overdue Farmers Count
-    doc.rect(430, currentY, 125, cardHeight).fillAndStroke('#fef2f2', '#fecaca');
-    doc.fillColor(darkColor).fontSize(8).font('Helvetica')
-      .text('CREDIT ACCOUNTS', 436, currentY + 6);
-    doc.fillColor(alertColor).fontSize(13).font('Helvetica-Bold')
-      .text(`${reportData.creditFarmers.length} Farmers`, 436, currentY + 22);
+    // Card 4: Credit Given Today
+    doc.rect(433, currentY, 122, cardHeight).fillAndStroke('#fff7ed', '#fed7aa');
+    doc.fillColor(darkColor).fontSize(7.5).font('Helvetica')
+      .text('CREDIT GIVEN (INDINA SALA)', 439, currentY + 5);
+    doc.fillColor('#ea580c').fontSize(12).font('Helvetica-Bold')
+      .text(`Rs. ${reportData.summary.totalCredit.toLocaleString('en-IN')}`, 439, currentY + 18);
     doc.fillColor(grayColor).fontSize(7).font('Helvetica')
-      .text('Pending Settlement', 436, currentY + 38);
+      .text(`Overall Dues: Rs.${reportData.summary.totalOutstandingCredit.toLocaleString('en-IN')}`, 439, currentY + 34);
 
-    currentY += 62;
+    currentY += 56;
 
-    // Section 2: Detailed Sales & Farmer Purchases Breakdown
+    // Section 1: Detailed Sales & Farmer Purchases Breakdown
     doc.rect(40, currentY, 515, 18).fill('#1e293b');
-    doc.fillColor('#ffffff').fontSize(9).font('Helvetica-Bold')
-      .text('1. TODAY\'S FARMER SALES BREAKDOWN (RAITHARA KHAREEDI VIVARA)', 46, currentY + 4);
+    doc.fillColor('#ffffff').fontSize(8.5).font('Helvetica-Bold')
+      .text('1. TODAY\'S FARMER SALES & PROFIT BREAKDOWN (RAITHARA KHAREEDI & LABHA VIVARA)', 46, currentY + 4);
 
     currentY += 22;
 
     // Table Header for Sales
     doc.rect(40, currentY, 515, 16).fill('#e2e8f0');
-    doc.fillColor(darkColor).fontSize(8).font('Helvetica-Bold');
+    doc.fillColor(darkColor).fontSize(7.5).font('Helvetica-Bold');
     doc.text('Invoice', 45, currentY + 4);
-    doc.text('Farmer (Raitha)', 115, currentY + 4);
-    doc.text('Village', 215, currentY + 4);
-    doc.text('Items Purchased (Uthpannagalu)', 285, currentY + 4);
-    doc.text('Total', 430, currentY + 4, { width: 40, align: 'right' });
-    doc.text('Paid', 475, currentY + 4, { width: 35, align: 'right' });
-    doc.text('Credit', 515, currentY + 4, { width: 35, align: 'right' });
+    doc.text('Farmer (Raitha)', 110, currentY + 4);
+    doc.text('Village', 195, currentY + 4);
+    doc.text('Items Purchased', 260, currentY + 4);
+    doc.text('Total', 390, currentY + 4, { width: 40, align: 'right' });
+    doc.text('Paid', 435, currentY + 4, { width: 35, align: 'right' });
+    doc.text('Credit', 475, currentY + 4, { width: 35, align: 'right' });
+    doc.text('Profit', 515, currentY + 4, { width: 35, align: 'right' });
 
     currentY += 18;
 
@@ -292,42 +382,87 @@ export const generateDailyReportPDF = async (reportData: DailyReportData): Promi
         const bgColor = index % 2 === 0 ? '#ffffff' : '#f8fafc';
         doc.rect(40, currentY, 515, 18).fill(bgColor);
 
-        const itemsSummary = sale.items.map(i => `${i.name} (${i.qty})`).join(', ') || '-';
-        const truncatedItems = itemsSummary.length > 28 ? itemsSummary.slice(0, 26) + '..' : itemsSummary;
+        const itemsSummary = sale.items.map((i) => `${i.name} (${i.qty})`).join(', ') || '-';
+        const truncatedItems = itemsSummary.length > 25 ? itemsSummary.slice(0, 23) + '..' : itemsSummary;
 
         doc.fillColor(darkColor).fontSize(7.5).font('Helvetica');
         doc.text(sale.invoiceNumber, 45, currentY + 4);
-        doc.font('Helvetica-Bold').text(sale.farmerName, 115, currentY + 4);
-        doc.font('Helvetica').text(sale.village, 215, currentY + 4);
-        doc.text(truncatedItems, 285, currentY + 4);
-        doc.font('Helvetica-Bold').text(`Rs.${sale.total}`, 425, currentY + 4, { width: 45, align: 'right' });
-        doc.fillColor(secondaryColor).text(`Rs.${sale.paid}`, 470, currentY + 4, { width: 40, align: 'right' });
-        doc.fillColor(sale.due > 0 ? alertColor : grayColor).text(`Rs.${sale.due}`, 510, currentY + 4, { width: 40, align: 'right' });
+        doc.font('Helvetica-Bold').text(sale.farmerName, 110, currentY + 4);
+        doc.font('Helvetica').text(sale.village, 195, currentY + 4);
+        doc.text(truncatedItems, 260, currentY + 4);
+        doc.font('Helvetica-Bold').text(`Rs.${sale.total}`, 385, currentY + 4, { width: 45, align: 'right' });
+        doc.fillColor(secondaryColor).text(`Rs.${sale.paid}`, 430, currentY + 4, { width: 40, align: 'right' });
+        doc.fillColor(sale.due > 0 ? alertColor : grayColor).text(`Rs.${sale.due}`, 470, currentY + 4, { width: 40, align: 'right' });
+        doc.fillColor('#15803d').font('Helvetica-Bold').text(`+Rs.${sale.profit}`, 510, currentY + 4, { width: 40, align: 'right' });
 
         currentY += 18;
       });
       currentY += 8;
     }
 
-    // Section 3: Outstanding Credit by Farmers (Who took on credit)
+    // Section 2: Product Sales & Profit Analysis
+    if (reportData.topSoldProducts && reportData.topSoldProducts.length > 0) {
+      if (currentY > 640) {
+        doc.addPage();
+        currentY = 40;
+      }
+
+      doc.rect(40, currentY, 515, 18).fill('#0f766e');
+      doc.fillColor('#ffffff').fontSize(8.5).font('Helvetica-Bold')
+        .text('2. PRODUCT-WISE SALES & PROFIT ANALYSIS (UTHAPANNAGALA LABHA VIVARA)', 46, currentY + 4);
+
+      currentY += 22;
+
+      doc.rect(40, currentY, 515, 16).fill('#ccfbf1');
+      doc.fillColor(darkColor).fontSize(7.5).font('Helvetica-Bold');
+      doc.text('Product Name', 45, currentY + 4);
+      doc.text('Qty Sold', 230, currentY + 4);
+      doc.text('Purchase Cost', 300, currentY + 4, { width: 70, align: 'right' });
+      doc.text('Revenue', 390, currentY + 4, { width: 70, align: 'right' });
+      doc.text('Net Profit', 475, currentY + 4, { width: 75, align: 'right' });
+
+      currentY += 18;
+
+      reportData.topSoldProducts.slice(0, 10).forEach((prod, pIdx) => {
+        if (currentY > 720) {
+          doc.addPage();
+          currentY = 40;
+        }
+
+        const pBg = pIdx % 2 === 0 ? '#ffffff' : '#f0fdfa';
+        doc.rect(40, currentY, 515, 16).fill(pBg);
+
+        doc.fillColor(darkColor).fontSize(7.5).font('Helvetica');
+        doc.text(prod.name, 45, currentY + 4);
+        doc.font('Helvetica-Bold').text(`${prod.qty}`, 230, currentY + 4);
+        doc.font('Helvetica').text(`Rs. ${prod.cost.toLocaleString('en-IN')}`, 300, currentY + 4, { width: 70, align: 'right' });
+        doc.font('Helvetica').text(`Rs. ${prod.revenue.toLocaleString('en-IN')}`, 390, currentY + 4, { width: 70, align: 'right' });
+        doc.fillColor('#0f766e').font('Helvetica-Bold').text(`+Rs. ${prod.profit.toLocaleString('en-IN')}`, 475, currentY + 4, { width: 75, align: 'right' });
+
+        currentY += 16;
+      });
+      currentY += 8;
+    }
+
+    // Section 3: Outstanding Credit Ledger
     if (currentY > 640) {
       doc.addPage();
       currentY = 40;
     }
 
     doc.rect(40, currentY, 515, 18).fill('#7c2d12');
-    doc.fillColor('#ffffff').fontSize(9).font('Helvetica-Bold')
-      .text('2. FARMER CREDIT SUMMARY & DUES (RAITHARA SALA BAKI VIVARA)', 46, currentY + 4);
+    doc.fillColor('#ffffff').fontSize(8.5).font('Helvetica-Bold')
+      .text(`3. FARMER CREDIT DUES & LEDGER (RAITHARA SALA BAKI) - TOTAL DUES: Rs. ${reportData.summary.totalOutstandingCredit.toLocaleString('en-IN')}`, 46, currentY + 4);
 
     currentY += 22;
 
     doc.rect(40, currentY, 515, 16).fill('#fed7aa');
-    doc.fillColor(darkColor).fontSize(8).font('Helvetica-Bold');
+    doc.fillColor(darkColor).fontSize(7.5).font('Helvetica-Bold');
     doc.text('#', 45, currentY + 4);
-    doc.text('Farmer Name (Raithara Hesaru)', 70, currentY + 4);
+    doc.text('Farmer Name (Raitha)', 70, currentY + 4);
     doc.text('Mobile Number', 230, currentY + 4);
     doc.text('Village (Grama)', 350, currentY + 4);
-    doc.text('Total Outstanding Due (Baki)', 440, currentY + 4, { width: 110, align: 'right' });
+    doc.text('Total Outstanding Due', 440, currentY + 4, { width: 110, align: 'right' });
 
     currentY += 18;
 
@@ -365,13 +500,13 @@ export const generateDailyReportPDF = async (reportData: DailyReportData): Promi
     }
 
     doc.rect(40, currentY, 515, 18).fill('#047857');
-    doc.fillColor('#ffffff').fontSize(9).font('Helvetica-Bold')
-      .text('3. INVENTORY LOW STOCK ALERTS (DASTHANU KADIME IRUVA VIVARA)', 46, currentY + 4);
+    doc.fillColor('#ffffff').fontSize(8.5).font('Helvetica-Bold')
+      .text('4. INVENTORY STOCK ALERTS (DASTHANU KADIME IRUVA VIVARA)', 46, currentY + 4);
 
     currentY += 22;
 
     doc.rect(40, currentY, 515, 16).fill('#e2e8f0');
-    doc.fillColor(darkColor).fontSize(8).font('Helvetica-Bold');
+    doc.fillColor(darkColor).fontSize(7.5).font('Helvetica-Bold');
     doc.text('Product Name (Uthpanna)', 45, currentY + 4);
     doc.text('SKU / Code', 260, currentY + 4);
     doc.text('Current Stock', 370, currentY + 4);
@@ -379,7 +514,7 @@ export const generateDailyReportPDF = async (reportData: DailyReportData): Promi
 
     currentY += 18;
 
-    if (reportData.lowStockItems.length === 0) {
+    if (reportData.lowStockItems.length === 0 && (!reportData.zeroStockItems || reportData.zeroStockItems.length === 0)) {
       doc.rect(40, currentY, 515, 20).fill('#f0fdf4');
       doc.fillColor(secondaryColor).fontSize(8).font('Helvetica-Bold')
         .text('All products are above minimum stock limit. Healthy Inventory! (Ellavu sari ide).', 50, currentY + 6);
@@ -409,9 +544,9 @@ export const generateDailyReportPDF = async (reportData: DailyReportData): Promi
     const footerY = 780;
     doc.rect(40, footerY, 515, 20).fill('#f1f5f9');
     doc.fillColor(grayColor).fontSize(7.5).font('Helvetica')
-      .text('AgroFlow Cloud Platform | Powered by BluNet IT Services | Automated Daily Telegram Broadcast', 50, footerY + 6, {
+      .text('AgroFlow Cloud Platform | Powered by BluNet IT Services | Automated Daily WhatsApp Broadcast', 50, footerY + 6, {
         align: 'center',
-        width: 495
+        width: 495,
       });
 
     doc.end();
