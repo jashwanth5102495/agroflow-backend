@@ -32,7 +32,7 @@ export const createSaleService = async (shopId: string, userId: string, data: an
 
     processedItems.push({
       productId: product._id,
-      productName: product.name,
+      productName: (product.name || '').toUpperCase(),
       quantity: item.quantity,
       unitPrice: product.sellingPrice,
       discount: itemDiscount,

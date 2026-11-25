@@ -142,7 +142,7 @@ export const fetchDailyReportData = async (shopId: string, dateStr: string): Pro
         totalCogs += itemCost;
         saleProfit += itemProfit;
 
-        const prodName = i.productName || prod?.name || 'Product';
+        const prodName = (i.productName || prod?.name || 'PRODUCT').toUpperCase();
         if (!productAggMap.has(prodName)) {
           productAggMap.set(prodName, { name: prodName, qty: 0, revenue: 0, cost: 0, profit: 0 });
         }
@@ -248,8 +248,17 @@ export const fetchDailyReportData = async (shopId: string, dateStr: string): Pro
     },
     salesDetails,
     creditFarmers,
-    lowStockItems,
-    zeroStockItems,
+    lowStockItems: lowStockItems.map((it: any) => ({
+      name: (it.name || '').toUpperCase(),
+      sku: it.sku || '-',
+      quantity: it.quantity,
+      minimumStock: it.minimumStock,
+      unit: it.unit || 'pcs',
+    })),
+    zeroStockItems: zeroStockItems.map((it: any) => ({
+      name: (it.name || '').toUpperCase(),
+      unit: it.unit || 'pcs',
+    })),
     topSoldProducts,
   };
 };

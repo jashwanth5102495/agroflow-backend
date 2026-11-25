@@ -7,8 +7,10 @@ export const createProductService = async (shopId: string, data: any) => {
     if (existingSku) throw { message: 'Product with this SKU already exists', statusCode: 400 };
   }
 
+  const productName = data.name ? String(data.name).trim().toUpperCase() : '';
   const product = new Product({
     ...data,
+    name: productName,
     shopId,
     purchasePrice: Number(data.purchasePrice) || 0,
     sellingPrice: Number(data.sellingPrice) || 0,
@@ -35,7 +37,7 @@ export const bulkCreateProductsService = async (shopId: string, items: any[]) =>
   const createdProducts = [];
   for (const item of items) {
     if (!item.name) continue;
-    const cleanName = String(item.name).trim();
+    const cleanName = String(item.name).trim().toUpperCase();
     if (cleanName.length < 2) continue;
 
     const product = new Product({
@@ -92,6 +94,10 @@ export const updateProductService = async (shopId: string, productId: string, da
   if (data.sku) {
     const existingSku = await Product.findOne({ shopId, sku: data.sku, _id: { $ne: productId } });
     if (existingSku) throw { message: 'Product with this SKU already exists', statusCode: 400 };
+  }
+
+  if (data.name && typeof data.name === 'string') {
+    data.name = data.name.trim().toUpperCase();
   }
 
   const product = await Product.findOneAndUpdate(

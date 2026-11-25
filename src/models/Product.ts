@@ -20,7 +20,12 @@ export interface IProduct extends Document {
 const productSchema = new Schema<IProduct>(
   {
     shopId: { type: Schema.Types.ObjectId, ref: 'Shop', required: true, index: true },
-    name: { type: String, required: true, trim: true },
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+      set: (v: string) => (typeof v === 'string' ? v.toUpperCase() : v),
+    },
     brand: { type: String, trim: true },
     category: { type: String, required: true, trim: true },
     sku: { type: String, trim: true },

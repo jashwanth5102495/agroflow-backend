@@ -417,7 +417,7 @@ export const generateDailyReport = async (
 
     if (!movedItemsMap.has(pId)) {
       movedItemsMap.set(pId, {
-        name: prod.name || 'Item',
+        name: (prod.name || 'Item').toUpperCase(),
         unit: prod.unit || 'pcs',
         soldQty: 0,
         restockedQty: 0,

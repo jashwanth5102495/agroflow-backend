@@ -37,7 +37,7 @@ export const ssbShopProfile = {
 export const ssbProductsList: SSBProductItem[] = [
   {
     "sku": "SSB-001",
-    "name": "Antra Col-500 gm",
+    "name": "ANTRA COL-500 GM",
     "brand": "Antra Col",
     "category": "Fungicides",
     "packSize": "500",
@@ -50,7 +50,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-002",
-    "name": "Antra Col-250 gm",
+    "name": "ANTRA COL-250 GM",
     "brand": "Antra Col",
     "category": "Fungicides",
     "packSize": "250",
@@ -63,7 +63,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-003",
-    "name": "Bunten-250 gm",
+    "name": "BUNTEN-250 GM",
     "brand": "Bunten",
     "category": "Insecticides",
     "packSize": "250",
@@ -76,7 +76,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-004",
-    "name": "Ocilia-100 gm",
+    "name": "OCILIA-100 GM",
     "brand": "Ocilia",
     "category": "Insecticides",
     "packSize": "100",
@@ -89,7 +89,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-005",
-    "name": "Ocilia-250 gm",
+    "name": "OCILIA-250 GM",
     "brand": "Ocilia",
     "category": "Insecticides",
     "packSize": "250",
@@ -102,7 +102,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-006",
-    "name": "Ocilia-500 gm",
+    "name": "OCILIA-500 GM",
     "brand": "Ocilia",
     "category": "Insecticides",
     "packSize": "500",
@@ -115,7 +115,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-007",
-    "name": "Marcellus-100 gm",
+    "name": "MARCELLUS-100 GM",
     "brand": "Marcellus",
     "category": "Insecticides",
     "packSize": "100",
@@ -128,7 +128,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-008",
-    "name": "Epic-100 gm",
+    "name": "EPIC-100 GM",
     "brand": "Epic",
     "category": "Insecticides",
     "packSize": "100",
@@ -141,7 +141,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-009",
-    "name": "Contaf Plus-1 L",
+    "name": "CONTAF PLUS-1 L",
     "brand": "Contaf Plus",
     "category": "Fungicides",
     "packSize": "1",
@@ -154,7 +154,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-010",
-    "name": "Contaf Plus-250 ml",
+    "name": "CONTAF PLUS-250 ML",
     "brand": "Contaf Plus",
     "category": "Fungicides",
     "packSize": "250",
@@ -167,7 +167,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-011",
-    "name": "Clasto-200 ml",
+    "name": "CLASTO-200 ML",
     "brand": "Clasto",
     "category": "Insecticides",
     "packSize": "200",
@@ -180,7 +180,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-012",
-    "name": "Ergon-250 ml",
+    "name": "ERGON-250 ML",
     "brand": "Ergon",
     "category": "Insecticides",
     "packSize": "250",
@@ -193,7 +193,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-013",
-    "name": "Fiplam-160 ml",
+    "name": "FIPLAM-160 ML",
     "brand": "Fiplam",
     "category": "Insecticides",
     "packSize": "160",
@@ -206,7 +206,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-014",
-    "name": "Legend-48 gm",
+    "name": "LEGEND-48 GM",
     "brand": "Legend",
     "category": "Insecticides",
     "packSize": "48",
@@ -219,7 +219,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-015",
-    "name": "H20-48 gm",
+    "name": "H20-48 GM",
     "brand": "H20",
     "category": "Crop Protection",
     "packSize": "48",
@@ -232,7 +232,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-016",
-    "name": "Benevia-90 ml",
+    "name": "BENEVIA-90 ML",
     "brand": "Benevia",
     "category": "Insecticides",
     "packSize": "90",
@@ -245,7 +245,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-017",
-    "name": "Isabion-1 L",
+    "name": "ISABION-1 L",
     "brand": "Isabion",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -258,7 +258,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-018",
-    "name": "Keefun-1 L",
+    "name": "KEEFUN-1 L",
     "brand": "Keefun",
     "category": "Insecticides",
     "packSize": "1",
@@ -271,7 +271,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-019",
-    "name": "Keefun-500 ml",
+    "name": "KEEFUN-500 ML",
     "brand": "Keefun",
     "category": "Insecticides",
     "packSize": "500",
@@ -284,7 +284,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-020",
-    "name": "Keefun-250 ml",
+    "name": "KEEFUN-250 ML",
     "brand": "Keefun",
     "category": "Insecticides",
     "packSize": "250",
@@ -297,7 +297,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-021",
-    "name": "Coragen-30 ml",
+    "name": "CORAGEN-30 ML",
     "brand": "Coragen",
     "category": "Insecticides",
     "packSize": "30",
@@ -310,7 +310,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-022",
-    "name": "Bo-la-500 ml",
+    "name": "BO-LA-500 ML",
     "brand": "Bo-la",
     "category": "Crop Protection",
     "packSize": "500",
@@ -323,7 +323,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-023",
-    "name": "zedelis-80 ml",
+    "name": "ZEDELIS-80 ML",
     "brand": "zedelis",
     "category": "Insecticides",
     "packSize": "80",
@@ -336,7 +336,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-024",
-    "name": "Applaud-250 ml",
+    "name": "APPLAUD-250 ML",
     "brand": "Applaud",
     "category": "Insecticides",
     "packSize": "250",
@@ -349,7 +349,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-025",
-    "name": "Applaud-500 ml",
+    "name": "APPLAUD-500 ML",
     "brand": "Applaud",
     "category": "Insecticides",
     "packSize": "500",
@@ -362,7 +362,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-026",
-    "name": "Paradize-250 ml",
+    "name": "PARADIZE-250 ML",
     "brand": "Paradize",
     "category": "Insecticides",
     "packSize": "250",
@@ -375,7 +375,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-027",
-    "name": "Meritor-500 ml",
+    "name": "MERITOR-500 ML",
     "brand": "Meritor",
     "category": "Insecticides",
     "packSize": "500",
@@ -388,7 +388,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-028",
-    "name": "Alika-80 ml",
+    "name": "ALIKA-80 ML",
     "brand": "Alika",
     "category": "Insecticides",
     "packSize": "80",
@@ -401,7 +401,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-029",
-    "name": "Saluto-500 ml",
+    "name": "SALUTO-500 ML",
     "brand": "Saluto",
     "category": "Insecticides",
     "packSize": "500",
@@ -414,7 +414,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-030",
-    "name": "Saluto-200 ml",
+    "name": "SALUTO-200 ML",
     "brand": "Saluto",
     "category": "Insecticides",
     "packSize": "200",
@@ -427,7 +427,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-031",
-    "name": "Saluto-100 ml",
+    "name": "SALUTO-100 ML",
     "brand": "Saluto",
     "category": "Insecticides",
     "packSize": "100",
@@ -440,7 +440,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-032",
-    "name": "Maizoate-100 gm",
+    "name": "MAIZOATE-100 GM",
     "brand": "Maizoate",
     "category": "Insecticides",
     "packSize": "100",
@@ -453,7 +453,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-033",
-    "name": "Maizoate-250 gm",
+    "name": "MAIZOATE-250 GM",
     "brand": "Maizoate",
     "category": "Insecticides",
     "packSize": "250",
@@ -466,7 +466,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-034",
-    "name": "Green Claim-100 gm",
+    "name": "GREEN CLAIM-100 GM",
     "brand": "Green Claim",
     "category": "Insecticides",
     "packSize": "100",
@@ -479,7 +479,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-035",
-    "name": "Radifarm-250 ml",
+    "name": "RADIFARM-250 ML",
     "brand": "Radifarm",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "250",
@@ -492,7 +492,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-036",
-    "name": "Radiform-500 ml",
+    "name": "RADIFORM-500 ML",
     "brand": "Radiform",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "500",
@@ -505,7 +505,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-037",
-    "name": "Kendal Root-1 L",
+    "name": "KENDAL ROOT-1 L",
     "brand": "Kendal Root",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -518,7 +518,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-038",
-    "name": "Vespa-100 ml",
+    "name": "VESPA-100 ML",
     "brand": "Vespa",
     "category": "Insecticides",
     "packSize": "100",
@@ -531,7 +531,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-039",
-    "name": "Saaf-250 gm",
+    "name": "SAAF-250 GM",
     "brand": "Saaf",
     "category": "Fungicides",
     "packSize": "250",
@@ -544,7 +544,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-040",
-    "name": "Saaf-500 gm",
+    "name": "SAAF-500 GM",
     "brand": "Saaf",
     "category": "Fungicides",
     "packSize": "500",
@@ -557,7 +557,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-041",
-    "name": "Saaf-1 kg",
+    "name": "SAAF-1 KG",
     "brand": "Saaf",
     "category": "Fungicides",
     "packSize": "1",
@@ -570,7 +570,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-042",
-    "name": "Plantafol-1 kg",
+    "name": "PLANTAFOL-1 KG",
     "brand": "Plantafol",
     "category": "Fertilizers & Nutrients",
     "packSize": "1",
@@ -583,7 +583,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-043",
-    "name": "Harvest More-1 kg",
+    "name": "HARVEST MORE-1 KG",
     "brand": "Harvest More",
     "category": "Fertilizers & Nutrients",
     "packSize": "1",
@@ -596,7 +596,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-044",
-    "name": "Kims-1 kg",
+    "name": "KIMS-1 KG",
     "brand": "Kims",
     "category": "Fertilizers & Nutrients",
     "packSize": "1",
@@ -609,7 +609,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-045",
-    "name": "Kocide-1 kg",
+    "name": "KOCIDE-1 KG",
     "brand": "Kocide",
     "category": "Fungicides",
     "packSize": "1",
@@ -622,7 +622,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-046",
-    "name": "Kocide-500 gm",
+    "name": "KOCIDE-500 GM",
     "brand": "Kocide",
     "category": "Fungicides",
     "packSize": "500",
@@ -635,7 +635,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-047",
-    "name": "Kocide-250 gm",
+    "name": "KOCIDE-250 GM",
     "brand": "Kocide",
     "category": "Fungicides",
     "packSize": "250",
@@ -648,7 +648,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-048",
-    "name": "Vyteens-500 gm",
+    "name": "VYTEENS-500 GM",
     "brand": "Vyteens",
     "category": "Crop Protection",
     "packSize": "500",
@@ -661,7 +661,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-049",
-    "name": "Indofil M45-500 gm",
+    "name": "INDOFIL M45-500 GM",
     "brand": "Indofil M45",
     "category": "Fungicides",
     "packSize": "500",
@@ -674,7 +674,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-050",
-    "name": "SA Lead M45-500 gm",
+    "name": "SA LEAD M45-500 GM",
     "brand": "SA Lead M45",
     "category": "Fungicides",
     "packSize": "500",
@@ -687,7 +687,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-051",
-    "name": "Indofil M45-1 kg",
+    "name": "INDOFIL M45-1 KG",
     "brand": "Indofil M45",
     "category": "Fungicides",
     "packSize": "1",
@@ -700,7 +700,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-052",
-    "name": "Talstar-250 ml",
+    "name": "TALSTAR-250 ML",
     "brand": "Talstar",
     "category": "Insecticides",
     "packSize": "250",
@@ -713,7 +713,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-053",
-    "name": "Talstar-500 ml",
+    "name": "TALSTAR-500 ML",
     "brand": "Talstar",
     "category": "Insecticides",
     "packSize": "500",
@@ -726,7 +726,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-054",
-    "name": "Nutrien-1 L",
+    "name": "NUTRIEN-1 L",
     "brand": "Nutrien",
     "category": "Fertilizers & Nutrients",
     "packSize": "1",
@@ -739,7 +739,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-055",
-    "name": "Petra-1 L",
+    "name": "PETRA-1 L",
     "brand": "Petra",
     "category": "Fertilizers & Nutrients",
     "packSize": "1",
@@ -752,7 +752,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-056",
-    "name": "Megafol-250 ml",
+    "name": "MEGAFOL-250 ML",
     "brand": "Megafol",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "250",
@@ -765,7 +765,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-057",
-    "name": "Activator-1 L",
+    "name": "ACTIVATOR-1 L",
     "brand": "Activator",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -778,7 +778,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-058",
-    "name": "Megafol-500 ml",
+    "name": "MEGAFOL-500 ML",
     "brand": "Megafol",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "500",
@@ -791,7 +791,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-059",
-    "name": "Hexo Plus-1 L",
+    "name": "HEXO PLUS-1 L",
     "brand": "Hexo Plus",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -804,7 +804,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-060",
-    "name": "Calbet C-1 L",
+    "name": "CALBET C-1 L",
     "brand": "Calbet C",
     "category": "Fertilizers & Nutrients",
     "packSize": "1",
@@ -817,7 +817,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-061",
-    "name": "Tagron-1 kg",
+    "name": "TAGRON-1 KG",
     "brand": "Tagron",
     "category": "Fungicides",
     "packSize": "1",
@@ -830,7 +830,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-062",
-    "name": "Tagron-500 gm",
+    "name": "TAGRON-500 GM",
     "brand": "Tagron",
     "category": "Fungicides",
     "packSize": "500",
@@ -843,7 +843,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-063",
-    "name": "Tagron-250 gm",
+    "name": "TAGRON-250 GM",
     "brand": "Tagron",
     "category": "Fungicides",
     "packSize": "250",
@@ -856,7 +856,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-064",
-    "name": "Captaf-500 gm",
+    "name": "CAPTAF-500 GM",
     "brand": "Captaf",
     "category": "Fungicides",
     "packSize": "500",
@@ -869,7 +869,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-065",
-    "name": "Shield 300-1 L",
+    "name": "SHIELD 300-1 L",
     "brand": "Shield 300",
     "category": "Fungicides",
     "packSize": "1",
@@ -908,7 +908,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-068",
-    "name": "Vertapaint-1 L",
+    "name": "VERTAPAINT-1 L",
     "brand": "Vertapaint",
     "category": "Crop Protection",
     "packSize": "1",
@@ -921,7 +921,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-069",
-    "name": "Triopert-1 L",
+    "name": "TRIOPERT-1 L",
     "brand": "Triopert",
     "category": "Crop Protection",
     "packSize": "1",
@@ -934,7 +934,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-070",
-    "name": "Triopert-500 ml",
+    "name": "TRIOPERT-500 ML",
     "brand": "Triopert",
     "category": "Crop Protection",
     "packSize": "500",
@@ -960,7 +960,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-072",
-    "name": "Nitro Gain-1 L",
+    "name": "NITRO GAIN-1 L",
     "brand": "Nitro Gain",
     "category": "Fertilizers & Nutrients",
     "packSize": "1",
@@ -973,7 +973,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-073",
-    "name": "Carby-1 L",
+    "name": "CARBY-1 L",
     "brand": "Carby",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -986,7 +986,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-074",
-    "name": "Carby-500 ml",
+    "name": "CARBY-500 ML",
     "brand": "Carby",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "500",
@@ -999,7 +999,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-075",
-    "name": "Neem Action-500 ml",
+    "name": "NEEM ACTION-500 ML",
     "brand": "Neem Action",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "500",
@@ -1012,7 +1012,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-076",
-    "name": "Herbovita-500 ml",
+    "name": "HERBOVITA-500 ML",
     "brand": "Herbovita",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "500",
@@ -1025,7 +1025,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-077",
-    "name": "Herbovita-250 ml",
+    "name": "HERBOVITA-250 ML",
     "brand": "Herbovita",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "250",
@@ -1038,7 +1038,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-078",
-    "name": "Surplus-250 ml",
+    "name": "SURPLUS-250 ML",
     "brand": "Surplus",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "250",
@@ -1064,7 +1064,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-080",
-    "name": "Humi Rich-1 L",
+    "name": "HUMI RICH-1 L",
     "brand": "Humi Rich",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -1077,7 +1077,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-081",
-    "name": "Cosavet-1 L",
+    "name": "COSAVET-1 L",
     "brand": "Cosavet",
     "category": "Fungicides",
     "packSize": "1",
@@ -1090,7 +1090,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-082",
-    "name": "Chlorcaps-250 gm",
+    "name": "CHLORCAPS-250 GM",
     "brand": "Chlorcaps",
     "category": "Insecticides",
     "packSize": "250",
@@ -1103,7 +1103,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-083",
-    "name": "C-Plus-1 L",
+    "name": "C-PLUS-1 L",
     "brand": "C-Plus",
     "category": "Insecticides",
     "packSize": "1",
@@ -1116,7 +1116,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-084",
-    "name": "Corteva-1 L",
+    "name": "CORTEVA-1 L",
     "brand": "Corteva",
     "category": "Insecticides",
     "packSize": "1",
@@ -1129,7 +1129,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-085",
-    "name": "Flerica-500 ml",
+    "name": "FLERICA-500 ML",
     "brand": "Flerica",
     "category": "Insecticides",
     "packSize": "500",
@@ -1142,7 +1142,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-086",
-    "name": "Crop Max-1 L",
+    "name": "CROP MAX-1 L",
     "brand": "Crop Max",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -1155,7 +1155,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-087",
-    "name": "Bloom Boost-1 L",
+    "name": "BLOOM BOOST-1 L",
     "brand": "Bloom Boost",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -1168,7 +1168,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-088",
-    "name": "Chplos-500 ml",
+    "name": "CHPLOS-500 ML",
     "brand": "Chplos",
     "category": "Insecticides",
     "packSize": "500",
@@ -1181,7 +1181,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-089",
-    "name": "Bloom Boost-250 ml",
+    "name": "BLOOM BOOST-250 ML",
     "brand": "Bloom Boost",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "250",
@@ -1194,7 +1194,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-090",
-    "name": "Bloom Boost-500 gm",
+    "name": "BLOOM BOOST-500 GM",
     "brand": "Bloom Boost",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "500",
@@ -1207,7 +1207,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-091",
-    "name": "Rich Drom-500 gm",
+    "name": "RICH DROM-500 GM",
     "brand": "Rich Drom",
     "category": "Insecticides",
     "packSize": "500",
@@ -1220,7 +1220,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-092",
-    "name": "Rich Drom-250 gm",
+    "name": "RICH DROM-250 GM",
     "brand": "Rich Drom",
     "category": "Insecticides",
     "packSize": "250",
@@ -1233,7 +1233,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-093",
-    "name": "Calco-1 L",
+    "name": "CALCO-1 L",
     "brand": "Calco",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -1246,7 +1246,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-094",
-    "name": "Trichoderma-1 L",
+    "name": "TRICHODERMA-1 L",
     "brand": "Trichoderma",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -1259,7 +1259,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-095",
-    "name": "Tagmi-250 gm",
+    "name": "TAGMI-250 GM",
     "brand": "Tagmi",
     "category": "Fungicides",
     "packSize": "250",
@@ -1272,7 +1272,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-096",
-    "name": "Taadt-500 gm",
+    "name": "TAADT-500 GM",
     "brand": "Taadt",
     "category": "Fungicides",
     "packSize": "500",
@@ -1285,7 +1285,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-097",
-    "name": "White Hosl-250 gm",
+    "name": "WHITE HOSL-250 GM",
     "brand": "White Hosl",
     "category": "Insecticides",
     "packSize": "250",
@@ -1298,7 +1298,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-098",
-    "name": "Blitox-500 gm",
+    "name": "BLITOX-500 GM",
     "brand": "Blitox",
     "category": "Fungicides",
     "packSize": "500",
@@ -1311,7 +1311,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-099",
-    "name": "Speed Up-100 ml",
+    "name": "SPEED UP-100 ML",
     "brand": "Speed Up",
     "category": "Insecticides",
     "packSize": "100",
@@ -1324,7 +1324,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-100",
-    "name": "Speed Up-250 ml",
+    "name": "SPEED UP-250 ML",
     "brand": "Speed Up",
     "category": "Insecticides",
     "packSize": "250",
@@ -1337,7 +1337,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-101",
-    "name": "Speed Up-500 ml",
+    "name": "SPEED UP-500 ML",
     "brand": "Speed Up",
     "category": "Insecticides",
     "packSize": "500",
@@ -1350,7 +1350,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-102",
-    "name": "Easy Sim-500 ml",
+    "name": "EASY SIM-500 ML",
     "brand": "Easy Sim",
     "category": "Insecticides",
     "packSize": "500",
@@ -1363,7 +1363,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-103",
-    "name": "A.B-999-240 ml",
+    "name": "A.B-999-240 ML",
     "brand": "A.B-999",
     "category": "Insecticides",
     "packSize": "240",
@@ -1376,7 +1376,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-104",
-    "name": "Arjun Redo-250 ml",
+    "name": "ARJUN REDO-250 ML",
     "brand": "Arjun Redo",
     "category": "Insecticides",
     "packSize": "250",
@@ -1389,7 +1389,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-105",
-    "name": "Thrill-1 L",
+    "name": "THRILL-1 L",
     "brand": "Thrill",
     "category": "Insecticides",
     "packSize": "1",
@@ -1402,7 +1402,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-106",
-    "name": "Thrill-500 ml",
+    "name": "THRILL-500 ML",
     "brand": "Thrill",
     "category": "Insecticides",
     "packSize": "500",
@@ -1415,7 +1415,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-107",
-    "name": "En-Relic-250 ml",
+    "name": "EN-RELIC-250 ML",
     "brand": "En-Relic",
     "category": "Insecticides",
     "packSize": "250",
@@ -1428,7 +1428,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-108",
-    "name": "Tandem-1 L",
+    "name": "TANDEM-1 L",
     "brand": "Tandem",
     "category": "Insecticides",
     "packSize": "1",
@@ -1441,7 +1441,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-109",
-    "name": "Tandem-500 ml",
+    "name": "TANDEM-500 ML",
     "brand": "Tandem",
     "category": "Insecticides",
     "packSize": "500",
@@ -1454,7 +1454,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-110",
-    "name": "Tandem-250 ml",
+    "name": "TANDEM-250 ML",
     "brand": "Tandem",
     "category": "Insecticides",
     "packSize": "250",
@@ -1467,7 +1467,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-111",
-    "name": "Iris-1 L",
+    "name": "IRIS-1 L",
     "brand": "Iris",
     "category": "Insecticides",
     "packSize": "1",
@@ -1480,7 +1480,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-112",
-    "name": "Iris-500 ml",
+    "name": "IRIS-500 ML",
     "brand": "Iris",
     "category": "Insecticides",
     "packSize": "500",
@@ -1493,7 +1493,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-113",
-    "name": "Iris-250 ml",
+    "name": "IRIS-250 ML",
     "brand": "Iris",
     "category": "Insecticides",
     "packSize": "250",
@@ -1506,7 +1506,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-114",
-    "name": "Rostock-1 L",
+    "name": "ROSTOCK-1 L",
     "brand": "Rostock",
     "category": "Fungicides",
     "packSize": "1",
@@ -1519,7 +1519,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-115",
-    "name": "Rostock-500 ml",
+    "name": "ROSTOCK-500 ML",
     "brand": "Rostock",
     "category": "Fungicides",
     "packSize": "500",
@@ -1532,7 +1532,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-116",
-    "name": "Pixma-500 gm",
+    "name": "PIXMA-500 GM",
     "brand": "Pixma",
     "category": "Fungicides",
     "packSize": "500",
@@ -1545,7 +1545,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-117",
-    "name": "Pixma-1 kg",
+    "name": "PIXMA-1 KG",
     "brand": "Pixma",
     "category": "Fungicides",
     "packSize": "1",
@@ -1558,7 +1558,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-118",
-    "name": "Inhaul-600 gm",
+    "name": "INHAUL-600 GM",
     "brand": "Inhaul",
     "category": "Insecticides",
     "packSize": "600",
@@ -1571,7 +1571,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-119",
-    "name": "Mera-71-1 kg",
+    "name": "MERA-71-1 KG",
     "brand": "Mera-71",
     "category": "Herbicides & Weedicides",
     "packSize": "1",
@@ -1584,7 +1584,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-120",
-    "name": "Vinash Power-1 kg",
+    "name": "VINASH POWER-1 KG",
     "brand": "Vinash Power",
     "category": "Herbicides & Weedicides",
     "packSize": "1",
@@ -1597,7 +1597,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-121",
-    "name": "Tata Metri-100 gm",
+    "name": "TATA METRI-100 GM",
     "brand": "Tata Metri",
     "category": "Herbicides & Weedicides",
     "packSize": "100",
@@ -1610,7 +1610,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-122",
-    "name": "Tata Metri-250 gm",
+    "name": "TATA METRI-250 GM",
     "brand": "Tata Metri",
     "category": "Herbicides & Weedicides",
     "packSize": "250",
@@ -1623,7 +1623,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-123",
-    "name": "Eukado plus-133.2 gm",
+    "name": "EUKADO PLUS-133.2 GM",
     "brand": "Eukado plus",
     "category": "Insecticides",
     "packSize": "133.2",
@@ -1636,7 +1636,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-124",
-    "name": "Potassium Humate-1 kg",
+    "name": "POTASSIUM HUMATE-1 KG",
     "brand": "Potassium Humate",
     "category": "Fertilizers & Nutrients",
     "packSize": "1",
@@ -1649,7 +1649,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-125",
-    "name": "Tag Proxy-1 L",
+    "name": "TAG PROXY-1 L",
     "brand": "Tag Proxy",
     "category": "Herbicides & Weedicides",
     "packSize": "1",
@@ -1662,7 +1662,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-126",
-    "name": "Ju-Potash 2000-180 gm",
+    "name": "JU-POTASH 2000-180 GM",
     "brand": "Ju-Potash 2000",
     "category": "Fertilizers & Nutrients",
     "packSize": "180",
@@ -1675,7 +1675,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-127",
-    "name": "Tunder-1 kg",
+    "name": "TUNDER-1 KG",
     "brand": "Tunder",
     "category": "Insecticides",
     "packSize": "1",
@@ -1688,7 +1688,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-128",
-    "name": "Tunder-500 gm",
+    "name": "TUNDER-500 GM",
     "brand": "Tunder",
     "category": "Insecticides",
     "packSize": "500",
@@ -1701,7 +1701,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-129",
-    "name": "Manzate-1 kg",
+    "name": "MANZATE-1 KG",
     "brand": "Manzate",
     "category": "Fungicides",
     "packSize": "1",
@@ -1714,7 +1714,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-130",
-    "name": "Manzate-500 gm",
+    "name": "MANZATE-500 GM",
     "brand": "Manzate",
     "category": "Fungicides",
     "packSize": "500",
@@ -1727,7 +1727,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-131",
-    "name": "Metal men-250 gm",
+    "name": "METAL MEN-250 GM",
     "brand": "Metal men",
     "category": "Insecticides",
     "packSize": "250",
@@ -1740,7 +1740,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-132",
-    "name": "Jatayu-1 kg",
+    "name": "JATAYU-1 KG",
     "brand": "Jatayu",
     "category": "Fungicides",
     "packSize": "1",
@@ -1753,7 +1753,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-133",
-    "name": "Ridomil Gold-1 kg",
+    "name": "RIDOMIL GOLD-1 KG",
     "brand": "Ridomil Gold",
     "category": "Fungicides",
     "packSize": "1",
@@ -1766,7 +1766,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-134",
-    "name": "Mingle Plus-2 kg",
+    "name": "MINGLE PLUS-2 KG",
     "brand": "Mingle Plus",
     "category": "Insecticides",
     "packSize": "2",
@@ -1779,7 +1779,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-135",
-    "name": "Cartap SP-500 gm",
+    "name": "CARTAP SP-500 GM",
     "brand": "Cartap SP",
     "category": "Fungicides",
     "packSize": "500",
@@ -1792,7 +1792,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-136",
-    "name": "Cartap SP-100 gm",
+    "name": "CARTAP SP-100 GM",
     "brand": "Cartap SP",
     "category": "Fungicides",
     "packSize": "100",
@@ -1805,7 +1805,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-137",
-    "name": "SA Tracker-250 gm",
+    "name": "SA TRACKER-250 GM",
     "brand": "SA Tracker",
     "category": "Fungicides",
     "packSize": "250",
@@ -1818,7 +1818,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-138",
-    "name": "SA Tracker-1 kg",
+    "name": "SA TRACKER-1 KG",
     "brand": "SA Tracker",
     "category": "Fungicides",
     "packSize": "1",
@@ -1831,7 +1831,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-139",
-    "name": "V-Con-250 gm",
+    "name": "V-CON-250 GM",
     "brand": "V-Con",
     "category": "Fungicides",
     "packSize": "250",
@@ -1844,7 +1844,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-140",
-    "name": "C-Phos-5 L",
+    "name": "C-PHOS-5 L",
     "brand": "C-Phos",
     "category": "Fertilizers & Nutrients",
     "packSize": "5",
@@ -1857,7 +1857,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-141",
-    "name": "Nitro chain-5 L",
+    "name": "NITRO CHAIN-5 L",
     "brand": "Nitro chain",
     "category": "Fertilizers & Nutrients",
     "packSize": "5",
@@ -1870,7 +1870,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-142",
-    "name": "Morfus-1 kg",
+    "name": "MORFUS-1 KG",
     "brand": "Morfus",
     "category": "Crop Protection",
     "packSize": "1",
@@ -1883,7 +1883,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-143",
-    "name": "VGF-1 kg",
+    "name": "VGF-1 KG",
     "brand": "VGF",
     "category": "Fertilizers & Nutrients",
     "packSize": "1",
@@ -1896,7 +1896,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-144",
-    "name": "VGF-500 gm",
+    "name": "VGF-500 GM",
     "brand": "VGF",
     "category": "Fertilizers & Nutrients",
     "packSize": "500",
@@ -1909,7 +1909,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-145",
-    "name": "Lufosat-5 L",
+    "name": "LUFOSAT-5 L",
     "brand": "Lufosat",
     "category": "Herbicides & Weedicides",
     "packSize": "5",
@@ -1922,7 +1922,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-146",
-    "name": "Exedo-400 gm",
+    "name": "EXEDO-400 GM",
     "brand": "Exedo",
     "category": "Fungicides",
     "packSize": "400",
@@ -1935,7 +1935,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-147",
-    "name": "SA Cab bot-400 ml",
+    "name": "SA CAB BOT-400 ML",
     "brand": "SA Cab bot",
     "category": "Crop Protection",
     "packSize": "400",
@@ -1948,7 +1948,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-148",
-    "name": "Avtar-500 gm",
+    "name": "AVTAR-500 GM",
     "brand": "Avtar",
     "category": "Fungicides",
     "packSize": "500",
@@ -1961,7 +1961,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-149",
-    "name": "Avtar-250 gm",
+    "name": "AVTAR-250 GM",
     "brand": "Avtar",
     "category": "Fungicides",
     "packSize": "250",
@@ -1974,7 +1974,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-150",
-    "name": "Kirpon-100 gm",
+    "name": "KIRPON-100 GM",
     "brand": "Kirpon",
     "category": "Fungicides",
     "packSize": "100",
@@ -1987,7 +1987,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-151",
-    "name": "Kirpon-200 gm",
+    "name": "KIRPON-200 GM",
     "brand": "Kirpon",
     "category": "Fungicides",
     "packSize": "200",
@@ -2000,7 +2000,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-152",
-    "name": "SA-Imidon-250 gm",
+    "name": "SA-IMIDON-250 GM",
     "brand": "SA-Imidon",
     "category": "Insecticides",
     "packSize": "250",
@@ -2013,7 +2013,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-153",
-    "name": "Tussle-1 kg",
+    "name": "TUSSLE-1 KG",
     "brand": "Tussle",
     "category": "Fungicides",
     "packSize": "1",
@@ -2026,7 +2026,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-154",
-    "name": "Tussle-500 gm",
+    "name": "TUSSLE-500 GM",
     "brand": "Tussle",
     "category": "Fungicides",
     "packSize": "500",
@@ -2039,7 +2039,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-155",
-    "name": "Tb-25 gm",
+    "name": "TB-25 GM",
     "brand": "Tb",
     "category": "Insecticides",
     "packSize": "25",
@@ -2052,7 +2052,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-156",
-    "name": "Non Pies-100 gm",
+    "name": "NON PIES-100 GM",
     "brand": "Non Pies",
     "category": "Insecticides",
     "packSize": "100",
@@ -2065,7 +2065,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-157",
-    "name": "Boom-100 gm",
+    "name": "BOOM-100 GM",
     "brand": "Boom",
     "category": "Insecticides",
     "packSize": "100",
@@ -2078,7 +2078,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-158",
-    "name": "Tussle-1 gm",
+    "name": "TUSSLE-1 GM",
     "brand": "Tussle",
     "category": "Fungicides",
     "packSize": "1",
@@ -2091,7 +2091,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-159",
-    "name": "Masso-500 gm",
+    "name": "MASSO-500 GM",
     "brand": "Masso",
     "category": "Insecticides",
     "packSize": "500",
@@ -2104,7 +2104,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-160",
-    "name": "Masso-250 gm",
+    "name": "MASSO-250 GM",
     "brand": "Masso",
     "category": "Insecticides",
     "packSize": "250",
@@ -2130,7 +2130,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-162",
-    "name": "Polemis-24 gm",
+    "name": "POLEMIS-24 GM",
     "brand": "Polemis",
     "category": "Insecticides",
     "packSize": "24",
@@ -2143,7 +2143,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-163",
-    "name": "Melody-800 gm",
+    "name": "MELODY-800 GM",
     "brand": "Melody",
     "category": "Fungicides",
     "packSize": "800",
@@ -2156,7 +2156,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-164",
-    "name": "Cabrio Top-300 gm",
+    "name": "CABRIO TOP-300 GM",
     "brand": "Cabrio Top",
     "category": "Fungicides",
     "packSize": "300",
@@ -2169,7 +2169,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-165",
-    "name": "Plant Pro 10-54-5 kg",
+    "name": "PLANT PRO 10-54-5 KG",
     "brand": "Plant Pro 10-54",
     "category": "Fertilizers & Nutrients",
     "packSize": "5",
@@ -2182,7 +2182,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-166",
-    "name": "Decay-600 gm",
+    "name": "DECAY-600 GM",
     "brand": "Decay",
     "category": "Insecticides",
     "packSize": "600",
@@ -2195,7 +2195,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-167",
-    "name": "Tolgun-400 gm",
+    "name": "TOLGUN-400 GM",
     "brand": "Tolgun",
     "category": "Insecticides",
     "packSize": "400",
@@ -2208,7 +2208,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-168",
-    "name": "Talnke-1 kg",
+    "name": "TALNKE-1 KG",
     "brand": "Talnke",
     "category": "Insecticides",
     "packSize": "1",
@@ -2221,7 +2221,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-169",
-    "name": "KSC (3)-5 kg",
+    "name": "KSC (3)-5 KG",
     "brand": "KSC (3)",
     "category": "Fertilizers & Nutrients",
     "packSize": "5",
@@ -2234,7 +2234,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-170",
-    "name": "K.M.S-5 kg",
+    "name": "K.M.S-5 KG",
     "brand": "K.M.S",
     "category": "Fertilizers & Nutrients",
     "packSize": "5",
@@ -2247,7 +2247,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-171",
-    "name": "Encor (4)-5 kg",
+    "name": "ENCOR (4)-5 KG",
     "brand": "Encor (4)",
     "category": "Herbicides & Weedicides",
     "packSize": "5",
@@ -2260,7 +2260,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-172",
-    "name": "Encor (3)-5 kg",
+    "name": "ENCOR (3)-5 KG",
     "brand": "Encor (3)",
     "category": "Herbicides & Weedicides",
     "packSize": "5",
@@ -2273,7 +2273,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-173",
-    "name": "Plant well-5 kg",
+    "name": "PLANT WELL-5 KG",
     "brand": "Plant well",
     "category": "Fertilizers & Nutrients",
     "packSize": "5",
@@ -2286,7 +2286,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-174",
-    "name": "Secpick-5 kg",
+    "name": "SECPICK-5 KG",
     "brand": "Secpick",
     "category": "Fertilizers & Nutrients",
     "packSize": "5",
@@ -2299,7 +2299,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-175",
-    "name": "Humic rich-5 kg",
+    "name": "HUMIC RICH-5 KG",
     "brand": "Humic rich",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "5",
@@ -2312,7 +2312,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-176",
-    "name": "Serprane-5 kg",
+    "name": "SERPRANE-5 KG",
     "brand": "Serprane",
     "category": "Fertilizers & Nutrients",
     "packSize": "5",
@@ -2325,7 +2325,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-177",
-    "name": "Sprojoiye-25 ml",
+    "name": "SPROJOIYE-25 ML",
     "brand": "Sprojoiye",
     "category": "Insecticides",
     "packSize": "25",
@@ -2338,7 +2338,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-178",
-    "name": "Sprojoiye-50 ml",
+    "name": "SPROJOIYE-50 ML",
     "brand": "Sprojoiye",
     "category": "Insecticides",
     "packSize": "50",
@@ -2351,7 +2351,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-179",
-    "name": "Crear (2)",
+    "name": "CREAR (2)",
     "brand": "Crear (2)",
     "category": "Insecticides",
     "packSize": "",
@@ -2364,7 +2364,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-180",
-    "name": "Crear (3)",
+    "name": "CREAR (3)",
     "brand": "Crear (3)",
     "category": "Insecticides",
     "packSize": "",
@@ -2377,7 +2377,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-181",
-    "name": "Crear (5)",
+    "name": "CREAR (5)",
     "brand": "Crear (5)",
     "category": "Insecticides",
     "packSize": "",
@@ -2390,7 +2390,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-182",
-    "name": "Crear (4)",
+    "name": "CREAR (4)",
     "brand": "Crear (4)",
     "category": "Insecticides",
     "packSize": "",
@@ -2403,7 +2403,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-183",
-    "name": "Neem Action-1 L",
+    "name": "NEEM ACTION-1 L",
     "brand": "Neem Action",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -2416,7 +2416,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-184",
-    "name": "Rich yeild-5 L",
+    "name": "RICH YEILD-5 L",
     "brand": "Rich yeild",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "5",
@@ -2429,7 +2429,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-185",
-    "name": "Spork-250 gm",
+    "name": "SPORK-250 GM",
     "brand": "Spork",
     "category": "Insecticides",
     "packSize": "250",
@@ -2442,7 +2442,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-186",
-    "name": "Bloom-250 gm",
+    "name": "BLOOM-250 GM",
     "brand": "Bloom",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "250",
@@ -2455,7 +2455,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-187",
-    "name": "Talsh-250 ml",
+    "name": "TALSH-250 ML",
     "brand": "Talsh",
     "category": "Insecticides",
     "packSize": "250",
@@ -2468,7 +2468,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-188",
-    "name": "Savvy-500 ml",
+    "name": "SAVVY-500 ML",
     "brand": "Savvy",
     "category": "Insecticides",
     "packSize": "500",
@@ -2481,7 +2481,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-189",
-    "name": "Postum Humate-1 kg",
+    "name": "POSTUM HUMATE-1 KG",
     "brand": "Postum Humate",
     "category": "Fertilizers & Nutrients",
     "packSize": "1",
@@ -2494,7 +2494,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-190",
-    "name": "Milange-2 kg",
+    "name": "MILANGE-2 KG",
     "brand": "Milange",
     "category": "Fertilizers & Nutrients",
     "packSize": "2",
@@ -2507,7 +2507,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-191",
-    "name": "Harvest 10-15-10-1 kg",
+    "name": "HARVEST 10-15-10-1 KG",
     "brand": "Harvest 10-15-10",
     "category": "Fertilizers & Nutrients",
     "packSize": "1",
@@ -2520,7 +2520,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-192",
-    "name": "Milange-5 kg",
+    "name": "MILANGE-5 KG",
     "brand": "Milange",
     "category": "Fertilizers & Nutrients",
     "packSize": "5",
@@ -2533,7 +2533,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-193",
-    "name": "Acemen-500 ml",
+    "name": "ACEMEN-500 ML",
     "brand": "Acemen",
     "category": "Insecticides",
     "packSize": "500",
@@ -2546,7 +2546,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-194",
-    "name": "Lufost-1 L",
+    "name": "LUFOST-1 L",
     "brand": "Lufost",
     "category": "Insecticides",
     "packSize": "1",
@@ -2559,7 +2559,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-195",
-    "name": "Button-250 ml",
+    "name": "BUTTON-250 ML",
     "brand": "Button",
     "category": "Insecticides",
     "packSize": "250",
@@ -2572,7 +2572,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-196",
-    "name": "Paradize-1 L",
+    "name": "PARADIZE-1 L",
     "brand": "Paradize",
     "category": "Insecticides",
     "packSize": "1",
@@ -2585,7 +2585,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-197",
-    "name": "Bomaka-1 L",
+    "name": "BOMAKA-1 L",
     "brand": "Bomaka",
     "category": "Insecticides",
     "packSize": "1",
@@ -2598,7 +2598,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-198",
-    "name": "Yamaza-1 L",
+    "name": "YAMAZA-1 L",
     "brand": "Yamaza",
     "category": "Insecticides",
     "packSize": "1",
@@ -2611,7 +2611,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-199",
-    "name": "Infinity-1 L",
+    "name": "INFINITY-1 L",
     "brand": "Infinity",
     "category": "Insecticides",
     "packSize": "1",
@@ -2624,7 +2624,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-200",
-    "name": "Suryagold-500 ml",
+    "name": "SURYAGOLD-500 ML",
     "brand": "Suryagold",
     "category": "Insecticides",
     "packSize": "500",
@@ -2637,7 +2637,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-201",
-    "name": "Centplus-500 ml",
+    "name": "CENTPLUS-500 ML",
     "brand": "Centplus",
     "category": "Insecticides",
     "packSize": "500",
@@ -2650,7 +2650,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-202",
-    "name": "Savvy-250 ml",
+    "name": "SAVVY-250 ML",
     "brand": "Savvy",
     "category": "Insecticides",
     "packSize": "250",
@@ -2663,7 +2663,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-203",
-    "name": "Rotrut-250 ml",
+    "name": "ROTRUT-250 ML",
     "brand": "Rotrut",
     "category": "Insecticides",
     "packSize": "250",
@@ -2676,7 +2676,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-204",
-    "name": "Yamaza-250 ml",
+    "name": "YAMAZA-250 ML",
     "brand": "Yamaza",
     "category": "Insecticides",
     "packSize": "250",
@@ -2689,7 +2689,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-205",
-    "name": "Surplus-200 ml",
+    "name": "SURPLUS-200 ML",
     "brand": "Surplus",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "200",
@@ -2702,7 +2702,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-206",
-    "name": "Talsatar Plus-250 ml",
+    "name": "TALSATAR PLUS-250 ML",
     "brand": "Talsatar Plus",
     "category": "Insecticides",
     "packSize": "250",
@@ -2715,7 +2715,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-207",
-    "name": "Myzat-250 gm",
+    "name": "MYZAT-250 GM",
     "brand": "Myzat",
     "category": "Crop Protection",
     "packSize": "250",
@@ -2728,7 +2728,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-208",
-    "name": "Paradize-500 ml",
+    "name": "PARADIZE-500 ML",
     "brand": "Paradize",
     "category": "Insecticides",
     "packSize": "500",
@@ -2741,7 +2741,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-209",
-    "name": "Bunken-250 gm",
+    "name": "BUNKEN-250 GM",
     "brand": "Bunken",
     "category": "Insecticides",
     "packSize": "250",
@@ -2754,7 +2754,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-210",
-    "name": "En-Relic-500 ml",
+    "name": "EN-RELIC-500 ML",
     "brand": "En-Relic",
     "category": "Insecticides",
     "packSize": "500",
@@ -2767,7 +2767,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-211",
-    "name": "Tulsi-500 ml",
+    "name": "TULSI-500 ML",
     "brand": "Tulsi",
     "category": "Crop Protection",
     "packSize": "500",
@@ -2780,7 +2780,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-212",
-    "name": "Melody-400 gm",
+    "name": "MELODY-400 GM",
     "brand": "Melody",
     "category": "Fungicides",
     "packSize": "400",
@@ -2793,7 +2793,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-213",
-    "name": "Datafal-100 gm",
+    "name": "DATAFAL-100 GM",
     "brand": "Datafal",
     "category": "Crop Protection",
     "packSize": "100",
@@ -2806,7 +2806,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-214",
-    "name": "Kendal Bot-1 L",
+    "name": "KENDAL BOT-1 L",
     "brand": "Kendal Bot",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -2819,7 +2819,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-215",
-    "name": "Maize Gold-1 L",
+    "name": "MAIZE GOLD-1 L",
     "brand": "Maize Gold",
     "category": "Insecticides",
     "packSize": "1",
@@ -2832,7 +2832,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-216",
-    "name": "Chilmz-250 gm",
+    "name": "CHILMZ-250 GM",
     "brand": "Chilmz",
     "category": "Crop Protection",
     "packSize": "250",
@@ -2845,7 +2845,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-217",
-    "name": "Yamay-1 L",
+    "name": "YAMAY-1 L",
     "brand": "Yamay",
     "category": "Insecticides",
     "packSize": "1",
@@ -2858,7 +2858,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-218",
-    "name": "Telak-250 gm",
+    "name": "TELAK-250 GM",
     "brand": "Telak",
     "category": "Insecticides",
     "packSize": "250",
@@ -2871,7 +2871,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-219",
-    "name": "Kocid-100 gm",
+    "name": "KOCID-100 GM",
     "brand": "Kocid",
     "category": "Insecticides",
     "packSize": "100",
@@ -2884,7 +2884,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-220",
-    "name": "Ires Plus-100 gm",
+    "name": "IRES PLUS-100 GM",
     "brand": "Ires Plus",
     "category": "Insecticides",
     "packSize": "100",
@@ -2897,7 +2897,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-221",
-    "name": "Acemen-1 kg",
+    "name": "ACEMEN-1 KG",
     "brand": "Acemen",
     "category": "Insecticides",
     "packSize": "1",
@@ -2910,7 +2910,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-222",
-    "name": "Bomka-500 ml",
+    "name": "BOMKA-500 ML",
     "brand": "Bomka",
     "category": "Insecticides",
     "packSize": "500",
@@ -2923,7 +2923,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-223",
-    "name": "Ridomil Gold-500 gm",
+    "name": "RIDOMIL GOLD-500 GM",
     "brand": "Ridomil Gold",
     "category": "Fungicides",
     "packSize": "500",
@@ -2936,7 +2936,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-224",
-    "name": "Ridomil Gold-250 gm",
+    "name": "RIDOMIL GOLD-250 GM",
     "brand": "Ridomil Gold",
     "category": "Fungicides",
     "packSize": "250",
@@ -2949,7 +2949,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-225",
-    "name": "Royal-250 ml",
+    "name": "ROYAL-250 ML",
     "brand": "Royal",
     "category": "Insecticides",
     "packSize": "250",
@@ -2962,7 +2962,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-226",
-    "name": "Amrozik-1 L",
+    "name": "AMROZIK-1 L",
     "brand": "Amrozik",
     "category": "Insecticides",
     "packSize": "1",
@@ -2975,7 +2975,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-227",
-    "name": "Ixus-1 L",
+    "name": "IXUS-1 L",
     "brand": "Ixus",
     "category": "Insecticides",
     "packSize": "1",
@@ -2988,7 +2988,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-228",
-    "name": "Cosalot-1 kg",
+    "name": "COSALOT-1 KG",
     "brand": "Cosalot",
     "category": "Fungicides",
     "packSize": "1",
@@ -3001,7 +3001,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-229",
-    "name": "Enhance-500 ml",
+    "name": "ENHANCE-500 ML",
     "brand": "Enhance",
     "category": "Insecticides",
     "packSize": "500",
@@ -3014,7 +3014,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-230",
-    "name": "Karisma Gold-1 L",
+    "name": "KARISMA GOLD-1 L",
     "brand": "Karisma Gold",
     "category": "Insecticides",
     "packSize": "1",
@@ -3027,7 +3027,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-231",
-    "name": "Enhance-250 ml",
+    "name": "ENHANCE-250 ML",
     "brand": "Enhance",
     "category": "Insecticides",
     "packSize": "250",
@@ -3040,7 +3040,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-232",
-    "name": "Suraja Gold-500 ml",
+    "name": "SURAJA GOLD-500 ML",
     "brand": "Suraja Gold",
     "category": "Insecticides",
     "packSize": "500",
@@ -3053,7 +3053,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-233",
-    "name": "Suraja Gold-250 ml",
+    "name": "SURAJA GOLD-250 ML",
     "brand": "Suraja Gold",
     "category": "Insecticides",
     "packSize": "250",
@@ -3066,7 +3066,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-234",
-    "name": "Sixon-800 ml",
+    "name": "SIXON-800 ML",
     "brand": "Sixon",
     "category": "Insecticides",
     "packSize": "800",
@@ -3079,7 +3079,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-235",
-    "name": "Dizse-500 ml",
+    "name": "DIZSE-500 ML",
     "brand": "Dizse",
     "category": "Insecticides",
     "packSize": "500",
@@ -3092,7 +3092,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-236",
-    "name": "Dizse-250 ml",
+    "name": "DIZSE-250 ML",
     "brand": "Dizse",
     "category": "Insecticides",
     "packSize": "250",
@@ -3105,7 +3105,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-237",
-    "name": "Impact D-250 ml",
+    "name": "IMPACT D-250 ML",
     "brand": "Impact D",
     "category": "Insecticides",
     "packSize": "250",
@@ -3118,7 +3118,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-238",
-    "name": "Ro-mite-500 ml",
+    "name": "RO-MITE-500 ML",
     "brand": "Ro-mite",
     "category": "Insecticides",
     "packSize": "500",
@@ -3131,7 +3131,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-239",
-    "name": "Ro-mite-250 ml",
+    "name": "RO-MITE-250 ML",
     "brand": "Ro-mite",
     "category": "Insecticides",
     "packSize": "250",
@@ -3144,7 +3144,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-240",
-    "name": "Zolio-250 ml",
+    "name": "ZOLIO-250 ML",
     "brand": "Zolio",
     "category": "Insecticides",
     "packSize": "250",
@@ -3157,7 +3157,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-241",
-    "name": "Magic Pro-200 ml",
+    "name": "MAGIC PRO-200 ML",
     "brand": "Magic Pro",
     "category": "Insecticides",
     "packSize": "200",
@@ -3170,7 +3170,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-242",
-    "name": "Haruka Gold-500 ml",
+    "name": "HARUKA GOLD-500 ML",
     "brand": "Haruka Gold",
     "category": "Insecticides",
     "packSize": "500",
@@ -3183,7 +3183,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-243",
-    "name": "Haruka Gold-250 ml",
+    "name": "HARUKA GOLD-250 ML",
     "brand": "Haruka Gold",
     "category": "Insecticides",
     "packSize": "250",
@@ -3196,7 +3196,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-244",
-    "name": "Jayam Gold-250 ml",
+    "name": "JAYAM GOLD-250 ML",
     "brand": "Jayam Gold",
     "category": "Insecticides",
     "packSize": "250",
@@ -3209,7 +3209,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-245",
-    "name": "Jayam Gold-100 ml",
+    "name": "JAYAM GOLD-100 ML",
     "brand": "Jayam Gold",
     "category": "Insecticides",
     "packSize": "100",
@@ -3222,7 +3222,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-246",
-    "name": "Laroste-250 ml",
+    "name": "LAROSTE-250 ML",
     "brand": "Laroste",
     "category": "Insecticides",
     "packSize": "250",
@@ -3235,7 +3235,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-247",
-    "name": "Alaska-250 ml",
+    "name": "ALASKA-250 ML",
     "brand": "Alaska",
     "category": "Insecticides",
     "packSize": "250",
@@ -3248,7 +3248,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-248",
-    "name": "Star Ways-200 ml",
+    "name": "STAR WAYS-200 ML",
     "brand": "Star Ways",
     "category": "Insecticides",
     "packSize": "200",
@@ -3261,7 +3261,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-249",
-    "name": "V-Con-250 ml",
+    "name": "V-CON-250 ML",
     "brand": "V-Con",
     "category": "Fungicides",
     "packSize": "250",
@@ -3274,7 +3274,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-250",
-    "name": "V-Con-100 ml",
+    "name": "V-CON-100 ML",
     "brand": "V-Con",
     "category": "Fungicides",
     "packSize": "100",
@@ -3287,7 +3287,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-251",
-    "name": "Mycoop-1 kg",
+    "name": "MYCOOP-1 KG",
     "brand": "Mycoop",
     "category": "Fungicides",
     "packSize": "1",
@@ -3300,7 +3300,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-252",
-    "name": "Mycoop-500 gm",
+    "name": "MYCOOP-500 GM",
     "brand": "Mycoop",
     "category": "Fungicides",
     "packSize": "500",
@@ -3313,7 +3313,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-253",
-    "name": "Oyian-250 gm",
+    "name": "OYIAN-250 GM",
     "brand": "Oyian",
     "category": "Fungicides",
     "packSize": "250",
@@ -3326,7 +3326,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-254",
-    "name": "Oyian-500 gm",
+    "name": "OYIAN-500 GM",
     "brand": "Oyian",
     "category": "Fungicides",
     "packSize": "500",
@@ -3339,7 +3339,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-255",
-    "name": "Innova SP-250 gm",
+    "name": "INNOVA SP-250 GM",
     "brand": "Innova SP",
     "category": "Insecticides",
     "packSize": "250",
@@ -3352,7 +3352,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-256",
-    "name": "Casvet-500 gm",
+    "name": "CASVET-500 GM",
     "brand": "Casvet",
     "category": "Fungicides",
     "packSize": "500",
@@ -3365,7 +3365,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-257",
-    "name": "Pardner-500 gm",
+    "name": "PARDNER-500 GM",
     "brand": "Pardner",
     "category": "Fungicides",
     "packSize": "500",
@@ -3378,7 +3378,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-258",
-    "name": "Ixus Plus-40 gm",
+    "name": "IXUS PLUS-40 GM",
     "brand": "Ixus Plus",
     "category": "Insecticides",
     "packSize": "40",
@@ -3391,7 +3391,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-259",
-    "name": "Mealy Rage-500 ml",
+    "name": "MEALY RAGE-500 ML",
     "brand": "Mealy Rage",
     "category": "Insecticides",
     "packSize": "500",
@@ -3404,7 +3404,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-260",
-    "name": "Thrips Rage-500 ml",
+    "name": "THRIPS RAGE-500 ML",
     "brand": "Thrips Rage",
     "category": "Insecticides",
     "packSize": "500",
@@ -3417,7 +3417,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-261",
-    "name": "Karisma-250 gm",
+    "name": "KARISMA-250 GM",
     "brand": "Karisma",
     "category": "Insecticides",
     "packSize": "250",
@@ -3430,7 +3430,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-262",
-    "name": "Karisma-125 gm",
+    "name": "KARISMA-125 GM",
     "brand": "Karisma",
     "category": "Insecticides",
     "packSize": "125",
@@ -3443,7 +3443,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-263",
-    "name": "Karisma-50 gm",
+    "name": "KARISMA-50 GM",
     "brand": "Karisma",
     "category": "Insecticides",
     "packSize": "50",
@@ -3456,7 +3456,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-264",
-    "name": "SHUB-K-100 gm",
+    "name": "SHUB-K-100 GM",
     "brand": "SHUB-K",
     "category": "Insecticides",
     "packSize": "100",
@@ -3469,7 +3469,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-265",
-    "name": "Algafine-250 gm",
+    "name": "ALGAFINE-250 GM",
     "brand": "Algafine",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "250",
@@ -3482,7 +3482,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-266",
-    "name": "Hollowmon-250 ml",
+    "name": "HOLLOWMON-250 ML",
     "brand": "Hollowmon",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "250",
@@ -3495,7 +3495,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-267",
-    "name": "Extra Gold-1 L",
+    "name": "EXTRA GOLD-1 L",
     "brand": "Extra Gold",
     "category": "Insecticides",
     "packSize": "1",
@@ -3508,7 +3508,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-268",
-    "name": "Extra Gold-500 ml",
+    "name": "EXTRA GOLD-500 ML",
     "brand": "Extra Gold",
     "category": "Insecticides",
     "packSize": "500",
@@ -3521,7 +3521,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-269",
-    "name": "Extra Gold-250 ml",
+    "name": "EXTRA GOLD-250 ML",
     "brand": "Extra Gold",
     "category": "Insecticides",
     "packSize": "250",
@@ -3534,7 +3534,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-270",
-    "name": "Opex-200 ml",
+    "name": "OPEX-200 ML",
     "brand": "Opex",
     "category": "Insecticides",
     "packSize": "200",
@@ -3547,7 +3547,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-271",
-    "name": "Cramely-1 L",
+    "name": "CRAMELY-1 L",
     "brand": "Cramely",
     "category": "Insecticides",
     "packSize": "1",
@@ -3560,7 +3560,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-272",
-    "name": "Cramely-500 ml",
+    "name": "CRAMELY-500 ML",
     "brand": "Cramely",
     "category": "Insecticides",
     "packSize": "500",
@@ -3573,7 +3573,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-273",
-    "name": "Fukdo-250 gm",
+    "name": "FUKDO-250 GM",
     "brand": "Fukdo",
     "category": "Insecticides",
     "packSize": "250",
@@ -3586,7 +3586,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-274",
-    "name": "Mainoate Gold-1 L",
+    "name": "MAINOATE GOLD-1 L",
     "brand": "Mainoate Gold",
     "category": "Insecticides",
     "packSize": "1",
@@ -3599,7 +3599,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-275",
-    "name": "Cialofan-1 L",
+    "name": "CIALOFAN-1 L",
     "brand": "Cialofan",
     "category": "Insecticides",
     "packSize": "1",
@@ -3612,7 +3612,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-276",
-    "name": "Garlic-1 L",
+    "name": "GARLIC-1 L",
     "brand": "Garlic",
     "category": "Insecticides",
     "packSize": "1",
@@ -3625,7 +3625,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-277",
-    "name": "Bamako-1 L",
+    "name": "BAMAKO-1 L",
     "brand": "Bamako",
     "category": "Insecticides",
     "packSize": "1",
@@ -3638,7 +3638,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-278",
-    "name": "Bamako-500 ml",
+    "name": "BAMAKO-500 ML",
     "brand": "Bamako",
     "category": "Insecticides",
     "packSize": "500",
@@ -3651,7 +3651,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-279",
-    "name": "Rotisfultra-1 L",
+    "name": "ROTISFULTRA-1 L",
     "brand": "Rotisfultra",
     "category": "Insecticides",
     "packSize": "1",
@@ -3664,7 +3664,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-280",
-    "name": "Rotisfultra-500 ml",
+    "name": "ROTISFULTRA-500 ML",
     "brand": "Rotisfultra",
     "category": "Insecticides",
     "packSize": "500",
@@ -3677,7 +3677,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-281",
-    "name": "Estrada Gold-250 ml",
+    "name": "ESTRADA GOLD-250 ML",
     "brand": "Estrada Gold",
     "category": "Crop Protection",
     "packSize": "250",
@@ -3690,7 +3690,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-282",
-    "name": "Roket-500 ml",
+    "name": "ROKET-500 ML",
     "brand": "Roket",
     "category": "Insecticides",
     "packSize": "500",
@@ -3703,7 +3703,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-283",
-    "name": "Basforus Gold-1 L",
+    "name": "BASFORUS GOLD-1 L",
     "brand": "Basforus Gold",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -3716,7 +3716,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-284",
-    "name": "Basforus Gold-500 ml",
+    "name": "BASFORUS GOLD-500 ML",
     "brand": "Basforus Gold",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "500",
@@ -3729,7 +3729,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-285",
-    "name": "Rotaprid-250 ml",
+    "name": "ROTAPRID-250 ML",
     "brand": "Rotaprid",
     "category": "Insecticides",
     "packSize": "250",
@@ -3742,7 +3742,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-286",
-    "name": "Cialofan-250 ml",
+    "name": "CIALOFAN-250 ML",
     "brand": "Cialofan",
     "category": "Insecticides",
     "packSize": "250",
@@ -3755,7 +3755,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-287",
-    "name": "Phendal Plus-1 L",
+    "name": "PHENDAL PLUS-1 L",
     "brand": "Phendal Plus",
     "category": "Insecticides",
     "packSize": "1",
@@ -3768,7 +3768,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-288",
-    "name": "Phendal Plus-500 ml",
+    "name": "PHENDAL PLUS-500 ML",
     "brand": "Phendal Plus",
     "category": "Insecticides",
     "packSize": "500",
@@ -3781,7 +3781,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-289",
-    "name": "Process Green-250 ml",
+    "name": "PROCESS GREEN-250 ML",
     "brand": "Process Green",
     "category": "Insecticides",
     "packSize": "250",
@@ -3794,7 +3794,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-290",
-    "name": "Frost-250 gm",
+    "name": "FROST-250 GM",
     "brand": "Frost",
     "category": "Fungicides",
     "packSize": "250",
@@ -3807,7 +3807,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-291",
-    "name": "Rodazim-500 gm",
+    "name": "RODAZIM-500 GM",
     "brand": "Rodazim",
     "category": "Fungicides",
     "packSize": "500",
@@ -3820,7 +3820,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-292",
-    "name": "Milor M2-500 gm",
+    "name": "MILOR M2-500 GM",
     "brand": "Milor M2",
     "category": "Fungicides",
     "packSize": "500",
@@ -3833,7 +3833,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-293",
-    "name": "Milor M2-250 gm",
+    "name": "MILOR M2-250 GM",
     "brand": "Milor M2",
     "category": "Fungicides",
     "packSize": "250",
@@ -3846,7 +3846,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-294",
-    "name": "Acemain-1 kg",
+    "name": "ACEMAIN-1 KG",
     "brand": "Acemain",
     "category": "Insecticides",
     "packSize": "1",
@@ -3859,7 +3859,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-295",
-    "name": "Melister-500 gm",
+    "name": "MELISTER-500 GM",
     "brand": "Melister",
     "category": "Fungicides",
     "packSize": "500",
@@ -3872,7 +3872,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-296",
-    "name": "Melister-250 gm",
+    "name": "MELISTER-250 GM",
     "brand": "Melister",
     "category": "Fungicides",
     "packSize": "250",
@@ -3885,7 +3885,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-297",
-    "name": "Bavistin-250 gm",
+    "name": "BAVISTIN-250 GM",
     "brand": "Bavistin",
     "category": "Fungicides",
     "packSize": "250",
@@ -3898,7 +3898,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-298",
-    "name": "Prozim-1 kg",
+    "name": "PROZIM-1 KG",
     "brand": "Prozim",
     "category": "Fungicides",
     "packSize": "1",
@@ -3911,7 +3911,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-299",
-    "name": "Chilmay-1 L",
+    "name": "CHILMAY-1 L",
     "brand": "Chilmay",
     "category": "Insecticides",
     "packSize": "1",
@@ -3924,7 +3924,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-300",
-    "name": "Chilmay-500 ml",
+    "name": "CHILMAY-500 ML",
     "brand": "Chilmay",
     "category": "Insecticides",
     "packSize": "500",
@@ -3937,7 +3937,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-301",
-    "name": "Chilmay-250 ml",
+    "name": "CHILMAY-250 ML",
     "brand": "Chilmay",
     "category": "Insecticides",
     "packSize": "250",
@@ -3950,7 +3950,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-302",
-    "name": "Allowo Manganyl-500 gm",
+    "name": "ALLOWO MANGANYL-500 GM",
     "brand": "Allowo Manganyl",
     "category": "Fertilizers & Nutrients",
     "packSize": "500",
@@ -3963,7 +3963,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-303",
-    "name": "Allowo Iron-500 gm",
+    "name": "ALLOWO IRON-500 GM",
     "brand": "Allowo Iron",
     "category": "Fertilizers & Nutrients",
     "packSize": "500",
@@ -3976,7 +3976,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-304",
-    "name": "Allowo Calcium-250 gm",
+    "name": "ALLOWO CALCIUM-250 GM",
     "brand": "Allowo Calcium",
     "category": "Fertilizers & Nutrients",
     "packSize": "250",
@@ -3989,7 +3989,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-305",
-    "name": "Allowo Zinc-100 gm",
+    "name": "ALLOWO ZINC-100 GM",
     "brand": "Allowo Zinc",
     "category": "Fertilizers & Nutrients",
     "packSize": "100",
@@ -4002,7 +4002,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-306",
-    "name": "Sulban Plus-1 L",
+    "name": "SULBAN PLUS-1 L",
     "brand": "Sulban Plus",
     "category": "Insecticides",
     "packSize": "1",
@@ -4015,7 +4015,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-307",
-    "name": "Sulban Plus-500 ml",
+    "name": "SULBAN PLUS-500 ML",
     "brand": "Sulban Plus",
     "category": "Insecticides",
     "packSize": "500",
@@ -4028,7 +4028,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-308",
-    "name": "Nagata-250 ml",
+    "name": "NAGATA-250 ML",
     "brand": "Nagata",
     "category": "Insecticides",
     "packSize": "250",
@@ -4041,7 +4041,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-309",
-    "name": "Tafgor-250 ml",
+    "name": "TAFGOR-250 ML",
     "brand": "Tafgor",
     "category": "Insecticides",
     "packSize": "250",
@@ -4054,7 +4054,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-310",
-    "name": "Cyklon 550-250 ml",
+    "name": "CYKLON 550-250 ML",
     "brand": "Cyklon 550",
     "category": "Insecticides",
     "packSize": "250",
@@ -4067,7 +4067,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-311",
-    "name": "Lancer Gold-250 gm",
+    "name": "LANCER GOLD-250 GM",
     "brand": "Lancer Gold",
     "category": "Insecticides",
     "packSize": "250",
@@ -4080,7 +4080,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-312",
-    "name": "Lancer Gold-500 gm",
+    "name": "LANCER GOLD-500 GM",
     "brand": "Lancer Gold",
     "category": "Insecticides",
     "packSize": "500",
@@ -4093,7 +4093,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-313",
-    "name": "Cyklon-1 L",
+    "name": "CYKLON-1 L",
     "brand": "Cyklon",
     "category": "Insecticides",
     "packSize": "1",
@@ -4106,7 +4106,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-314",
-    "name": "Cyklon-500 ml",
+    "name": "CYKLON-500 ML",
     "brand": "Cyklon",
     "category": "Insecticides",
     "packSize": "500",
@@ -4119,7 +4119,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-315",
-    "name": "Bosh-500 ml",
+    "name": "BOSH-500 ML",
     "brand": "Bosh",
     "category": "Insecticides",
     "packSize": "500",
@@ -4132,7 +4132,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-316",
-    "name": "P.P Mix-500 ml",
+    "name": "P.P MIX-500 ML",
     "brand": "P.P Mix",
     "category": "Insecticides",
     "packSize": "500",
@@ -4145,7 +4145,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-317",
-    "name": "Moyshal-500 ml",
+    "name": "MOYSHAL-500 ML",
     "brand": "Moyshal",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "500",
@@ -4158,7 +4158,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-318",
-    "name": "Layer-1 kg",
+    "name": "LAYER-1 KG",
     "brand": "Layer",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -4171,7 +4171,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-319",
-    "name": "Copper EDTA-100 gm",
+    "name": "COPPER EDTA-100 GM",
     "brand": "Copper EDTA",
     "category": "Fertilizers & Nutrients",
     "packSize": "100",
@@ -4184,7 +4184,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-320",
-    "name": "Mustang-1 L",
+    "name": "MUSTANG-1 L",
     "brand": "Mustang",
     "category": "Insecticides",
     "packSize": "1",
@@ -4197,7 +4197,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-321",
-    "name": "Mustang-250 ml",
+    "name": "MUSTANG-250 ML",
     "brand": "Mustang",
     "category": "Insecticides",
     "packSize": "250",
@@ -4210,7 +4210,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-322",
-    "name": "Blast-500 ml",
+    "name": "BLAST-500 ML",
     "brand": "Blast",
     "category": "Insecticides",
     "packSize": "500",
@@ -4223,7 +4223,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-323",
-    "name": "Blast-250 ml",
+    "name": "BLAST-250 ML",
     "brand": "Blast",
     "category": "Insecticides",
     "packSize": "250",
@@ -4236,7 +4236,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-324",
-    "name": "Muchya-1 kg",
+    "name": "MUCHYA-1 KG",
     "brand": "Muchya",
     "category": "Insecticides",
     "packSize": "1",
@@ -4249,7 +4249,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-325",
-    "name": "Muchya-500 gm",
+    "name": "MUCHYA-500 GM",
     "brand": "Muchya",
     "category": "Insecticides",
     "packSize": "500",
@@ -4262,7 +4262,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-326",
-    "name": "Tagcol-500 gm",
+    "name": "TAGCOL-500 GM",
     "brand": "Tagcol",
     "category": "Fungicides",
     "packSize": "500",
@@ -4275,7 +4275,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-327",
-    "name": "Clear Off-1 L",
+    "name": "CLEAR OFF-1 L",
     "brand": "Clear Off",
     "category": "Herbicides & Weedicides",
     "packSize": "1",
@@ -4288,7 +4288,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-328",
-    "name": "Runout-1 L",
+    "name": "RUNOUT-1 L",
     "brand": "Runout",
     "category": "Herbicides & Weedicides",
     "packSize": "1",
@@ -4301,7 +4301,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-329",
-    "name": "Tagquit-1 L",
+    "name": "TAGQUIT-1 L",
     "brand": "Tagquit",
     "category": "Herbicides & Weedicides",
     "packSize": "1",
@@ -4314,7 +4314,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-330",
-    "name": "Lufosat-1 L",
+    "name": "LUFOSAT-1 L",
     "brand": "Lufosat",
     "category": "Herbicides & Weedicides",
     "packSize": "1",
@@ -4327,7 +4327,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-331",
-    "name": "Rodamine-500 ml",
+    "name": "RODAMINE-500 ML",
     "brand": "Rodamine",
     "category": "Insecticides",
     "packSize": "500",
@@ -4340,7 +4340,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-332",
-    "name": "Rose (1)-500 ml",
+    "name": "ROSE (1)-500 ML",
     "brand": "Rose (1)",
     "category": "Insecticides",
     "packSize": "500",
@@ -4353,7 +4353,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-333",
-    "name": "Rose (1)-250 ml",
+    "name": "ROSE (1)-250 ML",
     "brand": "Rose (1)",
     "category": "Insecticides",
     "packSize": "250",
@@ -4366,7 +4366,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-334",
-    "name": "Rose (2)-500 ml",
+    "name": "ROSE (2)-500 ML",
     "brand": "Rose (2)",
     "category": "Insecticides",
     "packSize": "500",
@@ -4379,7 +4379,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-335",
-    "name": "Rose (2)-250 ml",
+    "name": "ROSE (2)-250 ML",
     "brand": "Rose (2)",
     "category": "Insecticides",
     "packSize": "250",
@@ -4392,7 +4392,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-336",
-    "name": "Rose (3)-500 ml",
+    "name": "ROSE (3)-500 ML",
     "brand": "Rose (3)",
     "category": "Insecticides",
     "packSize": "500",
@@ -4405,7 +4405,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-337",
-    "name": "Rose (3)-250 ml",
+    "name": "ROSE (3)-250 ML",
     "brand": "Rose (3)",
     "category": "Insecticides",
     "packSize": "250",
@@ -4418,7 +4418,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-338",
-    "name": "Basforus Gold-250 ml",
+    "name": "BASFORUS GOLD-250 ML",
     "brand": "Basforus Gold",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "250",
@@ -4431,7 +4431,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-339",
-    "name": "Remote-250 ml",
+    "name": "REMOTE-250 ML",
     "brand": "Remote",
     "category": "Insecticides",
     "packSize": "250",
@@ -4444,7 +4444,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-340",
-    "name": "Atrastar-1 kg",
+    "name": "ATRASTAR-1 KG",
     "brand": "Atrastar",
     "category": "Insecticides",
     "packSize": "1",
@@ -4457,7 +4457,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-341",
-    "name": "SA-Cropgum-500 gm",
+    "name": "SA-CROPGUM-500 GM",
     "brand": "SA-Cropgum",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "500",
@@ -4470,7 +4470,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-342",
-    "name": "Flux-500 gm",
+    "name": "FLUX-500 GM",
     "brand": "Flux",
     "category": "Insecticides",
     "packSize": "500",
@@ -4483,7 +4483,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-343",
-    "name": "Snailkill-1 kg",
+    "name": "SNAILKILL-1 KG",
     "brand": "Snailkill",
     "category": "Crop Protection",
     "packSize": "1",
@@ -4496,7 +4496,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-344",
-    "name": "Restore-500 gm",
+    "name": "RESTORE-500 GM",
     "brand": "Restore",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "500",
@@ -4509,7 +4509,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-345",
-    "name": "Nimit2-1 kg",
+    "name": "NIMIT2-1 KG",
     "brand": "Nimit2",
     "category": "Insecticides",
     "packSize": "1",
@@ -4522,7 +4522,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-346",
-    "name": "Borogold-500 gm",
+    "name": "BOROGOLD-500 GM",
     "brand": "Borogold",
     "category": "Fertilizers & Nutrients",
     "packSize": "500",
@@ -4535,7 +4535,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-347",
-    "name": "SA-Butarapid-1 L",
+    "name": "SA-BUTARAPID-1 L",
     "brand": "SA-Butarapid",
     "category": "Insecticides",
     "packSize": "1",
@@ -4548,7 +4548,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-348",
-    "name": "Alion Plus-1 L",
+    "name": "ALION PLUS-1 L",
     "brand": "Alion Plus",
     "category": "Insecticides",
     "packSize": "1",
@@ -4561,7 +4561,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-349",
-    "name": "Tata Panida-500 ml",
+    "name": "TATA PANIDA-500 ML",
     "brand": "Tata Panida",
     "category": "Herbicides & Weedicides",
     "packSize": "500",
@@ -4574,7 +4574,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-350",
-    "name": "Tag Proxy-500 ml",
+    "name": "TAG PROXY-500 ML",
     "brand": "Tag Proxy",
     "category": "Herbicides & Weedicides",
     "packSize": "500",
@@ -4587,7 +4587,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-351",
-    "name": "Hole-250 ml",
+    "name": "HOLE-250 ML",
     "brand": "Hole",
     "category": "Insecticides",
     "packSize": "250",
@@ -4600,7 +4600,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-352",
-    "name": "Everso-250 ml",
+    "name": "EVERSO-250 ML",
     "brand": "Everso",
     "category": "Insecticides",
     "packSize": "250",
@@ -4613,7 +4613,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-353",
-    "name": "Rofufent-100 ml",
+    "name": "ROFUFENT-100 ML",
     "brand": "Rofufent",
     "category": "Insecticides",
     "packSize": "100",
@@ -4626,7 +4626,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-354",
-    "name": "Bloom-1 kg",
+    "name": "BLOOM-1 KG",
     "brand": "Bloom",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -4639,7 +4639,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-355",
-    "name": "Spark-250 gm",
+    "name": "SPARK-250 GM",
     "brand": "Spark",
     "category": "Insecticides",
     "packSize": "250",
@@ -4652,7 +4652,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-356",
-    "name": "Abax-500 ml",
+    "name": "ABAX-500 ML",
     "brand": "Abax",
     "category": "Insecticides",
     "packSize": "500",
@@ -4665,7 +4665,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-357",
-    "name": "Abax-250 ml",
+    "name": "ABAX-250 ML",
     "brand": "Abax",
     "category": "Insecticides",
     "packSize": "250",
@@ -4678,7 +4678,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-358",
-    "name": "Transform-150 ml",
+    "name": "TRANSFORM-150 ML",
     "brand": "Transform",
     "category": "Insecticides",
     "packSize": "150",
@@ -4691,7 +4691,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-359",
-    "name": "Trasid-1 L",
+    "name": "TRASID-1 L",
     "brand": "Trasid",
     "category": "Insecticides",
     "packSize": "1",
@@ -4704,7 +4704,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-360",
-    "name": "Trasid-520 ml",
+    "name": "TRASID-520 ML",
     "brand": "Trasid",
     "category": "Insecticides",
     "packSize": "520",
@@ -4717,7 +4717,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-361",
-    "name": "Trasid-300 ml",
+    "name": "TRASID-300 ML",
     "brand": "Trasid",
     "category": "Insecticides",
     "packSize": "300",
@@ -4730,7 +4730,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-362",
-    "name": "Trasid-100 ml",
+    "name": "TRASID-100 ML",
     "brand": "Trasid",
     "category": "Insecticides",
     "packSize": "100",
@@ -4743,7 +4743,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-363",
-    "name": "Engage-80 ml",
+    "name": "ENGAGE-80 ML",
     "brand": "Engage",
     "category": "Insecticides",
     "packSize": "80",
@@ -4756,7 +4756,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-364",
-    "name": "Engage-160 ml",
+    "name": "ENGAGE-160 ML",
     "brand": "Engage",
     "category": "Insecticides",
     "packSize": "160",
@@ -4769,7 +4769,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-365",
-    "name": "Delegate-180 ml",
+    "name": "DELEGATE-180 ML",
     "brand": "Delegate",
     "category": "Insecticides",
     "packSize": "180",
@@ -4782,7 +4782,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-366",
-    "name": "Summit-180 ml",
+    "name": "SUMMIT-180 ML",
     "brand": "Summit",
     "category": "Insecticides",
     "packSize": "180",
@@ -4795,7 +4795,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-367",
-    "name": "Summit-100 ml",
+    "name": "SUMMIT-100 ML",
     "brand": "Summit",
     "category": "Insecticides",
     "packSize": "100",
@@ -4808,7 +4808,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-368",
-    "name": "Abacin-100 ml",
+    "name": "ABACIN-100 ML",
     "brand": "Abacin",
     "category": "Insecticides",
     "packSize": "100",
@@ -4821,7 +4821,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-369",
-    "name": "Zorvec Entectab-125 ml",
+    "name": "ZORVEC ENTECTAB-125 ML",
     "brand": "Zorvec Entectab",
     "category": "Fungicides",
     "packSize": "125",
@@ -4834,7 +4834,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-370",
-    "name": "Kunoichi-250 ml",
+    "name": "KUNOICHI-250 ML",
     "brand": "Kunoichi",
     "category": "Insecticides",
     "packSize": "250",
@@ -4847,7 +4847,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-371",
-    "name": "Kunoichi-100 ml",
+    "name": "KUNOICHI-100 ML",
     "brand": "Kunoichi",
     "category": "Insecticides",
     "packSize": "100",
@@ -4860,7 +4860,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-372",
-    "name": "Kunoichi-50 ml",
+    "name": "KUNOICHI-50 ML",
     "brand": "Kunoichi",
     "category": "Insecticides",
     "packSize": "50",
@@ -4873,7 +4873,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-373",
-    "name": "Tirraoko-80 ml",
+    "name": "TIRRAOKO-80 ML",
     "brand": "Tirraoko",
     "category": "Insecticides",
     "packSize": "80",
@@ -4886,7 +4886,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-374",
-    "name": "Element-100 ml",
+    "name": "ELEMENT-100 ML",
     "brand": "Element",
     "category": "Insecticides",
     "packSize": "100",
@@ -4899,7 +4899,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-375",
-    "name": "Ssumplico-1 L",
+    "name": "SSUMPLICO-1 L",
     "brand": "Ssumplico",
     "category": "Insecticides",
     "packSize": "1",
@@ -4912,7 +4912,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-376",
-    "name": "Soloman-250 ml",
+    "name": "SOLOMAN-250 ML",
     "brand": "Soloman",
     "category": "Insecticides",
     "packSize": "250",
@@ -4925,7 +4925,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-377",
-    "name": "Soloman-100 ml",
+    "name": "SOLOMAN-100 ML",
     "brand": "Soloman",
     "category": "Insecticides",
     "packSize": "100",
@@ -4938,7 +4938,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-378",
-    "name": "Score-500 ml",
+    "name": "SCORE-500 ML",
     "brand": "Score",
     "category": "Fungicides",
     "packSize": "500",
@@ -4951,7 +4951,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-379",
-    "name": "Tracer-75 ml",
+    "name": "TRACER-75 ML",
     "brand": "Tracer",
     "category": "Insecticides",
     "packSize": "75",
@@ -4964,7 +4964,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-380",
-    "name": "Prachand-160 ml",
+    "name": "PRACHAND-160 ML",
     "brand": "Prachand",
     "category": "Insecticides",
     "packSize": "160",
@@ -4977,7 +4977,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-381",
-    "name": "Prachand-80 ml",
+    "name": "PRACHAND-80 ML",
     "brand": "Prachand",
     "category": "Insecticides",
     "packSize": "80",
@@ -4990,7 +4990,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-382",
-    "name": "Score-250 ml",
+    "name": "SCORE-250 ML",
     "brand": "Score",
     "category": "Fungicides",
     "packSize": "250",
@@ -5003,7 +5003,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-383",
-    "name": "Veliam Flexi-100 ml",
+    "name": "VELIAM FLEXI-100 ML",
     "brand": "Veliam Flexi",
     "category": "Insecticides",
     "packSize": "100",
@@ -5016,7 +5016,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-384",
-    "name": "Tag201-250 ml",
+    "name": "TAG201-250 ML",
     "brand": "Tag201",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "250",
@@ -5029,7 +5029,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-385",
-    "name": "Fast-40 gm",
+    "name": "FAST-40 GM",
     "brand": "Fast",
     "category": "Insecticides",
     "packSize": "40",
@@ -5042,7 +5042,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-386",
-    "name": "Arumurox-250 ml",
+    "name": "ARUMUROX-250 ML",
     "brand": "Arumurox",
     "category": "Insecticides",
     "packSize": "250",
@@ -5055,7 +5055,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-387",
-    "name": "Mitex-250 ml",
+    "name": "MITEX-250 ML",
     "brand": "Mitex",
     "category": "Insecticides",
     "packSize": "250",
@@ -5068,7 +5068,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-388",
-    "name": "Boost-100 ml",
+    "name": "BOOST-100 ML",
     "brand": "Boost",
     "category": "Insecticides",
     "packSize": "100",
@@ -5081,7 +5081,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-389",
-    "name": "Lanevo-250 ml",
+    "name": "LANEVO-250 ML",
     "brand": "Lanevo",
     "category": "Insecticides",
     "packSize": "250",
@@ -5094,7 +5094,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-390",
-    "name": "Vlala-60 gm",
+    "name": "VLALA-60 GM",
     "brand": "Vlala",
     "category": "Insecticides",
     "packSize": "60",
@@ -5107,7 +5107,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-391",
-    "name": "Vlala-30 gm",
+    "name": "VLALA-30 GM",
     "brand": "Vlala",
     "category": "Insecticides",
     "packSize": "30",
@@ -5120,7 +5120,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-392",
-    "name": "Magister-500 ml",
+    "name": "MAGISTER-500 ML",
     "brand": "Magister",
     "category": "Insecticides",
     "packSize": "500",
@@ -5133,7 +5133,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-393",
-    "name": "Ulala-150 gm",
+    "name": "ULALA-150 GM",
     "brand": "Ulala",
     "category": "Insecticides",
     "packSize": "150",
@@ -5146,7 +5146,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-394",
-    "name": "Myrich-100 gm",
+    "name": "MYRICH-100 GM",
     "brand": "Myrich",
     "category": "Insecticides",
     "packSize": "100",
@@ -5159,7 +5159,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-395",
-    "name": "SLR 525-100 ml",
+    "name": "SLR 525-100 ML",
     "brand": "SLR 525",
     "category": "Insecticides",
     "packSize": "100",
@@ -5172,7 +5172,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-396",
-    "name": "SLR 525-250 ml",
+    "name": "SLR 525-250 ML",
     "brand": "SLR 525",
     "category": "Insecticides",
     "packSize": "250",
@@ -5185,7 +5185,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-397",
-    "name": "Sa-Magnitude-250 ml",
+    "name": "SA-MAGNITUDE-250 ML",
     "brand": "Sa-Magnitude",
     "category": "Insecticides",
     "packSize": "250",
@@ -5198,7 +5198,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-398",
-    "name": "SLR 525-500 ml",
+    "name": "SLR 525-500 ML",
     "brand": "SLR 525",
     "category": "Insecticides",
     "packSize": "500",
@@ -5224,7 +5224,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-400",
-    "name": "Vibrance-100 ml",
+    "name": "VIBRANCE-100 ML",
     "brand": "Vibrance",
     "category": "Fungicides",
     "packSize": "100",
@@ -5237,7 +5237,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-401",
-    "name": "Virimark-50 ml",
+    "name": "VIRIMARK-50 ML",
     "brand": "Virimark",
     "category": "Insecticides",
     "packSize": "50",
@@ -5250,7 +5250,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-402",
-    "name": "Simidoes-240 ml",
+    "name": "SIMIDOES-240 ML",
     "brand": "Simidoes",
     "category": "Insecticides",
     "packSize": "240",
@@ -5263,7 +5263,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-403",
-    "name": "Simiodes-120 ml",
+    "name": "SIMIODES-120 ML",
     "brand": "Simiodes",
     "category": "Insecticides",
     "packSize": "120",
@@ -5276,7 +5276,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-404",
-    "name": "Actity 80-1 L",
+    "name": "ACTITY 80-1 L",
     "brand": "Actity 80",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -5289,7 +5289,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-405",
-    "name": "Actity 80-250 ml",
+    "name": "ACTITY 80-250 ML",
     "brand": "Actity 80",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "250",
@@ -5302,7 +5302,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-406",
-    "name": "Buabuli Gold-1 kg",
+    "name": "BUABULI GOLD-1 KG",
     "brand": "Buabuli Gold",
     "category": "Crop Protection",
     "packSize": "1",
@@ -5315,7 +5315,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-407",
-    "name": "Gracia-160 ml",
+    "name": "GRACIA-160 ML",
     "brand": "Gracia",
     "category": "Insecticides",
     "packSize": "160",
@@ -5328,7 +5328,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-408",
-    "name": "Rostock-200 ml",
+    "name": "ROSTOCK-200 ML",
     "brand": "Rostock",
     "category": "Fungicides",
     "packSize": "200",
@@ -5341,7 +5341,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-409",
-    "name": "Malik-200 ml",
+    "name": "MALIK-200 ML",
     "brand": "Malik",
     "category": "Insecticides",
     "packSize": "200",
@@ -5354,7 +5354,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-410",
-    "name": "Amister Top-200 ml",
+    "name": "AMISTER TOP-200 ML",
     "brand": "Amister Top",
     "category": "Fungicides",
     "packSize": "200",
@@ -5367,7 +5367,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-411",
-    "name": "Amister Top-100 ml",
+    "name": "AMISTER TOP-100 ML",
     "brand": "Amister Top",
     "category": "Fungicides",
     "packSize": "100",
@@ -5380,7 +5380,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-412",
-    "name": "Pcthio-100 ml",
+    "name": "PCTHIO-100 ML",
     "brand": "Pcthio",
     "category": "Insecticides",
     "packSize": "100",
@@ -5393,7 +5393,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-413",
-    "name": "Biston-250 ml",
+    "name": "BISTON-250 ML",
     "brand": "Biston",
     "category": "Insecticides",
     "packSize": "250",
@@ -5406,7 +5406,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-414",
-    "name": "Shinva-160 ml",
+    "name": "SHINVA-160 ML",
     "brand": "Shinva",
     "category": "Insecticides",
     "packSize": "160",
@@ -5419,7 +5419,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-415",
-    "name": "Mintocarva-50 ml",
+    "name": "MINTOCARVA-50 ML",
     "brand": "Mintocarva",
     "category": "Insecticides",
     "packSize": "50",
@@ -5432,7 +5432,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-416",
-    "name": "Amaser-250 ml",
+    "name": "AMASER-250 ML",
     "brand": "Amaser",
     "category": "Insecticides",
     "packSize": "250",
@@ -5445,7 +5445,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-417",
-    "name": "Amaser-500 ml",
+    "name": "AMASER-500 ML",
     "brand": "Amaser",
     "category": "Insecticides",
     "packSize": "500",
@@ -5458,7 +5458,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-418",
-    "name": "Radimil Gold-1 kg",
+    "name": "RADIMIL GOLD-1 KG",
     "brand": "Radimil Gold",
     "category": "Fungicides",
     "packSize": "1",
@@ -5471,7 +5471,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-419",
-    "name": "Radimil Gold-250 gm",
+    "name": "RADIMIL GOLD-250 GM",
     "brand": "Radimil Gold",
     "category": "Fungicides",
     "packSize": "250",
@@ -5484,7 +5484,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-420",
-    "name": "Radimil Gold-500 gm",
+    "name": "RADIMIL GOLD-500 GM",
     "brand": "Radimil Gold",
     "category": "Fungicides",
     "packSize": "500",
@@ -5497,7 +5497,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-421",
-    "name": "Rostock-100 ml",
+    "name": "ROSTOCK-100 ML",
     "brand": "Rostock",
     "category": "Fungicides",
     "packSize": "100",
@@ -5510,7 +5510,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-422",
-    "name": "Podhoom-500 ml",
+    "name": "PODHOOM-500 ML",
     "brand": "Podhoom",
     "category": "Insecticides",
     "packSize": "500",
@@ -5523,7 +5523,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-423",
-    "name": "Degere-250 ml",
+    "name": "DEGERE-250 ML",
     "brand": "Degere",
     "category": "Insecticides",
     "packSize": "250",
@@ -5536,7 +5536,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-424",
-    "name": "Miravdies-120 ml",
+    "name": "MIRAVDIES-120 ML",
     "brand": "Miravdies",
     "category": "Insecticides",
     "packSize": "120",
@@ -5549,7 +5549,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-425",
-    "name": "Orondies Ultra-250 ml",
+    "name": "ORONDIES ULTRA-250 ML",
     "brand": "Orondies Ultra",
     "category": "Insecticides",
     "packSize": "250",
@@ -5562,7 +5562,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-426",
-    "name": "Elestral Neo-500 gm",
+    "name": "ELESTRAL NEO-500 GM",
     "brand": "Elestral Neo",
     "category": "Insecticides",
     "packSize": "500",
@@ -5575,7 +5575,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-427",
-    "name": "Elestral Neo-100 gm",
+    "name": "ELESTRAL NEO-100 GM",
     "brand": "Elestral Neo",
     "category": "Insecticides",
     "packSize": "100",
@@ -5588,7 +5588,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-428",
-    "name": "Cingleboa-200 gm",
+    "name": "CINGLEBOA-200 GM",
     "brand": "Cingleboa",
     "category": "Insecticides",
     "packSize": "200",
@@ -5601,7 +5601,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-429",
-    "name": "Cingleboa-100 gm",
+    "name": "CINGLEBOA-100 GM",
     "brand": "Cingleboa",
     "category": "Insecticides",
     "packSize": "100",
@@ -5614,7 +5614,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-430",
-    "name": "Battex-250 ml",
+    "name": "BATTEX-250 ML",
     "brand": "Battex",
     "category": "Insecticides",
     "packSize": "250",
@@ -5627,7 +5627,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-431",
-    "name": "Battex-500 ml",
+    "name": "BATTEX-500 ML",
     "brand": "Battex",
     "category": "Insecticides",
     "packSize": "500",
@@ -5640,7 +5640,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-432",
-    "name": "Battex-100 ml",
+    "name": "BATTEX-100 ML",
     "brand": "Battex",
     "category": "Insecticides",
     "packSize": "100",
@@ -5653,7 +5653,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-433",
-    "name": "Fighter-250 ml",
+    "name": "FIGHTER-250 ML",
     "brand": "Fighter",
     "category": "Insecticides",
     "packSize": "250",
@@ -5666,7 +5666,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-434",
-    "name": "In Top-50 gm",
+    "name": "IN TOP-50 GM",
     "brand": "In Top",
     "category": "Insecticides",
     "packSize": "50",
@@ -5679,7 +5679,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-435",
-    "name": "In Top-100 gm",
+    "name": "IN TOP-100 GM",
     "brand": "In Top",
     "category": "Insecticides",
     "packSize": "100",
@@ -5692,7 +5692,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-436",
-    "name": "Meuthroin-250 ml",
+    "name": "MEUTHROIN-250 ML",
     "brand": "Meuthroin",
     "category": "Insecticides",
     "packSize": "250",
@@ -5705,7 +5705,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-437",
-    "name": "Meuthroin-1 L",
+    "name": "MEUTHROIN-1 L",
     "brand": "Meuthroin",
     "category": "Insecticides",
     "packSize": "1",
@@ -5718,7 +5718,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-438",
-    "name": "Agtan-500 ml",
+    "name": "AGTAN-500 ML",
     "brand": "Agtan",
     "category": "Insecticides",
     "packSize": "500",
@@ -5731,7 +5731,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-439",
-    "name": "Obalo Star-250 ml",
+    "name": "OBALO STAR-250 ML",
     "brand": "Obalo Star",
     "category": "Insecticides",
     "packSize": "250",
@@ -5744,7 +5744,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-440",
-    "name": "Obalo Star-100 ml",
+    "name": "OBALO STAR-100 ML",
     "brand": "Obalo Star",
     "category": "Insecticides",
     "packSize": "100",
@@ -5757,7 +5757,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-441",
-    "name": "Yamara2-1 L",
+    "name": "YAMARA2-1 L",
     "brand": "Yamara2",
     "category": "Insecticides",
     "packSize": "1",
@@ -5770,7 +5770,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-442",
-    "name": "Yamara2-500 ml",
+    "name": "YAMARA2-500 ML",
     "brand": "Yamara2",
     "category": "Insecticides",
     "packSize": "500",
@@ -5783,7 +5783,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-443",
-    "name": "Raavan-500 ml",
+    "name": "RAAVAN-500 ML",
     "brand": "Raavan",
     "category": "Insecticides",
     "packSize": "500",
@@ -5796,7 +5796,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-444",
-    "name": "Slayer Pro-1 L",
+    "name": "SLAYER PRO-1 L",
     "brand": "Slayer Pro",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "1",
@@ -5809,7 +5809,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-445",
-    "name": "Slayer Pro-500 ml",
+    "name": "SLAYER PRO-500 ML",
     "brand": "Slayer Pro",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "500",
@@ -5822,7 +5822,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-446",
-    "name": "Slayer Pro-250 ml",
+    "name": "SLAYER PRO-250 ML",
     "brand": "Slayer Pro",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "250",
@@ -5835,7 +5835,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-447",
-    "name": "Yamroj-250 ml",
+    "name": "YAMROJ-250 ML",
     "brand": "Yamroj",
     "category": "Insecticides",
     "packSize": "250",
@@ -5848,7 +5848,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-448",
-    "name": "Maizor Soul-500 ml",
+    "name": "MAIZOR SOUL-500 ML",
     "brand": "Maizor Soul",
     "category": "Insecticides",
     "packSize": "500",
@@ -5861,7 +5861,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-449",
-    "name": "Maizor Soul-250 ml",
+    "name": "MAIZOR SOUL-250 ML",
     "brand": "Maizor Soul",
     "category": "Insecticides",
     "packSize": "250",
@@ -5874,7 +5874,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-450",
-    "name": "Rotrit Ultra-200 ml",
+    "name": "ROTRIT ULTRA-200 ML",
     "brand": "Rotrit Ultra",
     "category": "Insecticides",
     "packSize": "200",
@@ -5887,7 +5887,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-451",
-    "name": "Rotrit Ultra-80 ml",
+    "name": "ROTRIT ULTRA-80 ML",
     "brand": "Rotrit Ultra",
     "category": "Insecticides",
     "packSize": "80",
@@ -5900,7 +5900,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-452",
-    "name": "Sabus-500 ml",
+    "name": "SABUS-500 ML",
     "brand": "Sabus",
     "category": "Insecticides",
     "packSize": "500",
@@ -5913,7 +5913,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-453",
-    "name": "Sabus-250 ml",
+    "name": "SABUS-250 ML",
     "brand": "Sabus",
     "category": "Insecticides",
     "packSize": "250",
@@ -5926,7 +5926,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-454",
-    "name": "Sepig Naj-125 ml",
+    "name": "SEPIG NAJ-125 ML",
     "brand": "Sepig Naj",
     "category": "Insecticides",
     "packSize": "125",
@@ -5939,7 +5939,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-455",
-    "name": "AD (name unclear)-180 ml",
+    "name": "AD (NAME UNCLEAR)-180 ML",
     "brand": "AD (name unclear)",
     "category": "Crop Protection",
     "packSize": "180",
@@ -5952,7 +5952,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-456",
-    "name": "Anton Suda-100 ml",
+    "name": "ANTON SUDA-100 ML",
     "brand": "Anton Suda",
     "category": "Insecticides",
     "packSize": "100",
@@ -5965,7 +5965,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-457",
-    "name": "Proteza-50 gm",
+    "name": "PROTEZA-50 GM",
     "brand": "Proteza",
     "category": "Insecticides",
     "packSize": "50",
@@ -5978,7 +5978,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-458",
-    "name": "Proteza-100 gm",
+    "name": "PROTEZA-100 GM",
     "brand": "Proteza",
     "category": "Insecticides",
     "packSize": "100",
@@ -5991,7 +5991,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-459",
-    "name": "Infinito-1 L",
+    "name": "INFINITO-1 L",
     "brand": "Infinito",
     "category": "Fungicides",
     "packSize": "1",
@@ -6004,7 +6004,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-460",
-    "name": "Infinito-500 ml",
+    "name": "INFINITO-500 ML",
     "brand": "Infinito",
     "category": "Fungicides",
     "packSize": "500",
@@ -6017,7 +6017,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-461",
-    "name": "Infinito-100 ml",
+    "name": "INFINITO-100 ML",
     "brand": "Infinito",
     "category": "Fungicides",
     "packSize": "100",
@@ -6030,7 +6030,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-462",
-    "name": "Ethrel-1 L",
+    "name": "ETHREL-1 L",
     "brand": "Ethrel",
     "category": "Insecticides",
     "packSize": "1",
@@ -6043,7 +6043,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-463",
-    "name": "Easypin-500 ml",
+    "name": "EASYPIN-500 ML",
     "brand": "Easypin",
     "category": "Insecticides",
     "packSize": "500",
@@ -6056,7 +6056,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-464",
-    "name": "Easypin-1 L",
+    "name": "EASYPIN-1 L",
     "brand": "Easypin",
     "category": "Insecticides",
     "packSize": "1",
@@ -6069,7 +6069,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-465",
-    "name": "Exponus-25 ml",
+    "name": "EXPONUS-25 ML",
     "brand": "Exponus",
     "category": "Insecticides",
     "packSize": "25",
@@ -6082,7 +6082,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-466",
-    "name": "Exponus-17 ml",
+    "name": "EXPONUS-17 ML",
     "brand": "Exponus",
     "category": "Insecticides",
     "packSize": "17",
@@ -6095,7 +6095,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-467",
-    "name": "Exponus-34 ml",
+    "name": "EXPONUS-34 ML",
     "brand": "Exponus",
     "category": "Insecticides",
     "packSize": "34",
@@ -6108,7 +6108,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-468",
-    "name": "Pronto-75 gm",
+    "name": "PRONTO-75 GM",
     "brand": "Pronto",
     "category": "Insecticides",
     "packSize": "75",
@@ -6121,7 +6121,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-469",
-    "name": "Pronto-30 gm",
+    "name": "PRONTO-30 GM",
     "brand": "Pronto",
     "category": "Insecticides",
     "packSize": "30",
@@ -6134,7 +6134,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-470",
-    "name": "Sefina-280 ml",
+    "name": "SEFINA-280 ML",
     "brand": "Sefina",
     "category": "Insecticides",
     "packSize": "280",
@@ -6147,7 +6147,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-471",
-    "name": "Xelora-200 ml",
+    "name": "XELORA-200 ML",
     "brand": "Xelora",
     "category": "Insecticides",
     "packSize": "200",
@@ -6160,7 +6160,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-472",
-    "name": "Eggicon-280 ml",
+    "name": "EGGICON-280 ML",
     "brand": "Eggicon",
     "category": "Insecticides",
     "packSize": "280",
@@ -6173,7 +6173,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-473",
-    "name": "Talente-100 gm",
+    "name": "TALENTE-100 GM",
     "brand": "Talente",
     "category": "Insecticides",
     "packSize": "100",
@@ -6186,7 +6186,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-474",
-    "name": "Mervion-250 ml",
+    "name": "MERVION-250 ML",
     "brand": "Mervion",
     "category": "Insecticides",
     "packSize": "250",
@@ -6199,7 +6199,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-475",
-    "name": "Mervion-80 ml",
+    "name": "MERVION-80 ML",
     "brand": "Mervion",
     "category": "Insecticides",
     "packSize": "80",
@@ -6212,7 +6212,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-476",
-    "name": "Sercadis Plus-250 ml",
+    "name": "SERCADIS PLUS-250 ML",
     "brand": "Sercadis Plus",
     "category": "Fungicides",
     "packSize": "250",
@@ -6225,7 +6225,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-477",
-    "name": "Balestric-250 ml",
+    "name": "BALESTRIC-250 ML",
     "brand": "Balestric",
     "category": "Fungicides",
     "packSize": "250",
@@ -6238,7 +6238,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-478",
-    "name": "Balestric-100 ml",
+    "name": "BALESTRIC-100 ML",
     "brand": "Balestric",
     "category": "Fungicides",
     "packSize": "100",
@@ -6251,7 +6251,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-479",
-    "name": "Acrwet-100 ml",
+    "name": "ACRWET-100 ML",
     "brand": "Acrwet",
     "category": "Insecticides",
     "packSize": "100",
@@ -6264,7 +6264,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-480",
-    "name": "Nxr-500 ml",
+    "name": "NXR-500 ML",
     "brand": "Nxr",
     "category": "Insecticides",
     "packSize": "500",
@@ -6277,7 +6277,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-481",
-    "name": "Nxr",
+    "name": "NXR",
     "brand": "Nxr",
     "category": "Insecticides",
     "packSize": "",
@@ -6290,7 +6290,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-482",
-    "name": "Lihocin-500 ml",
+    "name": "LIHOCIN-500 ML",
     "brand": "Lihocin",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "500",
@@ -6303,7 +6303,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-483",
-    "name": "Organneem-250 ml",
+    "name": "ORGANNEEM-250 ML",
     "brand": "Organneem",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "250",
@@ -6316,7 +6316,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-484",
-    "name": "Organneem-100 ml",
+    "name": "ORGANNEEM-100 ML",
     "brand": "Organneem",
     "category": "Bio-Stimulants & Growth Promoters",
     "packSize": "100",
@@ -6329,7 +6329,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-485",
-    "name": "Libreo Tonx-250 ml",
+    "name": "LIBREO TONX-250 ML",
     "brand": "Libreo Tonx",
     "category": "Insecticides",
     "packSize": "250",
@@ -6342,7 +6342,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-486",
-    "name": "Z78-500 gm",
+    "name": "Z78-500 GM",
     "brand": "Z78",
     "category": "Fungicides",
     "packSize": "500",
@@ -6368,7 +6368,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-488",
-    "name": "Captaf-250 ml",
+    "name": "CAPTAF-250 ML",
     "brand": "Captaf",
     "category": "Fungicides",
     "packSize": "250",
@@ -6381,7 +6381,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-489",
-    "name": "Bunten-250 ml",
+    "name": "BUNTEN-250 ML",
     "brand": "Bunten",
     "category": "Insecticides",
     "packSize": "250",
@@ -6394,7 +6394,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-490",
-    "name": "Toleds-500 ml",
+    "name": "TOLEDS-500 ML",
     "brand": "Toleds",
     "category": "Insecticides",
     "packSize": "500",
@@ -6407,7 +6407,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-491",
-    "name": "Milzorm2-500 ml",
+    "name": "MILZORM2-500 ML",
     "brand": "Milzorm2",
     "category": "Insecticides",
     "packSize": "500",
@@ -6420,7 +6420,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-492",
-    "name": "Milzorm2-250 gm",
+    "name": "MILZORM2-250 GM",
     "brand": "Milzorm2",
     "category": "Insecticides",
     "packSize": "250",
@@ -6433,7 +6433,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-493",
-    "name": "Cosvert-500 gm",
+    "name": "COSVERT-500 GM",
     "brand": "Cosvert",
     "category": "Fungicides",
     "packSize": "500",
@@ -6446,7 +6446,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-494",
-    "name": "SA Lead-1 kg",
+    "name": "SA LEAD-1 KG",
     "brand": "SA Lead",
     "category": "Fungicides",
     "packSize": "1",
@@ -6459,7 +6459,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-495",
-    "name": "Microse-250 gm",
+    "name": "MICROSE-250 GM",
     "brand": "Microse",
     "category": "Insecticides",
     "packSize": "250",
@@ -6472,7 +6472,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-496",
-    "name": "Microse-100 gm",
+    "name": "MICROSE-100 GM",
     "brand": "Microse",
     "category": "Insecticides",
     "packSize": "100",
@@ -6485,7 +6485,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-497",
-    "name": "Royal-500 ml",
+    "name": "ROYAL-500 ML",
     "brand": "Royal",
     "category": "Insecticides",
     "packSize": "500",
@@ -6498,7 +6498,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-498",
-    "name": "Repna-600 gm",
+    "name": "REPNA-600 GM",
     "brand": "Repna",
     "category": "Insecticides",
     "packSize": "600",
@@ -6511,7 +6511,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-499",
-    "name": "SA Lead-500 gm",
+    "name": "SA LEAD-500 GM",
     "brand": "SA Lead",
     "category": "Fungicides",
     "packSize": "500",
@@ -6524,7 +6524,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-500",
-    "name": "Teled's-500 gm",
+    "name": "TELED'S-500 GM",
     "brand": "Teled's",
     "category": "Insecticides",
     "packSize": "500",
@@ -6537,7 +6537,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-501",
-    "name": "Topgun-100 gm",
+    "name": "TOPGUN-100 GM",
     "brand": "Topgun",
     "category": "Insecticides",
     "packSize": "100",
@@ -6550,7 +6550,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-502",
-    "name": "Fungicare-500 gm",
+    "name": "FUNGICARE-500 GM",
     "brand": "Fungicare",
     "category": "Fungicides",
     "packSize": "500",
@@ -6563,7 +6563,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-503",
-    "name": "Topgun-400 gm",
+    "name": "TOPGUN-400 GM",
     "brand": "Topgun",
     "category": "Insecticides",
     "packSize": "400",
@@ -6576,7 +6576,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-504",
-    "name": "Teled's-250 gm",
+    "name": "TELED'S-250 GM",
     "brand": "Teled's",
     "category": "Insecticides",
     "packSize": "250",
@@ -6589,7 +6589,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-505",
-    "name": "M45-500 gm",
+    "name": "M45-500 GM",
     "brand": "M45",
     "category": "Fungicides",
     "packSize": "500",
@@ -6602,7 +6602,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-506",
-    "name": "Artar-250 gm",
+    "name": "ARTAR-250 GM",
     "brand": "Artar",
     "category": "Fungicides",
     "packSize": "250",
@@ -6615,7 +6615,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-507",
-    "name": "Artar-500 gm",
+    "name": "ARTAR-500 GM",
     "brand": "Artar",
     "category": "Fungicides",
     "packSize": "500",
@@ -6628,7 +6628,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-508",
-    "name": "Merger-500 gm",
+    "name": "MERGER-500 GM",
     "brand": "Merger",
     "category": "Fungicides",
     "packSize": "500",
@@ -6641,7 +6641,7 @@ export const ssbProductsList: SSBProductItem[] = [
   },
   {
     "sku": "SSB-509",
-    "name": "M45-1 kg",
+    "name": "M45-1 KG",
     "brand": "M45",
     "category": "Fungicides",
     "packSize": "1",

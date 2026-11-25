@@ -3,6 +3,8 @@ import bcrypt from 'bcrypt';
 import { Shop } from '../models/Shop';
 import { User, UserRole } from '../models/User';
 import { Product } from '../models/Product';
+import { SaleItem } from '../models/SaleItem';
+import { PurchaseItem } from '../models/PurchaseItem';
 import { Inventory } from '../models/Inventory';
 import { InventoryTransaction, TransactionType } from '../models/InventoryTransaction';
 import { connectDB } from '../config/database';
@@ -93,6 +95,44 @@ export const seedSSBHiTechFarmProducts = async (options: SeedOptions = {}) => {
   }
   if (renamedCount > 0) {
     console.log(`✅ [SSB Seeder] Formatted ${renamedCount} products from "Name (Quantity)" to "Name-Quantity".`);
+  }
+
+  // Convert all existing product names to UPPERCASE in-place without deleting or dropping anything
+  const allExistingProducts = await Product.find().select('_id name');
+  let uppercaseCount = 0;
+  for (const p of allExistingProducts) {
+    if (p.name && p.name !== p.name.toUpperCase()) {
+      await Product.updateOne({ _id: p._id }, { $set: { name: p.name.toUpperCase() } });
+      uppercaseCount++;
+    }
+  }
+  if (uppercaseCount > 0) {
+    console.log(`✅ [SSB Seeder] Converted ${uppercaseCount} existing products to UPPERCASE in database.`);
+  }
+
+  // Also convert existing SaleItem and PurchaseItem product names to UPPERCASE
+  const allSaleItems = await SaleItem.find().select('_id productName');
+  let saleItemCount = 0;
+  for (const si of allSaleItems) {
+    if (si.productName && si.productName !== si.productName.toUpperCase()) {
+      await SaleItem.updateOne({ _id: si._id }, { $set: { productName: si.productName.toUpperCase() } });
+      saleItemCount++;
+    }
+  }
+  if (saleItemCount > 0) {
+    console.log(`✅ [SSB Seeder] Converted ${saleItemCount} sale item product names to UPPERCASE.`);
+  }
+
+  const allPurchaseItems = await PurchaseItem.find().select('_id productName');
+  let purchaseItemCount = 0;
+  for (const pi of allPurchaseItems) {
+    if (pi.productName && pi.productName !== pi.productName.toUpperCase()) {
+      await PurchaseItem.updateOne({ _id: pi._id }, { $set: { productName: pi.productName.toUpperCase() } });
+      purchaseItemCount++;
+    }
+  }
+  if (purchaseItemCount > 0) {
+    console.log(`✅ [SSB Seeder] Converted ${purchaseItemCount} purchase item product names to UPPERCASE.`);
   }
 
   if (existingCount >= 500 && !options.force) {
